@@ -24,4 +24,11 @@ module.exports = {
     'react/jsx-curly-spacing': ['error', { 'when': 'always', 'children': true }],
     'react/react-in-jsx-scope': 'off',
   },
+  settings: {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }

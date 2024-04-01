@@ -7,10 +7,8 @@ type PrivateRouteProps = {
 }
 
 export default function PrivateRoutes({ children }: PrivateRouteProps) {
-  const { data: user, isLoading } = useUser()
+  const { data: user } = useUser()
   const location = useLocation()
-
-  if (isLoading) return <div>Loading...</div>
 
   if (!user) return <Navigate to="/auth/login" replace state={ { from: location } } />
 

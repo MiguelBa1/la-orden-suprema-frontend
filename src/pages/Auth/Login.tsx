@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
@@ -6,11 +6,13 @@ import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/react-query-auth'
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { data: user } = useUser()
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const { mutateAsync: login } = useLogin()
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -19,6 +21,8 @@ export default function Login() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
+      setIsLoading(true)
+
       const payload = {
         email: data.email,
         password: data.password
@@ -28,6 +32,8 @@ export default function Login() {
       navigate('/home')
     } catch (error) {
       console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -64,7 +70,7 @@ export default function Login() {
               type="submit"
               className="w-full"
             >
-              Iniciar sesión
+              { isLoading ? 'Iniciando sesión...' : 'Iniciar sesión' }
             </Button>
             <div>
               <a href="#" className="text-blue-500">¿Olvidaste tu contraseña?</a>
