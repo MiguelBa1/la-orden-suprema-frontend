@@ -28,6 +28,7 @@
       "@models/*": ["src/models/*"],
       "@services/*": ["src/services/*"],
       "@lib/*": ["src/lib/*"],
+      "@stores/*": ["src/stores/*"],
     }
   },
   "include": ["src"],

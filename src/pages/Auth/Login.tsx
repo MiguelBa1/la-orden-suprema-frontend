@@ -4,8 +4,10 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/react-query-auth'
+import { useToastStore } from '@stores/index.ts'
 
 export default function Login() {
+  const { addToast } = useToastStore()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { data: user } = useUser()
 
@@ -30,8 +32,16 @@ export default function Login() {
       await login(payload)
 
       navigate('/home')
+
+      addToast({
+        message: '¡Bienvenido!',
+        type: 'success'
+      })
     } catch (error) {
-      console.error(error)
+      addToast({
+        message: 'Credenciales inválidas',
+        type: 'error'
+      })
     } finally {
       setIsLoading(false)
     }
