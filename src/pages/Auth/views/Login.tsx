@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/react-query-auth'
-import { useToastStore } from '@stores/index.ts'
+import { useToastStore } from '@stores/index'
 
 export default function Login() {
   const { addToast } = useToastStore()

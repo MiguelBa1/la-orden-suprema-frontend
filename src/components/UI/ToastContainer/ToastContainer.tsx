@@ -8,7 +8,7 @@ interface ToastProps {
 }
 
 function Toast({ id, message, type }: ToastProps) {
-  const removeToast = useToastStore((state) => state.removeToast)
+  const { removeToast } = useToastStore()
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function Toast({ id, message, type }: ToastProps) {
 }
 
 export default function ToastContainer() {
-  const toasts = useToastStore((state) => state.toasts)
+  const { toasts } = useToastStore()
 
   return (
     <div className="fixed top-5 right-5 z-50 flex flex-col space-y-2">

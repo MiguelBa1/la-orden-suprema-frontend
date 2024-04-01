@@ -1,5 +1,5 @@
-import { useLogout } from '@lib/react-query-auth.ts'
-import { Button } from '@components/index.ts'
+import { useLogout } from '@lib/react-query-auth'
+import { Button } from '@components/index'
 
 export default function Home() {
 
