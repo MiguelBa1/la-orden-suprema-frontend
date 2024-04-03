@@ -1,35 +1,12 @@
-import { Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import PrivateRoutes from '@routes/PrivateRoutes'
+import { Suspense } from 'react'
+import { RouterProvider } from 'react-router-dom'
 import { Spinner } from '@components/index'
-
-const Login = lazy(() => import('@pages/Auth/views/Login'))
-const NoMatch = lazy(() => import('@pages/Common/views/NoMatch'))
-const Home = lazy(() => import('@pages/Common/views/Home'))
+import { routes } from '@routes/routerConfig'
 
 export default function AppRoutes() {
   return (
-    <Suspense fallback={
-      <div className="flex justify-center items-center h-screen">
-        <Spinner />
-      </div>
-    }>
-      <Router>
-        <Routes>
-          <Route path="/auth/login" element={ <Login /> } />
-          <Route
-            path="*"
-            element={
-              <PrivateRoutes>
-                <Routes>
-                  <Route path="/home" element={ <Home /> } />
-                  <Route path="*" element={ <NoMatch /> } />
-                </Routes>
-              </PrivateRoutes>
-            }
-          />
-        </Routes>
-      </Router>
+    <Suspense fallback={ <div className="flex justify-center items-center h-screen"><Spinner /></div> }>
+      <RouterProvider router={ routes } />
     </Suspense>
   )
 }

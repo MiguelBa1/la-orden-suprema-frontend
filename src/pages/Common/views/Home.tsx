@@ -1,8 +1,7 @@
 import { useLogout } from '@lib/react-query-auth'
 import { Button } from '@components/index'
 
-export default function Home() {
-
+const Home = () => {
   const { mutate: logout } = useLogout()
 
   return (
@@ -12,3 +11,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home
