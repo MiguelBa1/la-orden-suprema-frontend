@@ -23,6 +23,7 @@ module.exports = {
     'semi': ['error', 'never'],
     'react/jsx-curly-spacing': ['error', { 'when': 'always', 'children': true }],
     'react/react-in-jsx-scope': 'off',
+    'indent': ['error', 2, { 'SwitchCase': 1 }],
   },
   settings: {
     "import/resolver": {
