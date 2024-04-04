@@ -2,7 +2,7 @@
 import { lazy } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
-import PrivateRoutes from '@routes/PrivateRoutes'
+import { AuthRedirect, PrivateRoutes } from '@routes/index'
 import { GeneralError } from '@pages/Common'
 
 const Login = lazy(() => import('@pages/Auth/views/Login'))
@@ -20,6 +20,7 @@ export const router = createBrowserRouter([
       </ErrorBoundary>
     ),
     children: [
+      { path: "/", element: <AuthRedirect /> },
       {
         path: "auth/login",
         element: <Login />,
