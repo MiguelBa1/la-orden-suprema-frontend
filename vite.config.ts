@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@components': resolve(__dirname, 'src/components'),
+      '@data': resolve(__dirname, 'src/data'),
       '@pages': resolve(__dirname, 'src/pages'),
       '@routes': resolve(__dirname, 'src/routes'),
       '@models': resolve(__dirname, 'src/models'),

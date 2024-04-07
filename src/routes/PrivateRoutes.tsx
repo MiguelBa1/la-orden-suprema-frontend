@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useUser } from '@lib/react-query-auth'
+import { MainLayout } from '@components/index'
 
 export default function PrivateRoutes() {
   const { data: user, isLoading } = useUser()
@@ -13,5 +14,9 @@ export default function PrivateRoutes() {
     return <Navigate to="/auth/login" replace state={ { from: location } } />
   }
 
-  return <Outlet />
+  return (
+    <MainLayout>
+      <Outlet />
+    </MainLayout>
+  )
 }
