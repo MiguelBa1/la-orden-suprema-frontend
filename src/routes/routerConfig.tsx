@@ -3,11 +3,11 @@ import { lazy } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import { AuthRedirect, PrivateRoutes } from '@routes/index'
-import { GeneralError } from '@pages/Common'
+import { GeneralError } from '@pages/common'
 
-const Login = lazy(() => import('@pages/Auth/views/Login'))
-const Home = lazy(() => import('@pages/Common/views/Home'))
-const NoMatch = lazy(() => import('@pages/Common/views/NoMatch'))
+const Login = lazy(() => import('@pages/auth/views/Login'))
+const Home = lazy(() => import('@pages/common/views/Home'))
+const NoMatch = lazy(() => import('@pages/common/views/NoMatch'))
 
 export const router = createBrowserRouter([
   {

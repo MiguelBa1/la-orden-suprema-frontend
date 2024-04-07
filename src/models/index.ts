@@ -1,2 +1,2 @@
-export * from './Credential'
-export * from './User'
+export * from './api/Credential.ts'
+export * from './api/User.ts'

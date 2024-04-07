@@ -5,13 +5,14 @@ import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/react-query-auth'
 import { useToastStore } from '@stores/index'
+import { LoginFormFields } from '@pages/auth/models'
 
 export default function Login() {
   const { addToast } = useToastStore()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { data: user } = useUser()
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormFields>()
 
   const { mutateAsync: login } = useLogin()
 
@@ -62,7 +63,7 @@ export default function Login() {
                 pattern: { value: /^\S+@\S+$/i, message: 'Correo electrónico inválido' }
               }) }
             />
-            { errors.email && <span className="text-red-500">Este campo es requerido</span> }
+            { errors.email && <span className="text-red-500">{ errors.email.message }</span> }
           </div>
           <div className="flex flex-col gap-1">
             <InputField
@@ -73,7 +74,7 @@ export default function Login() {
                 required: 'Este campo es requerido'
               }) }
             />
-            { errors.password && <span className="text-red-500">Este campo es requerido</span> }
+            { errors.password && <span className="text-red-500">{ errors.password.message }</span> }
           </div>
           <div className="space-y-2 text-center">
             <Button
