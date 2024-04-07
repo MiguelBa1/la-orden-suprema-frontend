@@ -3,6 +3,7 @@ import Button from '@components/UI/Button/Button'
 import Spinner from '@components/UI/Spinner/Spinner'
 import ToastContainer from '@components/UI/ToastContainer/ToastContainer'
 import Dropdown from '@components/Forms/Dropdown/Dropdown'
+import Table, { Column } from '@components/UI/Table/Table.tsx'
 
 export {
   InputField,
@@ -10,4 +11,9 @@ export {
   Spinner,
   ToastContainer,
   Dropdown,
+  Table,
+}
+
+export type {
+  Column
 }

@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm, Controller, FieldValues } from 'react-hook-form'
-import { Button, Dropdown, InputField } from '@components/index'
+import { Button, Dropdown, InputField, Table } from '@components/index'
 import { useLogout } from '@lib/react-query-auth'
+import { categoryOptions, taskColumns, tasksData } from '@pages/common/data'
 
 const Home = () => {
   const { control, handleSubmit, formState: { errors } } = useForm()
@@ -8,14 +9,8 @@ const Home = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data)
 
-  const categoryOptions = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
-  ]
-
   return (
-    <>
+    <div className="p-10 space-y-4">
       <div className="flex justify-center m-10">
         <form onSubmit={ handleSubmit(onSubmit) }
           className="space-y-4"
@@ -55,7 +50,11 @@ const Home = () => {
         </form>
       </div>
       <Button onClick={ () => logout({}) }>Logout</Button>
-    </>
+      <Table
+        columns={ taskColumns }
+        data={ tasksData }
+      />
+    </div>
   )
 }
 
