@@ -3,7 +3,7 @@ type GeneralErrorProps = {
   resetErrorBoundary?: () => void;
 };
 
-export default function GeneralError({ error, resetErrorBoundary }: GeneralErrorProps) {
+export function GeneralError({ error, resetErrorBoundary }: GeneralErrorProps) {
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h1 className="text-2xl mb-4">Ups! Algo salió mal.</h1>

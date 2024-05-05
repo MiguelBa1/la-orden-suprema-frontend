@@ -1,5 +1,3 @@
-import { categoryOptions } from './categoryOptions'
-import { tasks as tasksData } from './taskData'
-import { columns as taskColumns } from './TaskColumns'
-
-export { categoryOptions, taskColumns, tasksData }
+export * from './categoryOptions'
+export * from './TaskColumns'
+export * from './taskData'

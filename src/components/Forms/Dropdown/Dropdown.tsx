@@ -15,7 +15,7 @@ type DropdownProps = {
   className?: string;
 };
 
-export default function Dropdown({
+export function Dropdown({
   options,
   selectedValue = { label: '', value: '' },
   onChange,

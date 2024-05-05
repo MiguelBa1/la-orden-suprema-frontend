@@ -13,7 +13,7 @@ type TableProps<T> = {
   className?: string;
 };
 
-export default function Table<T>({ data, columns, className = '' }: TableProps<T>) {
+export function Table<T>({ data, columns, className = '' }: TableProps<T>) {
   return (
     <div className={ `overflow-x-auto ${className}` }>
       <table className="min-w-full divide-y divide-gray-200">

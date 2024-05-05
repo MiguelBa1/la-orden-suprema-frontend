@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { SidebarFooter, SidebarHeader, SidebarItem } from './index'
 import { menuItems } from '@data/index'
 
-export default function Sidebar() {
+export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false)
   const toggleSidebar = () => setIsOpen(!isOpen)
 

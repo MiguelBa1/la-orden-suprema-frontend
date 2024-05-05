@@ -8,7 +8,7 @@ type SidebarItemProps = {
   isOpen: boolean;
 }
 
-export default function SidebarItem({ href, icon, label, isOpen }: SidebarItemProps) {
+export function SidebarItem({ href, icon, label, isOpen }: SidebarItemProps) {
   return (
     <li className="w-full">
       <NavLink

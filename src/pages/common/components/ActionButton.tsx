@@ -2,7 +2,7 @@ type ActionButtonProps = {
   taskName: string
 }
 
-export default function ActionButton({ taskName }: ActionButtonProps) {
+export function ActionButton({ taskName }: ActionButtonProps) {
   const handleClick = () => {
     alert(`Cambiar estado de: ${taskName}`)
   }

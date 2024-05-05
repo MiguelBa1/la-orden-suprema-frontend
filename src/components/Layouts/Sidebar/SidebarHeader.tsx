@@ -9,7 +9,7 @@ type SidebarHeaderProps = {
   }
 }
 
-export default function SidebarHeader({ isOpen, toggleSidebar, user }: SidebarHeaderProps) {
+export function SidebarHeader({ isOpen, toggleSidebar, user }: SidebarHeaderProps) {
   return (
     <div className="p-4 flex items-center justify-between">
       <div className={ isOpen ? "flex items-center" : "hidden" }>

@@ -1,7 +1,3 @@
-import ActionButton from './ActionButton'
-import FormExample from './FormExample'
+export * from './ActionButton'
+export * from './FormExample'
 
-export {
-  ActionButton,
-  FormExample
-}

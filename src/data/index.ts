@@ -1,5 +1,1 @@
-import { menuItems } from './menuItems'
-
-export {
-  menuItems
-}
+export * from './menuItems'

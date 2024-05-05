@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import useToastStore from '@stores/useToastStore'
+import { useToastStore } from '@stores/index'
 
 interface ToastProps {
   id: number;
@@ -46,7 +46,7 @@ function Toast({ id, message, type }: ToastProps) {
   )
 }
 
-export default function ToastContainer() {
+export function ToastContainer() {
   const { toasts } = useToastStore()
 
   return (

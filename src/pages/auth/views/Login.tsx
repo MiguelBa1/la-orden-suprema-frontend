@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
-import { useLogin, useUser } from '@lib/react-query-auth'
+import { useLogin, useUser } from '@lib/index'
 import { useToastStore } from '@stores/index'
 import { LoginFormFields } from '@pages/auth/models'
 
-export default function Login() {
+export function Login() {
   const { addToast } = useToastStore()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { data: user } = useUser()

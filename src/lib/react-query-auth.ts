@@ -1,6 +1,6 @@
 import { configureAuth } from 'react-query-auth'
-import loginUserMock from '@services/loginUserMock.service'
-import { User, Credential } from '@models/index'
+import { loginUserMock } from '@services/index'
+import { User, Credential } from '@models/api'
 
 const getUser = async (): Promise<User | null> => {
   const user = localStorage.getItem('user')

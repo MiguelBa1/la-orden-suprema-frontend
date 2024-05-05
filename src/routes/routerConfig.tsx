@@ -5,9 +5,9 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { AuthRedirect, PrivateRoutes } from '@routes/index'
 import { GeneralError } from '@pages/common'
 
-const Login = lazy(() => import('@pages/auth/views/Login'))
-const Home = lazy(() => import('@pages/common/views/Home'))
-const NoMatch = lazy(() => import('@pages/common/views/NoMatch'))
+const Login = lazy(() => import('@pages/index').then((module) => ({ default: module.Login })))
+const Home = lazy(() => import('@pages/index').then((module) => ({ default: module.Home })))
+const NoMatch = lazy(() => import('@pages/index').then((module) => ({ default: module.NoMatch })))
 
 export const router = createBrowserRouter([
   {

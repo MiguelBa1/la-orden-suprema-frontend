@@ -19,7 +19,7 @@ type ToastStore = {
   removeToast: (id: number) => void;
 }
 
-const useToastStore = create<ToastStore>((set) => ({
+export const useToastStore = create<ToastStore>((set) => ({
   toasts: [],
   addToast: ({ message, type }: ToastMessage) => set((state) => ({
     toasts: [...state.toasts, { id: Date.now(), message, type }],
@@ -28,5 +28,3 @@ const useToastStore = create<ToastStore>((set) => ({
     toasts: state.toasts.filter((toast) => toast.id !== id),
   })),
 }))
-
-export default useToastStore

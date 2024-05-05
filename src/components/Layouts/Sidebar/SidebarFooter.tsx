@@ -5,7 +5,7 @@ type SidebarFooterProps = {
   isOpen: boolean;
 }
 
-const SidebarFooter = ({ isOpen }: SidebarFooterProps) => {
+export function SidebarFooter({ isOpen }: SidebarFooterProps) {
   const { mutate: logout } = useLogout()
   return (
     <div className="border-t border-gray-600 hover:text-gray-300">
@@ -19,5 +19,3 @@ const SidebarFooter = ({ isOpen }: SidebarFooterProps) => {
     </div>
   )
 }
-
-export default SidebarFooter

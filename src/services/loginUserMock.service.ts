@@ -1,6 +1,6 @@
-import { Credential, User } from '@models/index'
+import { Credential, User } from '@models/api'
 
-export default async function loginUserMock({ email, password }: Credential): Promise<User>{
+export async function loginUserMock({ email, password }: Credential): Promise<User>{
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (email === 'test@test.com' && password === 'pass') {

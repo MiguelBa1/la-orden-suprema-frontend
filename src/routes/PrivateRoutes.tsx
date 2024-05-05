@@ -1,8 +1,8 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useUser } from '@lib/react-query-auth'
+import { useUser } from '@lib/index'
 import { MainLayout } from '@components/index'
 
-export default function PrivateRoutes() {
+export function PrivateRoutes() {
   const { data: user, isLoading } = useUser()
   const location = useLocation()
 

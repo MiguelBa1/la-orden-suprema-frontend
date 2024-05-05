@@ -2,7 +2,7 @@ import { SubmitHandler, useForm, Controller, FieldValues } from 'react-hook-form
 import { Dropdown, InputField, Button } from '@components/index'
 import { categoryOptions } from '@pages/common/data'
 
-export default function FormExample() {
+export function FormExample() {
   const { control, handleSubmit, formState: { errors } } = useForm()
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data)

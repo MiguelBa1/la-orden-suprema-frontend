@@ -2,14 +2,14 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 type InputProps = {
   id: string;
-  type: 'text' | 'email' | 'password';
+  type: 'text' | 'email' | 'password' | 'number';
   label?: string;
   placeholder?: string;
   className?: string;
   registration: UseFormRegisterReturn;
 };
 
-export default function InputField({
+export function InputField({
   id,
   type,
   label,

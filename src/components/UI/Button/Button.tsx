@@ -8,7 +8,7 @@ type ButtonProps = {
   className?: string;
 };
 
-export default function Button({ id, children, onClick, type = "button", className = '' }: ButtonProps) {
+export function Button({ id, children, onClick, type = "button", className = '' }: ButtonProps) {
   return (
     <button
       id={ id }

@@ -1,4 +1,4 @@
-import { Column } from '@components/index'
+import { Column } from '@components/UI'
 import { ActionButton } from '@pages/common/components'
 
 interface Task {

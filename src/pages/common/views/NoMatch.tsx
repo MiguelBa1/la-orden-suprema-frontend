@@ -1,6 +1,6 @@
 import { Button } from '@components/index.ts'
 
-export default function NoMatch() {
+export function NoMatch() {
   return (
     <div className="flex flex-col gap-8 justify-center items-center h-screen">
       <h1 className="text-3xl">
