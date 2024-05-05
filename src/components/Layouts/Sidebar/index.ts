@@ -1,4 +1,5 @@
-export * from './Sidebar'
+export * from './DesktopSidebar'
+export * from './MobileSidebar'
 export * from './SidebarFooter'
 export * from './SidebarHeader'
 export * from './SidebarItem'

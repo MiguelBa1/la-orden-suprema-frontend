@@ -50,7 +50,7 @@ export function Login() {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="w-1/5 space-y-8">
+      <div className="lg:w-1/4 xl:w-1/5 space-y-8">
         <UserIcon className="m-auto w-32 h-32" />
         <form className="space-y-6" onSubmit={ handleSubmit(onSubmit) }>
           <div className="flex flex-col gap-1">

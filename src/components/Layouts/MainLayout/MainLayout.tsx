@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Sidebar } from '@components/index'
+import { DesktopSidebar, MobileSidebar } from '@components/index'
 
 type MainLayoutProps = {
   children: ReactNode
@@ -8,8 +8,9 @@ type MainLayoutProps = {
 export function MainLayout({ children }: MainLayoutProps) {
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <Sidebar />
+    <div className="flex flex-col lg:flex-row h-screen overflow-hidden">
+      <DesktopSidebar />
+      <MobileSidebar />
       <div className="flex-grow h-full overflow-auto">
         { children }
       </div>

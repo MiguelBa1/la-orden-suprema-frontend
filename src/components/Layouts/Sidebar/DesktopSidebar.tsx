@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { SidebarFooter, SidebarHeader, SidebarItem } from './index'
 import { menuItems } from '@data/index'
 
-export function Sidebar() {
+export function DesktopSidebar() {
   const [isOpen, setIsOpen] = useState(false)
   const toggleSidebar = () => setIsOpen(!isOpen)
 
@@ -10,8 +10,8 @@ export function Sidebar() {
 
   return (
     <div
-      className={ `flex flex-col justify-between min-h-screen ${isOpen ? 'w-64' : 'w-16'}
-                   bg-gray-800 text-white transition-width duration-300` }>
+      className={ `hidden lg:flex flex-col justify-between min-h-screen ${isOpen ? 'w-64' : 'w-16'}
+                   bg-gray-800 text-white transition-width duration-200` }>
       <div>
         <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } user={ user } />
         <nav>

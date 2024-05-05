@@ -8,8 +8,8 @@ export function FormExample() {
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data)
 
   return (
-    <div className="p-10 space-y-4">
-      <div className="flex justify-center m-10">
+    <div className="space-y-4">
+      <div className="flex justify-center">
         <form onSubmit={ handleSubmit(onSubmit) }
           className="space-y-4"
         >

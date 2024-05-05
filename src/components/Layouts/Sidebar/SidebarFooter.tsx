@@ -8,7 +8,7 @@ type SidebarFooterProps = {
 export function SidebarFooter({ isOpen }: SidebarFooterProps) {
   const { mutate: logout } = useLogout()
   return (
-    <div className="border-t border-gray-600 hover:text-gray-300">
+    <div className="border-t border-gray-600 hover:text-gray-300 h-14">
       <button
         className="p-4 w-full flex gap-2 justify-center items-center"
         onClick={ () => logout({}) }
