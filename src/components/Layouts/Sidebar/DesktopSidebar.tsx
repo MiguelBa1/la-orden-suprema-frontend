@@ -14,13 +14,11 @@ export function DesktopSidebar() {
     }
   }
 
-  const user = { name: 'Usuario', role: 'Administrador' }
-
   return (
     <div className={ `hidden lg:flex flex-col justify-between min-h-screen ${isOpen ? 'w-64' : 'w-16'} bg-gray-800
      text-white transition-width duration-200` }>
       <div>
-        <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } user={ user } />
+        <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } />
         <SidebarMenu
           isOpen={ isOpen }
           setIsOpen={ setIsOpen }

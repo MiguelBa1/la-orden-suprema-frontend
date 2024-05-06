@@ -15,8 +15,6 @@ export function MobileSidebar() {
     }
   }
 
-  const user = { name: 'Usuario', role: 'Administrador' }
-
   return (
     <div className="lg:hidden">
       <div className="p-4 text-black absolute top-0 left-0">
@@ -30,7 +28,7 @@ export function MobileSidebar() {
                      duration-200 ease-in-out lg:hidden` }>
         <div className="flex flex-col justify-between h-full">
           <div>
-            <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } user={ user } />
+            <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } />
             <SidebarMenu
               isOpen={ isOpen }
               setIsOpen={ setIsOpen }

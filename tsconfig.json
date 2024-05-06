@@ -30,6 +30,7 @@
       "@services/*": ["src/services/*"],
       "@lib/*": ["src/lib/*"],
       "@stores/*": ["src/stores/*"],
+      "@utils/*": ["src/utils/*"],
     }
   },
   "include": ["src"],
