@@ -1,32 +1,32 @@
 import { useState } from 'react'
-import { SidebarFooter, SidebarHeader, SidebarItem } from './index'
-import { menuItems } from '@data/index'
+import { SidebarFooter, SidebarHeader, SidebarMenu } from './index'
 
 export function DesktopSidebar() {
   const [isOpen, setIsOpen] = useState(false)
-  const toggleSidebar = () => setIsOpen(!isOpen)
+  const [subMenusOpen, setSubMenusOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen)
+    if (!isOpen) {
+      setSubMenusOpen(true)
+    } else {
+      setSubMenusOpen(false)
+    }
+  }
 
   const user = { name: 'Usuario', role: 'Administrador' }
 
   return (
-    <div
-      className={ `hidden lg:flex flex-col justify-between min-h-screen ${isOpen ? 'w-64' : 'w-16'}
-                   bg-gray-800 text-white transition-width duration-200` }>
+    <div className={ `hidden lg:flex flex-col justify-between min-h-screen ${isOpen ? 'w-64' : 'w-16'} bg-gray-800
+     text-white transition-width duration-200` }>
       <div>
         <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } user={ user } />
-        <nav>
-          <ul>
-            { menuItems.map((item) => (
-              <SidebarItem
-                key={ item.name }
-                href={ item.href }
-                icon={ item.icon }
-                label={ item.name }
-                isOpen={ isOpen }
-              />
-            )) }
-          </ul>
-        </nav>
+        <SidebarMenu
+          isOpen={ isOpen }
+          setIsOpen={ setIsOpen }
+          subMenuOpen={ subMenusOpen }
+          setSubMenuOpen={ setSubMenusOpen }
+        />
       </div>
       <SidebarFooter isOpen={ isOpen } />
     </div>

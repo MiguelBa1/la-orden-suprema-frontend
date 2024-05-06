@@ -1,11 +1,19 @@
 import { useState } from 'react'
-import { SidebarFooter, SidebarHeader, SidebarItem } from './index'
+import { SidebarFooter, SidebarHeader, SidebarMenu } from './index'
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { menuItems } from '@data/index'
 
 export function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false)
-  const toggleSidebar = () => setIsOpen(!isOpen)
+  const [subMenusOpen, setSubMenusOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen)
+    if (!isOpen) {
+      setSubMenusOpen(true)
+    } else {
+      setSubMenusOpen(false)
+    }
+  }
 
   const user = { name: 'Usuario', role: 'Administrador' }
 
@@ -18,17 +26,17 @@ export function MobileSidebar() {
       </div>
       <div
         className={ `lg:hidden fixed inset-0 bg-gray-800 text-white z-50 transform
-     ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-200 ease-in-out lg:hidden` }>
+                     ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform
+                     duration-200 ease-in-out lg:hidden` }>
         <div className="flex flex-col justify-between h-full">
           <div>
             <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } user={ user } />
-            <nav>
-              <ul>
-                { menuItems.map((item) => (
-                  <SidebarItem key={ item.name } href={ item.href } icon={ item.icon } label={ item.name } isOpen={ isOpen } />
-                )) }
-              </ul>
-            </nav>
+            <SidebarMenu
+              isOpen={ isOpen }
+              setIsOpen={ setIsOpen }
+              subMenuOpen={ subMenusOpen }
+              setSubMenuOpen={ setSubMenusOpen }
+            />
           </div>
           <SidebarFooter isOpen={ isOpen } />
         </div>
