@@ -1,4 +1,5 @@
-import { Button } from '@components/index.ts'
+import { Link } from 'react-router-dom'
+import { Button } from '@components/UI'
 
 export function NoMatch() {
   return (
@@ -9,9 +10,9 @@ export function NoMatch() {
           😢
         </span>
       </h1>
-      <Button>
-        <a href="/home">Ir a la página de inicio</a>
-      </Button>
+      <Link to="/home">
+        <Button>Ir a la página de inicio</Button>
+      </Link>
     </div>
   )
 }
