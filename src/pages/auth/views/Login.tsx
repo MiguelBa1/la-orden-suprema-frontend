@@ -6,6 +6,7 @@ import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/index'
 import { useToastStore } from '@stores/index'
 import { LoginFormFields } from '@pages/auth/models'
+import { UserRole } from '@models/enums'
 
 export function Login() {
   const { addToast } = useToastStore()
@@ -19,7 +20,11 @@ export function Login() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user) navigate('/home')
+    if (user?.roles.includes(UserRole.ADMIN)) {
+      navigate('/app/admin/home')
+    } else if (user?.roles.includes(UserRole.ASSASSIN)) {
+      navigate('/app/assassin/home')
+    }
   }, [navigate, user])
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {

@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useUser } from '@lib/index'
+import { UserRole } from '@models/index'
 
 /**
  * Component to redirect the user based on their authentication status.
@@ -13,8 +14,12 @@ export function AuthRedirect() {
     return null
   }
 
-  if (user) {
-    return <Navigate to="/home" replace />
+  if (user?.roles.includes(UserRole.ADMIN)) {
+    return <Navigate to="/app/admin/home" replace />
+  }
+
+  if (user?.roles.includes(UserRole.ASSASSIN)) {
+    return <Navigate to="/app/assassin/home" replace />
   }
 
   return <Navigate to="/auth/login" replace />

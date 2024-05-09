@@ -1,12 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 import { lazy } from 'react'
-import { createBrowserRouter, Outlet } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import { AuthRedirect, PrivateRoutes } from '@routes/index'
 import { GeneralError } from '@pages/common'
 
 const Login = lazy(() => import('@pages/index').then((module) => ({ default: module.Login })))
-const Home = lazy(() => import('@pages/index').then((module) => ({ default: module.Home })))
 const NoMatch = lazy(() => import('@pages/index').then((module) => ({ default: module.NoMatch })))
 
 export const router = createBrowserRouter([
@@ -26,18 +25,19 @@ export const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "app/*",
         element: <PrivateRoutes />,
-        children: [
-          {
-            path: "home",
-            element: <Home />,
-          },
-        ],
       },
       {
         path: "*",
-        element: <NoMatch />,
+        element: <Navigate to="/no-match" replace />,
       },
     ],
+    errorElement: <GeneralError />,
   },
+  {
+    path: "no-match",
+    element: <NoMatch />,
+  }
+
 ])
