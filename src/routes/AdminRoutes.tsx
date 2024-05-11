@@ -5,6 +5,7 @@ import { RoleBasedRoute } from '@routes/index'
 import { UserRole } from '@models/index'
 
 const AdminHome = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.Home })))
+const AssassinsList = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.AssassinsList })))
 
 export const adminRouter = [
   {
@@ -12,6 +13,7 @@ export const adminRouter = [
     element: <RoleBasedRoute allowedRoles={ [UserRole.ADMIN] } />,
     children: [
       { path: "home", element: <AdminHome /> },
+      { path: "assassins", element: <AssassinsList /> },
       { path: "*", element: <Navigate to="/no-match" replace /> },
     ],
   },
