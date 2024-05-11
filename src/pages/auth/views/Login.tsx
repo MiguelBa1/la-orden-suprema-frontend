@@ -37,8 +37,6 @@ export function Login() {
       }
       await login(payload)
 
-      navigate('/home')
-
       addToast({
         message: '¡Bienvenido!',
         type: 'success'

@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { RoleBasedRoute } from '@routes/index'
 import { UserRole } from '@models/index'
 
-const AdminHome = lazy(() => import('@pages/index').then((module) => ({ default: module.Home })))
+const AdminHome = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.Home })))
 
 export const adminRouter = [
   {
