@@ -19,12 +19,14 @@ const basePath = {
 }
 
 const adminMenuItems: MenuItem[] = [
+  { name: 'Inicio', href: `${basePath[UserRole.ADMIN]}/home`, icon: '🏠', roles: [UserRole.ADMIN] },
   { name: 'Asesinos', href: `${basePath[UserRole.ADMIN]}/assassins`, icon: '🔪', roles: [UserRole.ADMIN] },
   { name: 'Misiones', href: `${basePath[UserRole.ADMIN]}/missions`, icon: '🎯', roles: [UserRole.ADMIN] },
   { name: 'Transacciones', href: `${basePath[UserRole.ADMIN]}/transactions`, icon: '💰', roles: [UserRole.ADMIN] },
 ]
 
 const assassinMenuItems: MenuItem[] = [
+  { name: 'Inicio', href: `${basePath[UserRole.ASSASSIN]}/home`, icon: '🏠', roles: [UserRole.ASSASSIN] },
   { name: 'Asesinos', href: `${basePath[UserRole.ASSASSIN]}/assassins`, icon: '🔪', roles: [UserRole.ASSASSIN] },
   {
     name: 'Misiones',
@@ -39,12 +41,7 @@ const assassinMenuItems: MenuItem[] = [
   { name: 'Transacciones', href: `${basePath[UserRole.ASSASSIN]}/transactions`, icon: '💰', roles: [UserRole.ASSASSIN] },
 ]
 
-const commonMenuItems: MenuItem[] = [
-  { name: 'Inicio', href: '/', icon: '🏠', roles: [UserRole.ADMIN, UserRole.ASSASSIN] },
-]
-
 export const menuItems: MenuItem[] = [
-  ...commonMenuItems,
   ...assassinMenuItems,
   ...adminMenuItems,
 ]
