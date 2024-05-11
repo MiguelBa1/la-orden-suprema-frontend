@@ -8,7 +8,7 @@ type SubItemProps = {
 };
 
 type SidebarItemProps = {
-  href: string;
+  href?: string;
   icon: ReactNode;
   label: string;
   isOpen: boolean;
@@ -47,7 +47,7 @@ export function SidebarItem({ href, icon, label, isOpen, setIsOpen, subMenuOpen,
         </div>
       ) : (
         <NavLink
-          to={ href }
+          to={ href || '/' }
           className={ ({ isActive }) => `cursor-pointer p-4 flex justify-center
            ${isActive ? 'bg-gray-700' : ''} gap-2 hover:bg-gray-700 transition-colors` }>
           { icon }

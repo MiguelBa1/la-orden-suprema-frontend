@@ -17,7 +17,7 @@ export function MobileSidebar() {
 
   return (
     <div className="lg:hidden">
-      <div className="p-4 text-black absolute top-0 left-0">
+      <div className="p-4 text-black top-0 left-0">
         <button onClick={ toggleSidebar }>
           <Bars3Icon className="h-8 w-8" />
         </button>
