@@ -18,6 +18,11 @@ export function NoMatch() {
         <Button>Ir a la página de inicio</Button>
       </Link>
       <Button onClick={ async () => {
+        navigate(-1)
+      } }>
+        Regresar a la página anterior
+      </Button>
+      <Button onClick={ async () => {
         await logout({})
         navigate('/')
       } }>Cerrar sesión</Button>

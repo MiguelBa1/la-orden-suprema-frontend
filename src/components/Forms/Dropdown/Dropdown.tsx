@@ -10,7 +10,7 @@ type DropdownProps = {
   options: Option[];
   selectedValue?: Option;
   onChange: (value: Option) => void;
-  label: string;
+  label?: string;
   placeholder?: string;
   className?: string;
 };
@@ -24,12 +24,14 @@ export function Dropdown({
   className = '',
 }: DropdownProps) {
   return (
-    <div className={ `w-full ${className}` }>
+    <div className={ `w-full space-y-1 ${className}` }>
       <Listbox value={ selectedValue } onChange={ onChange }>
-        <Listbox.Label className="block text-sm font-medium text-gray-700">
-          { label }
-        </Listbox.Label>
-        <div className="mt-1 relative">
+        { label && (
+          <Listbox.Label className="block text-sm font-medium text-gray-700">
+            { label }
+          </Listbox.Label>
+        ) }
+        <div className="relative">
           <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             <span className="block truncate">
               {

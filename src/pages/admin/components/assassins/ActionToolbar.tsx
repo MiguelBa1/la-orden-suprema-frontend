@@ -1,0 +1,55 @@
+import { UseFormReturn, Controller } from 'react-hook-form'
+import { InputField, Dropdown, Button } from '@components/index'
+
+type ActionToolbarProps = {
+  searchForm: UseFormReturn;
+}
+
+const statusOptions = [
+  { value: 'active', label: 'Activo' },
+  { value: 'inactive', label: 'Inactivo' },
+]
+
+export function ActionToolbar({ searchForm }: ActionToolbarProps) {
+  return (
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 lg:gap-x-14 gap-y-2 lg:w-3/4">
+      <InputField
+        id="name"
+        type="text"
+        placeholder="Nombre"
+        registration={ searchForm.register('name') }
+      />
+      <InputField
+        id="alias"
+        type="text"
+        placeholder="Seudónimo"
+        registration={ searchForm.register('alias') }
+      />
+      <Controller
+        name="status"
+        control={ searchForm.control }
+        render={ ({ field }) => (
+          <Dropdown
+            placeholder="Estado"
+            options={ statusOptions }
+            selectedValue={ statusOptions.find((option) => option.value === field.value) }
+            onChange={ (value) => field.onChange(value.value) }
+          />
+        ) }
+      />
+      <InputField
+        id="email"
+        type="email"
+        placeholder="Email"
+        registration={ searchForm.register('email') }
+      />
+      <InputField
+        id="location"
+        type="text"
+        placeholder="Ubicación"
+        registration={ searchForm.register('location') }
+      />
+      <Button>Buscar</Button>
+    </div>
+  )
+}
