@@ -33,7 +33,7 @@ export function Dropdown({
         ) }
         <div className="relative">
           <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <span className="block truncate">
+            <span className={ `block truncate ${ !selectedValue?.value ? "text-gray-400" : "" }` }>
               {
                 selectedValue?.value === '' ? placeholder : selectedValue.label
               }
