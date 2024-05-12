@@ -1,5 +1,5 @@
 import { Column } from '@components/UI'
-import { Assassin } from '@pages/admin/data'
+import { Assassin } from '@pages/admin'
 import { ActionButton } from '@pages/admin/components/assassins'
 
 export const AssassinsTableColumns: Column<Assassin>[] = [
