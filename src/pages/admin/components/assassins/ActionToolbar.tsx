@@ -1,8 +1,10 @@
+import { UseQueryResult } from '@tanstack/react-query'
 import { UseFormReturn, Controller } from 'react-hook-form'
 import { InputField, Dropdown, Button } from '@components/index'
 
 type ActionToolbarProps = {
   searchForm: UseFormReturn;
+  refetchAssassinsList: UseQueryResult['refetch'];
 }
 
 const statusOptions = [
@@ -10,9 +12,15 @@ const statusOptions = [
   { value: 'inactive', label: 'Inactivo' },
 ]
 
-export function ActionToolbar({ searchForm }: ActionToolbarProps) {
+export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolbarProps) {
+
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 lg:gap-x-14 gap-y-2 lg:w-3/4">
+    <form
+      onSubmit={ searchForm.handleSubmit( async () => {
+        await refetchAssassinsList()
+      }) }
+      className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 lg:gap-x-14 gap-y-2 lg:w-3/4"
+    >
       <InputField
         id="name"
         type="text"
@@ -49,7 +57,11 @@ export function ActionToolbar({ searchForm }: ActionToolbarProps) {
         placeholder="Ubicación"
         registration={ searchForm.register('location') }
       />
-      <Button>Buscar</Button>
-    </div>
+      <Button
+        type="submit"
+      >
+        Buscar
+      </Button>
+    </form>
   )
 }

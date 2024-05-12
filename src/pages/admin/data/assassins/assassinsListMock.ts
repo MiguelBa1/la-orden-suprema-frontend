@@ -1,4 +1,6 @@
-export const assassinsListMock = [
+import { Assassin } from '@pages/admin/models'
+
+export const assassinsListMock: Assassin[] = [
   {
     id: 1,
     name: 'John Wick',
@@ -63,5 +65,3 @@ export const assassinsListMock = [
     country: 'Alemania',
   }
 ]
-
-export type Assassin = typeof assassinsListMock[0]
