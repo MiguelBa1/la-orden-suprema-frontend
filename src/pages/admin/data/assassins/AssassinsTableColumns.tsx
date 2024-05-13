@@ -10,5 +10,5 @@ export const AssassinsTableColumns: Column<Assassin>[] = [
   { title: 'Teléfono', dataIndex: 'phone', key: 'phone' },
   { title: 'Status', dataIndex: 'status', key: 'status' },
   { title: 'País', dataIndex: 'country', key: 'country' },
-  { title: 'Acciones', key: 'actions', render: (record) => <ActionButton assassinsId={ record.id } /> },
+  { title: 'Acciones', key: 'actions', render: (record) => <ActionButton assassinId={ record.id } /> },
 ]

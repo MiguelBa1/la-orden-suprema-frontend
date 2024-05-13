@@ -6,6 +6,7 @@ import { UserRole } from '@models/index'
 
 const AdminHome = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.Home })))
 const AssassinsList = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.AssassinsList })))
+const AssassinDetails = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.AssassinDetails })))
 
 export const adminRouter = [
   {
@@ -14,6 +15,7 @@ export const adminRouter = [
     children: [
       { path: "home", element: <AdminHome /> },
       { path: "assassins", element: <AssassinsList /> },
+      { path: "assassins/:assassinId", element: <AssassinDetails /> },
       { path: "*", element: <Navigate to="/no-match" replace /> },
     ],
   },

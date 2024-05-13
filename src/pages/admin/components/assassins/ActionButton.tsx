@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom'
 import { Button } from '@components/UI'
 
 type ActionButtonProps = {
-  assassinsId: number;
+  assassinId: number;
 }
 
-export function ActionButton({ assassinsId }: ActionButtonProps) {
+export function ActionButton({ assassinId }: ActionButtonProps) {
 
   return (
-    <NavLink to={ `/app/admin/assassins/${ assassinsId }` }>
+    <NavLink to={ `/app/admin/assassins/${ assassinId }` }>
       <Button>
         Abrir
       </Button>
