@@ -38,10 +38,11 @@ export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolba
         control={ searchForm.control }
         render={ ({ field }) => (
           <Dropdown
+            id="status"
             placeholder="Estado"
             options={ statusOptions }
-            selectedValue={ statusOptions.find((option) => option.value === field.value) }
-            onChange={ (value) => field.onChange(value.value) }
+            onChange={ (value) => field.onChange(value) }
+            value={ field.value }
           />
         ) }
       />

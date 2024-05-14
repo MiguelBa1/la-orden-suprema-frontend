@@ -21,8 +21,8 @@ export function FormExample() {
                 required: "Este campo es requerido"
               }) }
               label="Name"
+              error={ errors.name?.message as string }
             />
-            { errors.name && <span className="text-red-500">{ errors.name.message as string }</span> }
           </div>
           <div>
             <Controller
@@ -30,17 +30,14 @@ export function FormExample() {
               control={ control }
               rules={ { required: "Este campo es requerido"} }
               render={ ({ field }) => (
-                <>
-                  <Dropdown
-                    label="Category"
-                    options={ categoryOptions }
-                    selectedValue={ categoryOptions.find(o => o.value === field.value) }
-                    onChange={ (option) => field.onChange(option.value) }
-                  />
-                  { errors.category && <span className="text-red-500">
-                    { errors.category.message as string }
-                  </span> }
-                </>
+                <Dropdown
+                  id="category"
+                  label="Category"
+                  options={ categoryOptions }
+                  onChange={ (value) => field.onChange(value) }
+                  value={ field.value }
+                  error={ errors.category?.message as string }
+                />
               ) }
             />
           </div>

@@ -1,5 +1,6 @@
 import { Listbox } from '@headlessui/react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/24/solid'
+import { useEffect, useState } from 'react'
 
 type Option = {
   label: string;
@@ -7,36 +8,60 @@ type Option = {
 };
 
 type DropdownProps = {
+  id: string;
   options: Option[];
-  selectedValue?: Option;
-  onChange: (value: Option) => void;
+  value: string | number;
+  onChange: (value: string | number) => void;
   label?: string;
   placeholder?: string;
   className?: string;
+  error?: string;
+  disabled?: boolean;
 };
 
 export function Dropdown({
+  id,
   options,
-  selectedValue = { label: '', value: '' },
+  value,
   onChange,
   label,
-  placeholder = 'Select option',
+  placeholder = 'Seleccionar',
   className = '',
+  error,
+  disabled,
 }: DropdownProps) {
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null)
+
+  useEffect(() => {
+    const option = options.find((option) => option.value === value)
+    setSelectedOption(option || null)
+  }, [value, options])
+
+  function handleChange(option: Option) {
+    setSelectedOption(option)
+    onChange(option.value)
+  }
+
+  const baseClasses = 'relative w-full bg-white border rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 sm:text-sm'
+  const errorClasses = 'border-red-500 focus:ring-red-500'
+  const normalClasses = 'border-gray-300 focus:ring-blue-500'
+  const disabledClasses = 'disabled:bg-gray-200 disabled:cursor-not-allowed'
+
   return (
     <div className={ `w-full space-y-1 ${className}` }>
-      <Listbox value={ selectedValue } onChange={ onChange }>
+      <Listbox value={ selectedOption } onChange={ handleChange } disabled={ disabled }>
         { label && (
-          <Listbox.Label className="block text-sm font-medium text-gray-700">
+          <Listbox.Label htmlFor={ id } className="block text-sm font-medium text-gray-700">
             { label }
           </Listbox.Label>
         ) }
         <div className="relative">
-          <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <span className={ `block truncate ${ !selectedValue?.value ? "text-gray-400" : "" }` }>
-              {
-                selectedValue?.value === '' ? placeholder : selectedValue.label
-              }
+          <Listbox.Button
+            id={ id }
+            className={ `${baseClasses} ${error ? errorClasses : normalClasses} ${disabledClasses}` }
+          >
+            <span className={ `block truncate ${!selectedOption ? 'text-gray-400' : ''}` }>
+              { selectedOption ? selectedOption.label : placeholder }
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <ChevronDownIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
@@ -70,6 +95,7 @@ export function Dropdown({
           </Listbox.Options>
         </div>
       </Listbox>
+      { error && <p className="mt-1 text-sm text-red-600">{ error }</p> }
     </div>
   )
 }

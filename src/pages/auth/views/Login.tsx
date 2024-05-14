@@ -60,24 +60,26 @@ export function Login() {
             <InputField
               id="email"
               type="email"
+              name="email"
               placeholder="Correo electrónico"
               registration={ register('email', {
                 required: 'Este campo es requerido',
                 pattern: { value: /^\S+@\S+$/i, message: 'Correo electrónico inválido' }
               }) }
+              error={ errors.email?.message as string }
             />
-            { errors.email && <span className="text-red-500">{ errors.email.message }</span> }
           </div>
           <div className="flex flex-col gap-1">
             <InputField
               id="password"
               type="password"
+              name="password"
               placeholder="Contraseña"
               registration={ register('password', {
                 required: 'Este campo es requerido'
               }) }
+              error={ errors.password?.message as string }
             />
-            { errors.password && <span className="text-red-500">{ errors.password.message }</span> }
           </div>
           <div className="space-y-2 text-center">
             <Button
