@@ -1,9 +1,9 @@
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import { AssassinsTableColumns, type Assassin } from '@pages/admin'
+import { AssassinsTableColumns, type AssassinTableRow } from '@pages/admin'
 
 type AssassinsTableProps = {
-  assassinsListQuery: UseQueryResult<Assassin[]>;
+  assassinsListQuery: UseQueryResult<AssassinTableRow[]>;
 }
 
 export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {

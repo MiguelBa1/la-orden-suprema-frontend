@@ -1,8 +1,8 @@
 import { Column } from '@components/UI'
-import { Assassin } from '@pages/admin'
+import { AssassinTableRow } from '@pages/admin'
 import { ActionButton } from '@pages/admin/components/assassins'
 
-export const AssassinsTableColumns: Column<Assassin>[] = [
+export const AssassinsTableColumns: Column<AssassinTableRow>[] = [
   { title: 'ID', dataIndex: 'id', key: 'id' },
   { title: 'Nombre', dataIndex: 'name', key: 'name' },
   { title: 'Email', dataIndex: 'email', key: 'email' },

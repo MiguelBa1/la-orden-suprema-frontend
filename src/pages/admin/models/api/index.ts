@@ -1,1 +1,2 @@
-export * from './Assassin'
+export * from './AssassinTableRow'
+export * from './AssassinDetails'

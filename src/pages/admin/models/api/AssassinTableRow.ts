@@ -1,4 +1,4 @@
-export type Assassin = {
+export type AssassinTableRow = {
   id: number;
   name: string;
   email: string;
