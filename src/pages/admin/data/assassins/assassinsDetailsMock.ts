@@ -8,7 +8,7 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     alias: 'Baba Yaga',
     address: 'Calle de la Rosa, 123',
     phone: '1234567890',
-    status: 'active',
+    status: 'inactive',
     country: 'colombia',
     coins: 100,
     photoUrl: '/images/john-wick.jpg',

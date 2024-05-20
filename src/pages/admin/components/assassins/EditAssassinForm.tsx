@@ -12,6 +12,8 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
     defaultValues: assassinDetailsQuery.data
   })
 
+  const isInactive = assassinDetailsQuery.data?.status === 'inactive'
+
   return (
     <form className="grid grid-cols-1 lg:grid-cols-3 gap-4" onSubmit={ handleSubmit(() => console.log("Envía información")) }>
       <div className="flex flex-col justify-end items-center gap-4 lg:gap-8">
@@ -30,6 +32,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo nombre es requerido'
             }) }
             error={ errors.name?.message }
+            disabled={ isInactive }
           />
           <InputField
             id="alias"
@@ -40,6 +43,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo seudónimo es requerido'
             }) }
             error={ errors.alias?.message }
+            disabled={ isInactive }
           />
           <Controller
             name="country"
@@ -53,6 +57,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
                 onChange={ field.onChange }
                 value={ field.value }
                 error={ errors.country?.message }
+                disabled={ isInactive }
               />
             ) }
           />
@@ -65,6 +70,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo dirección es requerido'
             }) }
             error={ errors.address?.message }
+            disabled={ isInactive }
           />
           <InputField
             id="email"
@@ -116,11 +122,14 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo teléfono es requerido'
             }) }
             error={ errors.phone?.message }
+            disabled={ isInactive }
           />
         </div>
-        <div className="flex justify-center lg:justify-end">
-          <Button type="submit">Guardar</Button>
-        </div>
+        { !isInactive &&
+          <div className="flex justify-center lg:justify-end">
+            <Button type="submit">Guardar</Button>
+          </div>
+        }
       </div>
     </form>
   )
