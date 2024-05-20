@@ -1,25 +1,36 @@
+import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm, Controller } from 'react-hook-form'
-import { AssassinDetails, countriesList, statusesList } from '@pages/admin'
-import { InputField, Dropdown, Button } from '@components/index'
+import { AssassinDetails, countriesList, ConfirmStatusChangeModal } from '@pages/admin'
+import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
 
 type EditAssassinFormProps = {
   assassinDetailsQuery: UseQueryResult<AssassinDetails>
 }
 
 export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps) {
-  const { register, control, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors } } = useForm({
     defaultValues: assassinDetailsQuery.data
   })
 
   const isInactive = assassinDetailsQuery.data?.status === 'inactive'
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+
+  if (!assassinDetailsQuery.data) {
+    return null
+  }
 
   return (
     <form className="grid grid-cols-1 lg:grid-cols-3 gap-4" onSubmit={ handleSubmit(() => console.log("Envía información")) }>
       <div className="flex flex-col justify-end items-center gap-4 lg:gap-8">
         <img src={ assassinDetailsQuery.data?.photoUrl } alt="Foto del usuario"
           className="w-56 h-56 lg:w-64 lg:h-64 object-cover rounded-full" />
-        <Button type="button" onClick={ () => console.log("Actualizar fotografía") }>Actualizar</Button>
+        <Button
+          type="button" disabled={ isInactive } onClick={ () => console.log("Actualizar fotografía") }>Actualizar</Button>
       </div>
       <div className="lg:col-span-2 space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
@@ -90,15 +101,13 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
           <Controller
             name="status"
             control={ control }
-            rules={ { required: 'El campo estado es requerido' } }
             render={ ({ field }) => (
-              <Dropdown
-                id="status"
+              <ToggleSwitch
+                checked={ field.value === 'active' }
+                onChange={ () => {
+                  setIsConfirmModalOpen(true)
+                } }
                 label="Estado"
-                options={ statusesList }
-                onChange={ field.onChange }
-                value={ field.value }
-                error={ errors.status?.message }
               />
             ) }
           />
@@ -131,6 +140,13 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
           </div>
         }
       </div>
+
+      <ConfirmStatusChangeModal
+        isOpen={ isConfirmModalOpen }
+        onClose={ () => setIsConfirmModalOpen(false) }
+        assassin={ assassinDetailsQuery.data }
+        refetchAssassinDetails={ assassinDetailsQuery.refetch }
+      />
     </form>
   )
 }

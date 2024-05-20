@@ -23,8 +23,8 @@ export function AssassinDetailsView() {
     return null
   }
 
-  if (assassinDetailsQuery.isLoading) {
-    return <div className="h-96 flex justify-center items-center">
+  if (assassinDetailsQuery.isFetching) {
+    return <div className="h-full flex justify-center items-center">
       <Spinner />
     </div>
   }
