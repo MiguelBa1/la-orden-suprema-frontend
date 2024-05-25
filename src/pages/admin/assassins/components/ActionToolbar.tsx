@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query'
 import { UseFormReturn, Controller } from 'react-hook-form'
-import { InputField, Dropdown, Button } from '@components/index'
+import { InputField, Dropdown, Button } from '@components/index.ts'
 
 type ActionToolbarProps = {
   searchForm: UseFormReturn;

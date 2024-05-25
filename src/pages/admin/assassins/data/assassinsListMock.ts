@@ -1,4 +1,4 @@
-import { AssassinTableRow } from '@pages/admin/models'
+import { AssassinTableRow } from '@pages/admin'
 
 export const assassinsListMock: AssassinTableRow[] = [
   {

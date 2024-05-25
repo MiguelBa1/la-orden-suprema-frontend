@@ -4,9 +4,9 @@ import { Navigate } from 'react-router-dom'
 import { RoleBasedRoute } from '@routes/index'
 import { UserRole } from '@models/index'
 
-const AdminHome = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.Home })))
-const AssassinsList = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.AssassinsListView })))
-const AssassinDetails = lazy(() => import('@pages/admin/views').then((module) => ({ default: module.AssassinDetailsView })))
+const AdminHome = lazy(() => import('@pages/admin').then((module) => ({ default: module.Home })))
+const AssassinsList = lazy(() => import('@pages/admin').then((module) => ({ default: module.AssassinsListView })))
+const AssassinDetails = lazy(() => import('@pages/admin').then((module) => ({ default: module.AssassinDetailsView })))
 
 export const adminRouter = [
   {

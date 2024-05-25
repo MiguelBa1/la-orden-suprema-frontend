@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm, Controller } from 'react-hook-form'
-import { AssassinDetails, countriesList, ConfirmStatusChangeModal } from '@pages/admin'
-import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
+import { AssassinDetails, ConfirmStatusChangeModal } from '@pages/admin'
+import { countriesList } from '@data/countriesList'
+import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index.ts'
 
 type EditAssassinFormProps = {
   assassinDetailsQuery: UseQueryResult<AssassinDetails>

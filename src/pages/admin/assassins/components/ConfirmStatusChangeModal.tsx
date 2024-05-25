@@ -1,6 +1,6 @@
 import { Modal, Button } from '@components/UI'
 import { useMutation, UseQueryResult } from '@tanstack/react-query'
-import { updateAssassinStatus } from '@pages/admin/services/assassins'
+import { updateAssassinStatus } from '@pages/admin/assassins/services'
 
 type ConfirmStatusChangeModalProps = {
   isOpen: boolean;

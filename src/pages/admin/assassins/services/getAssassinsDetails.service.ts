@@ -1,5 +1,4 @@
-import { assassinsDetailsMock } from '@pages/admin/data'
-import { AssassinDetails } from '@pages/admin'
+import { assassinsDetailsMock, AssassinDetails } from '@pages/admin'
 
 export const getAssassinsDetails = async (id: number) => {
   return new Promise<AssassinDetails>((resolve, reject) => {

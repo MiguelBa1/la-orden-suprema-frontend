@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { RoleBasedRoute } from '@routes/index'
 import { UserRole } from '@models/index'
 
-const AssassinHome = lazy(() => import('@pages/assassin/views').then((module) => ({ default: module.Home })))
+const AssassinHome = lazy(() => import('@pages/assassin').then((module) => ({ default: module.Home })))
 
 export const assassinRouter = [
   {

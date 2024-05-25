@@ -1,4 +1,4 @@
-import { useUser } from '@lib/index'
+import { useUser } from '@lib/index.ts'
 
 export function Home() {
   const { data: user } = useUser()
@@ -6,7 +6,7 @@ export function Home() {
   return (
     <div>
       <h1 className="text-2xl">
-        Bienvenido al portal de gestión de La Orden Suprema,
+        Bienvenido al portal de asesinos de La Orden Suprema,
         { ' ' + user?.name }.
       </h1>
     </div>
