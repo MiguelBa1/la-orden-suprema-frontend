@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { SidebarFooter, SidebarHeader, SidebarMenu } from './index'
 import { Bars3Icon } from '@heroicons/react/24/outline'
+import { useLocation } from 'react-router-dom'
 
 export function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false)
   const [subMenusOpen, setSubMenusOpen] = useState(false)
+  const location = useLocation()
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -14,6 +16,12 @@ export function MobileSidebar() {
       setSubMenusOpen(false)
     }
   }
+
+  useEffect(() => {
+    // Close the sidebar when the location changes
+    setIsOpen(false)
+    setSubMenusOpen(false)
+  }, [location])
 
   return (
     <div className="lg:hidden">
