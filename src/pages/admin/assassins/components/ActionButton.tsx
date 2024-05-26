@@ -9,7 +9,9 @@ export function ActionButton({ assassinId }: ActionButtonProps) {
 
   return (
     <NavLink to={ `/app/admin/assassins/${ assassinId }` }>
-      <Button>
+      <Button
+        variant="tertiary"
+      >
         Abrir
       </Button>
     </NavLink>

@@ -39,7 +39,7 @@ export function ConfirmStatusChangeModal({
       title="Confirmar cambio de estado"
       footerButtons={
         <>
-          <Button onClick={ onClose } className="bg-gray-600 hover:bg-gray-700 focus-visible:ring-gray-500">
+          <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
           <Button onClick={ handleConfirm }>

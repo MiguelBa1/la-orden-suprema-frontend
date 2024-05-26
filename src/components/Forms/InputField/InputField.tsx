@@ -25,7 +25,7 @@ export function InputField({
   error,
   autoComplete = 'off',
 }: InputProps) {
-  const baseClasses = 'relative w-full bg-white border rounded-md shadow-sm px-3 py-2 text-left cursor-default focus:outline-none sm:text-sm'
+  const baseClasses = 'relative w-full bg-white border rounded-md shadow-sm px-3 py-2 text-left focus:outline-none sm:text-sm'
   const errorClasses = 'border-red-500 focus:ring-red-500'
   const normalClasses = 'border-gray-300 focus:ring-blue-500'
   const disabledClasses = 'disabled:bg-gray-200 disabled:cursor-not-allowed'

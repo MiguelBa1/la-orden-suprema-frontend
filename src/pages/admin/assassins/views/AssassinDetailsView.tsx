@@ -37,6 +37,7 @@ export function AssassinDetailsView() {
         </h1>
         <Button
           onClick={ () => navigate(-1) }
+          variant="tertiary"
         >
           Volver
         </Button>

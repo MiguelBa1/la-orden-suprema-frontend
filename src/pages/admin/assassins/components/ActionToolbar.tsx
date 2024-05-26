@@ -60,6 +60,7 @@ export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolba
       />
       <Button
         type="submit"
+        variant="secondary"
       >
         Buscar
       </Button>

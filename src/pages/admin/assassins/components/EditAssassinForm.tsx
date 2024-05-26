@@ -31,7 +31,10 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
         <img src={ assassinDetailsQuery.data?.photoUrl } alt="Foto del usuario"
           className="w-56 h-56 lg:w-64 lg:h-64 object-cover rounded-full" />
         <Button
-          type="button" disabled={ isInactive } onClick={ () => console.log("Actualizar fotografía") }>Actualizar</Button>
+          type="button"
+          disabled={ isInactive }
+          variant="secondary"
+          onClick={ () => console.log("Actualizar fotografía") }>Actualizar</Button>
       </div>
       <div className="lg:col-span-2 space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
