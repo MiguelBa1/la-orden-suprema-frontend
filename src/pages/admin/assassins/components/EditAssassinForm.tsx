@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm, Controller } from 'react-hook-form'
-import { AssassinDetails, ConfirmStatusChangeModal } from '@pages/admin'
-import { countriesList } from '@data/countriesList'
-import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index.ts'
+import { AssassinDetails, ConfirmStatusChangeModal, UpdatePhoto } from '@pages/admin'
+import { countriesList } from '@data/index'
+import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
 
 type EditAssassinFormProps = {
   assassinDetailsQuery: UseQueryResult<AssassinDetails>
@@ -20,6 +20,8 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
 
   const isInactive = assassinDetailsQuery.data?.status === 'inactive'
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+  const [photoUrl, setPhotoUrl] = useState(assassinDetailsQuery.data?.photoUrl || '')
+
 
   if (!assassinDetailsQuery.data) {
     return null
@@ -27,15 +29,11 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
 
   return (
     <form className="grid grid-cols-1 lg:grid-cols-3 gap-4" onSubmit={ handleSubmit(() => console.log("Envía información")) }>
-      <div className="flex flex-col justify-end items-center gap-4 lg:gap-8">
-        <img src={ assassinDetailsQuery.data?.photoUrl } alt="Foto del usuario"
-          className="w-56 h-56 lg:w-64 lg:h-64 object-cover rounded-full" />
-        <Button
-          type="button"
-          disabled={ isInactive }
-          variant="secondary"
-          onClick={ () => console.log("Actualizar fotografía") }>Actualizar</Button>
-      </div>
+      <UpdatePhoto
+        photoUrl={ photoUrl }
+        onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
+        isDisabled={ isInactive }
+      />
       <div className="lg:col-span-2 space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
