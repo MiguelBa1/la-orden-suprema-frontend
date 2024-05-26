@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
@@ -10,15 +10,28 @@ import { UserRole } from '@models/enums'
 
 export function Login() {
   const { addToast } = useToastStore()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { data: user } = useUser()
 
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormFields>()
 
-  const { mutateAsync: login } = useLogin()
+  const { mutateAsync: login, isPending } = useLogin({
+    onSuccess: () => {
+      addToast({
+        message: '¡Bienvenido!',
+        type: 'success'
+      })
+    },
+    onError: () => {
+      addToast({
+        message: 'Credenciales inválidas',
+        type: 'error'
+      })
+    }
+  })
 
   const navigate = useNavigate()
 
+  // Redirect to the corresponding dashboard
   useEffect(() => {
     if (user?.roles.includes(UserRole.ADMIN)) {
       navigate('/app/admin/home')
@@ -28,27 +41,12 @@ export function Login() {
   }, [navigate, user])
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      setIsLoading(true)
-
-      const payload = {
-        email: data.email,
-        password: data.password
-      }
-      await login(payload)
-
-      addToast({
-        message: '¡Bienvenido!',
-        type: 'success'
-      })
-    } catch (error) {
-      addToast({
-        message: 'Credenciales inválidas',
-        type: 'error'
-      })
-    } finally {
-      setIsLoading(false)
+    const payload = {
+      email: data.email,
+      password: data.password
     }
+
+    await login(payload)
   }
 
   return (
@@ -86,7 +84,7 @@ export function Login() {
               type="submit"
               className="w-full"
             >
-              { isLoading ? 'Iniciando sesión...' : 'Iniciar sesión' }
+              { isPending ? 'Iniciando sesión...' : 'Iniciar sesión' }
             </Button>
             <div>
               <a href="#" className="text-blue-500">¿Olvidaste tu contraseña?</a>
