@@ -10,6 +10,7 @@ export type AssassinDetails = {
   coins: number;
   photoUrl: string;
   missionsHistory: MissionHistory[];
+  debsToPay: DebsToPay[];
 }
 
 export type MissionHistory = {
@@ -17,4 +18,10 @@ export type MissionHistory = {
   description: string;
   status: 'completed' | 'failed' | 'assigned' | 'paid';
   creator: string;
+}
+
+export type DebsToPay = {
+  id: number;
+  creditor: string;
+  mission: string;
 }

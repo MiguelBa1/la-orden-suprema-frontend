@@ -1,6 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
-import { EditAssassinForm, MissionsHistoryTable, getAssassinsDetails } from '@pages/admin/assassins'
+import {
+  EditAssassinForm,
+  MissionsHistoryTable,
+  getAssassinsDetails,
+  DebsToPayTable
+} from '@pages/admin/assassins'
 import { Spinner, Button } from '@components/UI'
 
 type AssassinDetailsParams = {
@@ -39,7 +44,7 @@ export function AssassinDetailsView() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-xl lg:text-2xl">
-        Información de asesino
+          Información de asesino
         </h1>
         <Button
           onClick={ () => navigate(-1) }
@@ -50,7 +55,11 @@ export function AssassinDetailsView() {
       </div>
       <EditAssassinForm assassinDetailsQuery={ assassinDetailsQuery } />
       <hr className="border-t-2 border-gray-300" />
-      <MissionsHistoryTable missionsHistoryQuery={ assassinDetailsQuery } />
+      <MissionsHistoryTable assassinsDetailsQuery={ assassinDetailsQuery } />
+      <hr className="border-t-2 border-gray-300" />
+      <div className="grid lg:grid-cols-2 gap-4">
+        <DebsToPayTable assassinDetailsQuery={ assassinDetailsQuery } />
+      </div>
     </div>
   )
 }

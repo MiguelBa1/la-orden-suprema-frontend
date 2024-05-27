@@ -38,6 +38,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         creator: 'Ethan Hunt',
       },
     ],
+    debsToPay: [
+      {
+        id: 1,
+        creditor: 'Jason Bourne',
+        mission: 'Misión 5',
+      },
+      {
+        id: 2,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 6',
+      },
+      {
+        id: 3,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 7',
+      },
+      {
+        id: 4,
+        creditor: 'James Bond',
+        mission: 'Misión 8',
+      },
+    ],
   },
   {
     id: 2,
@@ -74,6 +96,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         description: 'Misión 8',
         status: 'paid',
         creator: 'Ethan Hunt',
+      },
+    ],
+    debsToPay: [
+      {
+        id: 5,
+        creditor: 'John Wick',
+        mission: 'Misión 1',
+      },
+      {
+        id: 6,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 2',
+      },
+      {
+        id: 7,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 3',
+      },
+      {
+        id: 8,
+        creditor: 'James Bond',
+        mission: 'Misión 4',
       },
     ],
   },
@@ -114,6 +158,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         creator: 'Ethan Hunt',
       },
     ],
+    debsToPay: [
+      {
+        id: 9,
+        creditor: 'John Wick',
+        mission: 'Misión 9',
+      },
+      {
+        id: 10,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 10',
+      },
+      {
+        id: 11,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 11',
+      },
+      {
+        id: 12,
+        creditor: 'James Bond',
+        mission: 'Misión 12',
+      },
+    ],
   },
   {
     id: 4,
@@ -150,6 +216,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         description: 'Misión 16',
         status: 'paid',
         creator: 'Ethan Hunt',
+      },
+    ],
+    debsToPay: [
+      {
+        id: 13,
+        creditor: 'John Wick',
+        mission: 'Misión 13',
+      },
+      {
+        id: 14,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 14',
+      },
+      {
+        id: 15,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 15',
+      },
+      {
+        id: 16,
+        creditor: 'James Bond',
+        mission: 'Misión 16',
       },
     ],
   },
@@ -190,6 +278,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         creator: 'Ethan Hunt',
       },
     ],
+    debsToPay: [
+      {
+        id: 17,
+        creditor: 'John Wick',
+        mission: 'Misión 17',
+      },
+      {
+        id: 18,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 18',
+      },
+      {
+        id: 19,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 19',
+      },
+      {
+        id: 20,
+        creditor: 'James Bond',
+        mission: 'Misión 20',
+      },
+    ],
   },
   {
     id: 6,
@@ -228,6 +338,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         creator: 'Ethan Hunt',
       },
     ],
+    debsToPay: [
+      {
+        id: 21,
+        creditor: 'John Wick',
+        mission: 'Misión 21',
+      },
+      {
+        id: 22,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 22',
+      },
+      {
+        id: 23,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 23',
+      },
+      {
+        id: 24,
+        creditor: 'James Bond',
+        mission: 'Misión 24',
+      },
+    ],
   },
   {
     id: 7,
@@ -264,6 +396,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         description: 'Misión 28',
         status: 'paid',
         creator: 'Ethan Hunt',
+      },
+    ],
+    debsToPay: [
+      {
+        id: 25,
+        creditor: 'John Wick',
+        mission: 'Misión 25',
+      },
+      {
+        id: 26,
+        creditor: 'Nikita Mears',
+        mission: 'Misión 26',
+      },
+      {
+        id: 27,
+        creditor: 'Ethan Hunt',
+        mission: 'Misión 27',
+      },
+      {
+        id: 28,
+        creditor: 'James Bond',
+        mission: 'Misión 28',
       },
     ],
   },
