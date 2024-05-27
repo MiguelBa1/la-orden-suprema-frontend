@@ -16,7 +16,7 @@ type TableProps<T> = {
 export function Table<T>({ data, columns, className = '' }: TableProps<T>) {
   return (
     <div className={ `overflow-x-auto ${className}` }>
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="min-w-full divide-y divide-gray-200 border">
         <thead className="bg-gray-50">
           <tr>
             { columns.map(({ title, key }, columnIndex) => (

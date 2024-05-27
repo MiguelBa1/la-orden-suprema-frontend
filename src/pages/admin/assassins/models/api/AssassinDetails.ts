@@ -9,4 +9,12 @@ export type AssassinDetails = {
   country: string;
   coins: number;
   photoUrl: string;
+  missionsHistory: MissionHistory[];
+}
+
+export type MissionHistory = {
+  id: number;
+  description: string;
+  status: 'completed' | 'failed' | 'assigned' | 'paid';
+  creator: string;
 }

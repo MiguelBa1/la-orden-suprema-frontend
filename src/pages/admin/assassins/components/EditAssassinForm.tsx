@@ -28,13 +28,13 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
   }
 
   return (
-    <form className="grid grid-cols-1 lg:grid-cols-3 gap-4" onSubmit={ handleSubmit(() => console.log("Envía información")) }>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
       <UpdatePhoto
         photoUrl={ photoUrl }
         onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
         isDisabled={ isInactive }
       />
-      <div className="lg:col-span-2 space-y-4">
+      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(() => console.log("Envía información")) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
             id="name"
@@ -100,19 +100,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
             }) }
             error={ errors.email?.message }
           />
-          <Controller
-            name="status"
-            control={ control }
-            render={ ({ field }) => (
-              <ToggleSwitch
-                checked={ field.value === 'active' }
-                onChange={ () => {
-                  setIsConfirmModalOpen(true)
-                } }
-                label="Estado"
-              />
-            ) }
-          />
           <InputField
             id="coins"
             label="Monedas Asesino"
@@ -135,13 +122,26 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
             error={ errors.phone?.message }
             disabled={ isInactive }
           />
+          <Controller
+            name="status"
+            control={ control }
+            render={ ({ field }) => (
+              <ToggleSwitch
+                checked={ field.value === 'active' }
+                onChange={ () => {
+                  setIsConfirmModalOpen(true)
+                } }
+                label="Estado"
+              />
+            ) }
+          />
         </div>
         { !isInactive &&
           <div className="flex justify-center lg:justify-end">
             <Button type="submit">Guardar</Button>
           </div>
         }
-      </div>
+      </form>
 
       <ConfirmStatusChangeModal
         isOpen={ isConfirmModalOpen }
@@ -149,6 +149,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
         assassin={ assassinDetailsQuery.data }
         refetchAssassinDetails={ assassinDetailsQuery.refetch }
       />
-    </form>
+    </div>
   )
 }

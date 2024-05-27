@@ -12,6 +12,32 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 100,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 1,
+        description: 'Misión 1',
+        status: 'completed',
+        creator: 'Lorraine Broughton',
+      },
+      {
+        id: 2,
+        description: 'Misión 2',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 3,
+        description: 'Misión 3',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 4,
+        description: 'Misión 4',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
   {
     id: 2,
@@ -24,6 +50,32 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 150,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 5,
+        description: 'Misión 5',
+        status: 'completed',
+        creator: 'John Wick',
+      },
+      {
+        id: 6,
+        description: 'Misión 6',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 7,
+        description: 'Misión 7',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 8,
+        description: 'Misión 8',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
   {
     id: 3,
@@ -36,6 +88,32 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 200,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 9,
+        description: 'Misión 9',
+        status: 'completed',
+        creator: 'John Wick',
+      },
+      {
+        id: 10,
+        description: 'Misión 10',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 11,
+        description: 'Misión 11',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 12,
+        description: 'Misión 12',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
   {
     id: 4,
@@ -48,6 +126,32 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 250,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 13,
+        description: 'Misión 13',
+        status: 'completed',
+        creator: 'John Wick',
+      },
+      {
+        id: 14,
+        description: 'Misión 14',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 15,
+        description: 'Misión 15',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 16,
+        description: 'Misión 16',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
   {
     id: 5,
@@ -60,6 +164,32 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 300,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 17,
+        description: 'Misión 17',
+        status: 'completed',
+        creator: 'John Wick',
+      },
+      {
+        id: 18,
+        description: 'Misión 18',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 19,
+        description: 'Misión 19',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 20,
+        description: 'Misión 20',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
   {
     id: 6,
@@ -72,6 +202,32 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 350,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 21,
+        description: 'Misión 21',
+        status: 'completed',
+        creator: 'John Wick',
+      },
+      {
+        id: 22,
+        description: 'Misión 22',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 23,
+        description: 'Misión 23',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 24,
+        description: 'Misión 24',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
   {
     id: 7,
@@ -84,5 +240,31 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     country: 'colombia',
     coins: 400,
     photoUrl: '/images/john-wick.jpg',
+    missionsHistory: [
+      {
+        id: 25,
+        description: 'Misión 25',
+        status: 'completed',
+        creator: 'John Wick',
+      },
+      {
+        id: 26,
+        description: 'Misión 26',
+        status: 'failed',
+        creator: 'James Bond',
+      },
+      {
+        id: 27,
+        description: 'Misión 27',
+        status: 'assigned',
+        creator: 'Nikita Mears',
+      },
+      {
+        id: 28,
+        description: 'Misión 28',
+        status: 'paid',
+        creator: 'Ethan Hunt',
+      },
+    ],
   },
 ]
