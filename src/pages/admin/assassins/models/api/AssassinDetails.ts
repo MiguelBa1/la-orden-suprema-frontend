@@ -11,6 +11,7 @@ export type AssassinDetails = {
   photoUrl: string;
   missionsHistory: MissionHistory[];
   debsToPay: DebsToPay[];
+  debsToCollect: DebsToCollect[];
 }
 
 export type MissionHistory = {
@@ -23,5 +24,11 @@ export type MissionHistory = {
 export type DebsToPay = {
   id: number;
   creditor: string;
+  mission: string;
+}
+
+export type DebsToCollect = {
+  id: number;
+  debtor: string;
   mission: string;
 }

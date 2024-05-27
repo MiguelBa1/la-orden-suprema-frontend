@@ -60,6 +60,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         mission: 'Misión 8',
       },
     ],
+    debsToCollect: [
+      {
+        id: 1,
+        debtor: 'Jason Bourne',
+        mission: 'Misión 1',
+      },
+      {
+        id: 2,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 2',
+      },
+      {
+        id: 3,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 3',
+      },
+      {
+        id: 4,
+        debtor: 'James Bond',
+        mission: 'Misión 4',
+      },
+    ],
   },
   {
     id: 2,
@@ -120,6 +142,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         mission: 'Misión 4',
       },
     ],
+    debsToCollect: [
+      {
+        id: 5,
+        debtor: 'John Wick',
+        mission: 'Misión 5',
+      },
+      {
+        id: 6,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 6',
+      },
+      {
+        id: 7,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 7',
+      },
+      {
+        id: 8,
+        debtor: 'James Bond',
+        mission: 'Misión 8',
+      },
+    ],
   },
   {
     id: 3,
@@ -177,6 +221,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
       {
         id: 12,
         creditor: 'James Bond',
+        mission: 'Misión 12',
+      },
+    ],
+    debsToCollect: [
+      {
+        id: 9,
+        debtor: 'John Wick',
+        mission: 'Misión 9',
+      },
+      {
+        id: 10,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 10',
+      },
+      {
+        id: 11,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 11',
+      },
+      {
+        id: 12,
+        debtor: 'James Bond',
         mission: 'Misión 12',
       },
     ],
@@ -240,6 +306,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         mission: 'Misión 16',
       },
     ],
+    debsToCollect: [
+      {
+        id: 13,
+        debtor: 'John Wick',
+        mission: 'Misión 13',
+      },
+      {
+        id: 14,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 14',
+      },
+      {
+        id: 15,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 15',
+      },
+      {
+        id: 16,
+        debtor: 'James Bond',
+        mission: 'Misión 16',
+      },
+    ],
   },
   {
     id: 5,
@@ -297,6 +385,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
       {
         id: 20,
         creditor: 'James Bond',
+        mission: 'Misión 20',
+      },
+    ],
+    debsToCollect: [
+      {
+        id: 17,
+        debtor: 'John Wick',
+        mission: 'Misión 17',
+      },
+      {
+        id: 18,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 18',
+      },
+      {
+        id: 19,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 19',
+      },
+      {
+        id: 20,
+        debtor: 'James Bond',
         mission: 'Misión 20',
       },
     ],
@@ -360,6 +470,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
         mission: 'Misión 24',
       },
     ],
+    debsToCollect: [
+      {
+        id: 21,
+        debtor: 'John Wick',
+        mission: 'Misión 21',
+      },
+      {
+        id: 22,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 22',
+      },
+      {
+        id: 23,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 23',
+      },
+      {
+        id: 24,
+        debtor: 'James Bond',
+        mission: 'Misión 24',
+      },
+    ],
   },
   {
     id: 7,
@@ -417,6 +549,28 @@ export const assassinsDetailsMock: AssassinDetails[] = [
       {
         id: 28,
         creditor: 'James Bond',
+        mission: 'Misión 28',
+      },
+    ],
+    debsToCollect: [
+      {
+        id: 25,
+        debtor: 'John Wick',
+        mission: 'Misión 25',
+      },
+      {
+        id: 26,
+        debtor: 'Nikita Mears',
+        mission: 'Misión 26',
+      },
+      {
+        id: 27,
+        debtor: 'Ethan Hunt',
+        mission: 'Misión 27',
+      },
+      {
+        id: 28,
+        debtor: 'James Bond',
         mission: 'Misión 28',
       },
     ],

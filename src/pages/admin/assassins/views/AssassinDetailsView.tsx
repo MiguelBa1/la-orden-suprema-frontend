@@ -4,7 +4,8 @@ import {
   EditAssassinForm,
   MissionsHistoryTable,
   getAssassinsDetails,
-  DebsToPayTable
+  DebsToPayTable,
+  DebsToCollectTable,
 } from '@pages/admin/assassins'
 import { Spinner, Button } from '@components/UI'
 
@@ -59,6 +60,7 @@ export function AssassinDetailsView() {
       <hr className="border-t-2 border-gray-300" />
       <div className="grid lg:grid-cols-2 gap-4">
         <DebsToPayTable assassinDetailsQuery={ assassinDetailsQuery } />
+        <DebsToCollectTable assassinDetailsQuery={ assassinDetailsQuery } />
       </div>
     </div>
   )

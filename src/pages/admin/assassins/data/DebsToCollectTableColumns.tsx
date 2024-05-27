@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
-import { type DebsToPay } from '@pages/admin/assassins'
+import { type DebsToCollect } from '@pages/admin/assassins'
 
-export const DebsToPayTableColumns: Column<DebsToPay>[] = [
+export const DebsToCollectTableColumns: Column<DebsToCollect>[] = [
   {
-    title: 'Acreedor',
-    dataIndex: 'creditor',
-    key: 'creditor',
+    title: 'Deudor',
+    dataIndex: 'debtor',
+    key: 'debtor',
   },
   {
     title: 'Misión asociada',
