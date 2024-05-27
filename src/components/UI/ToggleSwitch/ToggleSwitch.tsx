@@ -9,9 +9,15 @@ type ToggleSwitchProps = {
 export function ToggleSwitch({ checked, onChange, label }: ToggleSwitchProps) {
   return (
     <div className="flex flex-col space-y-1">
-      { label && <label className="block text-sm font-medium text-gray-700">{ label }</label> }
+      { label &&
+        <label
+          htmlFor={ label }
+          className="block text-sm font-medium text-gray-700">
+          { label }
+        </label> }
       <div className="h-full flex items-center">
         <Switch
+          id={ label }
           checked={ checked }
           onChange={ onChange }
           className={ `${checked ? 'bg-green-500' : 'bg-gray-200'} relative inline-flex items-center h-6

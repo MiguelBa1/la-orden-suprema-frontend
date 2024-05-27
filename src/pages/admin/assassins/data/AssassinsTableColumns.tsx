@@ -1,6 +1,6 @@
-import { Column } from '@components/UI'
+import { NavLink } from 'react-router-dom'
+import { Column, Button } from '@components/UI'
 import { AssassinTableRow } from '@pages/admin'
-import { ActionButton } from '@pages/admin/assassins/components'
 
 export const AssassinsTableColumns: Column<AssassinTableRow>[] = [
   { title: 'ID', dataIndex: 'id', key: 'id' },
@@ -10,5 +10,9 @@ export const AssassinsTableColumns: Column<AssassinTableRow>[] = [
   { title: 'Teléfono', dataIndex: 'phone', key: 'phone' },
   { title: 'Status', dataIndex: 'status', key: 'status' },
   { title: 'País', dataIndex: 'country', key: 'country' },
-  { title: 'Acciones', key: 'actions', render: (record) => <ActionButton assassinId={ record.id } /> },
+  { title: 'Acciones', key: 'actions', render: (record) => (
+    <NavLink to={ `/app/admin/assassins/${ record.id }` }>
+      <Button variant="tertiary">Abrir</Button>
+    </NavLink>
+  ) },
 ]
