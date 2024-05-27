@@ -23,12 +23,18 @@ export type MissionHistory = {
 
 export type DebsToPay = {
   id: number;
-  creditor: string;
+  creditor: {
+    id: number;
+    name: string;
+  };
   mission: string;
 }
 
 export type DebsToCollect = {
   id: number;
-  debtor: string;
+  debtor: {
+    id: number;
+    name: string;
+  };
   mission: string;
 }

@@ -41,44 +41,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 1,
-        creditor: 'Jason Bourne',
-        mission: 'Misión 5',
+        creditor: {
+          id: 1,
+          name: 'Jason Bourne',
+        },
+        mission: 'Misión 1',
       },
       {
         id: 2,
-        creditor: 'Nikita Mears',
-        mission: 'Misión 6',
+        creditor: {
+          id: 2,
+          name: 'Nikita Mears',
+        },
+        mission: 'Misión 2',
       },
       {
         id: 3,
-        creditor: 'Ethan Hunt',
-        mission: 'Misión 7',
+        creditor: {
+          id: 3,
+          name: 'Ethan Hunt',
+        },
+        mission: 'Misión 3',
       },
       {
         id: 4,
-        creditor: 'James Bond',
-        mission: 'Misión 8',
+        creditor: {
+          id: 4,
+          name: 'James Bond',
+        },
+        mission: 'Misión 4',
       },
     ],
     debsToCollect: [
       {
         id: 1,
-        debtor: 'Jason Bourne',
+        debtor: {
+          id: 1,
+          name: 'Jason Bourne',
+        },
         mission: 'Misión 1',
       },
       {
         id: 2,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 2,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 2',
       },
       {
         id: 3,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 3,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 3',
       },
       {
         id: 4,
-        debtor: 'James Bond',
+        debtor: {
+          id: 4,
+          name: 'James Bond',
+        },
         mission: 'Misión 4',
       },
     ],
@@ -123,44 +147,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 5,
-        creditor: 'John Wick',
-        mission: 'Misión 1',
+        creditor: {
+          id: 5,
+          name: 'John Wick',
+        },
+        mission: 'Misión 5',
       },
       {
         id: 6,
-        creditor: 'Nikita Mears',
-        mission: 'Misión 2',
+        creditor: {
+          id: 6,
+          name: 'Nikita Mears',
+        },
+        mission: 'Misión 6',
       },
       {
         id: 7,
-        creditor: 'Ethan Hunt',
-        mission: 'Misión 3',
+        creditor: {
+          id: 7,
+          name: 'Ethan Hunt',
+        },
+        mission: 'Misión 7',
       },
       {
         id: 8,
-        creditor: 'James Bond',
-        mission: 'Misión 4',
+        creditor: {
+          id: 8,
+          name: 'James Bond',
+        },
+        mission: 'Misión 8',
       },
     ],
     debsToCollect: [
       {
         id: 5,
-        debtor: 'John Wick',
+        debtor: {
+          id: 5,
+          name: 'John Wick',
+        },
         mission: 'Misión 5',
       },
       {
         id: 6,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 6,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 6',
       },
       {
         id: 7,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 7,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 7',
       },
       {
         id: 8,
-        debtor: 'James Bond',
+        debtor: {
+          id: 8,
+          name: 'James Bond',
+        },
         mission: 'Misión 8',
       },
     ],
@@ -205,44 +253,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 9,
-        creditor: 'John Wick',
+        creditor: {
+          id: 9,
+          name: 'John Wick',
+        },
         mission: 'Misión 9',
       },
       {
         id: 10,
-        creditor: 'Nikita Mears',
+        creditor: {
+          id: 10,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 10',
       },
       {
         id: 11,
-        creditor: 'Ethan Hunt',
+        creditor: {
+          id: 11,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 11',
       },
       {
         id: 12,
-        creditor: 'James Bond',
+        creditor: {
+          id: 12,
+          name: 'James Bond',
+        },
         mission: 'Misión 12',
       },
     ],
     debsToCollect: [
       {
         id: 9,
-        debtor: 'John Wick',
+        debtor: {
+          id: 9,
+          name: 'John Wick',
+        },
         mission: 'Misión 9',
       },
       {
         id: 10,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 10,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 10',
       },
       {
         id: 11,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 11,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 11',
       },
       {
         id: 12,
-        debtor: 'James Bond',
+        debtor: {
+          id: 12,
+          name: 'James Bond',
+        },
         mission: 'Misión 12',
       },
     ],
@@ -287,44 +359,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 13,
-        creditor: 'John Wick',
+        creditor: {
+          id: 13,
+          name: 'John Wick',
+        },
         mission: 'Misión 13',
       },
       {
         id: 14,
-        creditor: 'Nikita Mears',
+        creditor: {
+          id: 14,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 14',
       },
       {
         id: 15,
-        creditor: 'Ethan Hunt',
+        creditor: {
+          id: 15,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 15',
       },
       {
         id: 16,
-        creditor: 'James Bond',
+        creditor: {
+          id: 16,
+          name: 'James Bond',
+        },
         mission: 'Misión 16',
       },
     ],
     debsToCollect: [
       {
         id: 13,
-        debtor: 'John Wick',
+        debtor: {
+          id: 13,
+          name: 'John Wick',
+        },
         mission: 'Misión 13',
       },
       {
         id: 14,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 14,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 14',
       },
       {
         id: 15,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 15,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 15',
       },
       {
         id: 16,
-        debtor: 'James Bond',
+        debtor: {
+          id: 16,
+          name: 'James Bond',
+        },
         mission: 'Misión 16',
       },
     ],
@@ -369,44 +465,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 17,
-        creditor: 'John Wick',
+        creditor: {
+          id: 17,
+          name: 'John Wick',
+        },
         mission: 'Misión 17',
       },
       {
         id: 18,
-        creditor: 'Nikita Mears',
+        creditor: {
+          id: 18,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 18',
       },
       {
         id: 19,
-        creditor: 'Ethan Hunt',
+        creditor: {
+          id: 19,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 19',
       },
       {
         id: 20,
-        creditor: 'James Bond',
+        creditor: {
+          id: 20,
+          name: 'James Bond',
+        },
         mission: 'Misión 20',
       },
     ],
     debsToCollect: [
       {
         id: 17,
-        debtor: 'John Wick',
+        debtor: {
+          id: 17,
+          name: 'John Wick',
+        },
         mission: 'Misión 17',
       },
       {
         id: 18,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 18,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 18',
       },
       {
         id: 19,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 19,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 19',
       },
       {
         id: 20,
-        debtor: 'James Bond',
+        debtor: {
+          id: 20,
+          name: 'James Bond',
+        },
         mission: 'Misión 20',
       },
     ],
@@ -451,44 +571,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 21,
-        creditor: 'John Wick',
+        creditor: {
+          id: 21,
+          name: 'John Wick',
+        },
         mission: 'Misión 21',
       },
       {
         id: 22,
-        creditor: 'Nikita Mears',
+        creditor: {
+          id: 22,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 22',
       },
       {
         id: 23,
-        creditor: 'Ethan Hunt',
+        creditor: {
+          id: 23,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 23',
       },
       {
         id: 24,
-        creditor: 'James Bond',
+        creditor: {
+          id: 24,
+          name: 'James Bond',
+        },
         mission: 'Misión 24',
       },
     ],
     debsToCollect: [
       {
         id: 21,
-        debtor: 'John Wick',
+        debtor: {
+          id: 21,
+          name: 'John Wick',
+        },
         mission: 'Misión 21',
       },
       {
         id: 22,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 22,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 22',
       },
       {
         id: 23,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 23,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 23',
       },
       {
         id: 24,
-        debtor: 'James Bond',
+        debtor: {
+          id: 24,
+          name: 'James Bond',
+        },
         mission: 'Misión 24',
       },
     ],
@@ -533,44 +677,68 @@ export const assassinsDetailsMock: AssassinDetails[] = [
     debsToPay: [
       {
         id: 25,
-        creditor: 'John Wick',
+        creditor: {
+          id: 25,
+          name: 'John Wick',
+        },
         mission: 'Misión 25',
       },
       {
         id: 26,
-        creditor: 'Nikita Mears',
+        creditor: {
+          id: 26,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 26',
       },
       {
         id: 27,
-        creditor: 'Ethan Hunt',
+        creditor: {
+          id: 27,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 27',
       },
       {
         id: 28,
-        creditor: 'James Bond',
+        creditor: {
+          id: 28,
+          name: 'James Bond',
+        },
         mission: 'Misión 28',
       },
     ],
     debsToCollect: [
       {
         id: 25,
-        debtor: 'John Wick',
+        debtor: {
+          id: 25,
+          name: 'John Wick',
+        },
         mission: 'Misión 25',
       },
       {
         id: 26,
-        debtor: 'Nikita Mears',
+        debtor: {
+          id: 26,
+          name: 'Nikita Mears',
+        },
         mission: 'Misión 26',
       },
       {
         id: 27,
-        debtor: 'Ethan Hunt',
+        debtor: {
+          id: 27,
+          name: 'Ethan Hunt',
+        },
         mission: 'Misión 27',
       },
       {
         id: 28,
-        debtor: 'James Bond',
+        debtor: {
+          id: 28,
+          name: 'James Bond',
+        },
         mission: 'Misión 28',
       },
     ],
