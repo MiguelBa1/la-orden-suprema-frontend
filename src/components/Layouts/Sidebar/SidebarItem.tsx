@@ -38,7 +38,7 @@ export function SidebarItem({ href, Icon, label, isOpen, setIsOpen, subMenuOpen,
   return (
     <li className="w-full">
       { subItems && subItems.length > 0 ? (
-        <div onClick={ toggleSubMenu } className={ `cursor-pointer p-4 flex justify-center
+        <div onClick={ toggleSubMenu } className={ `cursor-pointer p-4 flex justify-start items-center
          gap-2 hover:bg-gray-700 transition-colors` }>
           <div className="size-8">
             <Icon/>
@@ -49,7 +49,7 @@ export function SidebarItem({ href, Icon, label, isOpen, setIsOpen, subMenuOpen,
       ) : (
         <NavLink
           to={ href || '/' }
-          className={ ({ isActive }) => `cursor-pointer p-4 flex justify-center
+          className={ ({ isActive }) => `cursor-pointer p-4 flex justify-start items-center
            ${isActive ? 'bg-gray-700' : ''} gap-2 hover:bg-gray-700 transition-colors` }>
           <div className="size-8">
             <Icon/>
@@ -58,7 +58,7 @@ export function SidebarItem({ href, Icon, label, isOpen, setIsOpen, subMenuOpen,
         </NavLink>
       ) }
       { subItems && localSubMenuOpen && (
-        <ul className="bg-gray-700 text-center">
+        <ul className="bg-gray-700 text-left pl-6">
           { subItems.map(subItem => (
             <SubItem key={ subItem.name } name={ subItem.name } href={ subItem.href } />
           )) }
