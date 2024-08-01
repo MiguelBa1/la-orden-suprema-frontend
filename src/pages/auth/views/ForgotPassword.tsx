@@ -17,7 +17,7 @@ export function ForgotPassword() {
   const { mutateAsync: login, isPending } = useLogin({
     onSuccess: () => {
       addToast({
-        message: '¡Contraeña reestablecida con éxito!',
+        message: '¡Contraseña reestablecida con éxito!',
         type: 'success'
       })
     },
