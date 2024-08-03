@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { Button } from '@components/UI'
 import { uploadImage } from '@pages/admin'
-import { useToastStore } from '@stores/index'
+import { useToastStore } from '@stores/index.ts'
 
 type UpdatePhotoProps = {
   photoUrl: string
