@@ -49,11 +49,11 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
           />
           <InputField
             id="alias"
-            label="Seudónimo"
+            label="Pseudónimo"
             name="alias"
             type="text"
             registration={ register('alias', {
-              required: 'El campo seudónimo es requerido'
+              required: 'El campo pseudónimo es requerido'
             }) }
             error={ errors.alias?.message }
             disabled={ isInactive }
