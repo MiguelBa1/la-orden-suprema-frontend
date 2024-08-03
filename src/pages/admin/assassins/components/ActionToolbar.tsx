@@ -30,7 +30,7 @@ export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolba
       <InputField
         id="alias"
         type="text"
-        placeholder="Seudónimo"
+        placeholder="Pseudónimo"
         registration={ searchForm.register('alias') }
       />
       <Controller

@@ -1,29 +1,26 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm, Controller } from 'react-hook-form'
-import { AssassinDetails, ConfirmStatusChangeModal } from '@pages/admin'
 import { countriesList } from '@data/index'
-import { InputField, Dropdown, Button, ToggleSwitch, UpdatePhoto } from '@components/index'
+import { InputField, Dropdown, Button, UpdatePhoto } from '@components/index'
+import { ProfileDetails } from '@pages/assassin'
 
-type EditAssassinFormProps = {
-  assassinDetailsQuery: UseQueryResult<AssassinDetails>
+type EditProfileFormProps = {
+  profileDetailsQuery: UseQueryResult<ProfileDetails>
 }
 
-export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps) {
+export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
   const {
     register,
     control,
     handleSubmit,
     formState: { errors } } = useForm({
-    defaultValues: assassinDetailsQuery.data
+    defaultValues: profileDetailsQuery.data
   })
 
-  const isInactive = assassinDetailsQuery.data?.status === 'inactive'
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
-  const [photoUrl, setPhotoUrl] = useState(assassinDetailsQuery.data?.photoUrl || '')
+  const [photoUrl, setPhotoUrl] = useState(profileDetailsQuery.data?.photoUrl || '')
 
-
-  if (!assassinDetailsQuery.data) {
+  if (!profileDetailsQuery.data) {
     return null
   }
 
@@ -32,9 +29,9 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
       <UpdatePhoto
         photoUrl={ photoUrl }
         onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
-        isDisabled={ isInactive }
+        isDisabled={ false }
       />
-      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(() => console.log("Envía información")) }>
+      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(() => console.log("Actualiza información del perfil")) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
             id="name"
@@ -45,7 +42,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo nombre es requerido'
             }) }
             error={ errors.name?.message }
-            disabled={ isInactive }
+            disabled={ true }
           />
           <InputField
             id="alias"
@@ -56,7 +53,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo pseudónimo es requerido'
             }) }
             error={ errors.alias?.message }
-            disabled={ isInactive }
+            disabled={ true }
           />
           <Controller
             name="country"
@@ -70,7 +67,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
                 onChange={ field.onChange }
                 value={ field.value }
                 error={ errors.country?.message }
-                disabled={ isInactive }
               />
             ) }
           />
@@ -83,7 +79,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo dirección es requerido'
             }) }
             error={ errors.address?.message }
-            disabled={ isInactive }
           />
           <InputField
             id="email"
@@ -100,55 +95,11 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
             }) }
             error={ errors.email?.message }
           />
-          <InputField
-            id="coins"
-            label="Monedas Asesino"
-            name="coins"
-            type="number"
-            disabled
-            registration={ register('coins', {
-              required: 'El campo monedas es requerido'
-            }) }
-            error={ errors.coins?.message }
-          />
-          <InputField
-            id="phone"
-            label="Teléfono"
-            name="phone"
-            type="text"
-            registration={ register('phone', {
-              required: 'El campo teléfono es requerido'
-            }) }
-            error={ errors.phone?.message }
-            disabled={ isInactive }
-          />
-          <Controller
-            name="status"
-            control={ control }
-            render={ ({ field }) => (
-              <ToggleSwitch
-                checked={ field.value === 'active' }
-                onChange={ () => {
-                  setIsConfirmModalOpen(true)
-                } }
-                label="Estado"
-              />
-            ) }
-          />
         </div>
-        { !isInactive &&
-          <div className="flex justify-center lg:justify-end">
-            <Button type="submit">Guardar</Button>
-          </div>
-        }
+        <div className="flex justify-center lg:justify-end">
+          <Button type="submit">Guardar</Button>
+        </div>
       </form>
-
-      <ConfirmStatusChangeModal
-        isOpen={ isConfirmModalOpen }
-        onClose={ () => setIsConfirmModalOpen(false) }
-        assassin={ assassinDetailsQuery.data }
-        refetchAssassinDetails={ assassinDetailsQuery.refetch }
-      />
     </div>
   )
 }
