@@ -111,17 +111,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
             }) }
             error={ errors.coins?.message }
           />
-          <InputField
-            id="phone"
-            label="Teléfono"
-            name="phone"
-            type="text"
-            registration={ register('phone', {
-              required: 'El campo teléfono es requerido'
-            }) }
-            error={ errors.phone?.message }
-            disabled={ isInactive }
-          />
           <Controller
             name="status"
             control={ control }

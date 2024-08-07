@@ -45,7 +45,7 @@ export function AssassinDetailsView() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-xl lg:text-2xl">
-          Información de asesino
+          Información del asesino
         </h1>
         <Button
           onClick={ () => navigate(-1) }
