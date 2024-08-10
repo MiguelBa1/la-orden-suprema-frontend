@@ -2,21 +2,23 @@ import { UseQueryResult } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { MissionDetails } from '@pages/admin'
 import { InputField, Textarea } from '@components/Forms'
+import { missionPaymentTypeTranslations } from '@utils/translations'
 
 type MissionDetailsFormProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
 }
 
 export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormProps) {
-  const { register } = useForm({
-    defaultValues: missionDetailsQuery.data,
-  })
+  const { data: missionDetailsData } = missionDetailsQuery
+  const paymentTypeTranslation = missionDetailsData?.payment_type && missionPaymentTypeTranslations[missionDetailsData.payment_type]
 
-  if (!missionDetailsQuery.data) {
+  const { register } = useForm({
+    values: { ...missionDetailsQuery.data, payment_type: paymentTypeTranslation },
+  })
+  
+  if (!missionDetailsData) {
     return null
   }
-
-  const { data: missionDetailsData } = missionDetailsQuery
 
   const hasAssignedAssassin = missionDetailsData.assigned_to !== null
   const isCoinPaymentType = missionDetailsData.coins_amount !== null
