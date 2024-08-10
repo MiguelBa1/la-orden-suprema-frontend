@@ -1,3 +1,5 @@
+export * from './MissionsTableToolbar.tsx'
+export * from './MissionsListTable.tsx'
 export * from './MissionDetailsForm'
 export * from './MissionDetailsActions'
 export * from './PublishMissionConfirmModal'
