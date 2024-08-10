@@ -1,4 +1,4 @@
-import { MissionStatus } from '@pages/admin'
+import { MissionStatus } from '@models/enums'
 
 export const missionStatusTranslations = {
   [MissionStatus.CREATED]: 'Creada',

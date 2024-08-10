@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
-import { MissionItem, MissionStatus, missionStatusTranslations } from '@pages/admin'
+import { MissionItem, missionStatusTranslations } from '@pages/admin'
+import { MissionStatus } from '@models/enums'
 
 export const MissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },

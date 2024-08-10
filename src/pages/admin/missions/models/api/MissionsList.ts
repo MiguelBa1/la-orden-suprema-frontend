@@ -1,4 +1,4 @@
-import { MissionStatus } from '@pages/admin'
+import { MissionStatus } from '@models/enums'
 
 export type MissionItem = {
   id: string;

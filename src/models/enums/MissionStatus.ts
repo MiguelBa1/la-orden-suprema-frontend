@@ -1,8 +1,9 @@
 export enum MissionStatus {
-  CREATED = 'created',
-  PUBLISHED = 'published',
-  REJECTED = 'rejected',
-  ASSIGNED = 'assigned',
-  COMPLETED = 'completed',
-  PAID = 'paid',
+  CREATED = 'CREATED',
+  PUBLISHED = 'PUBLISHED',
+  REJECTED = 'REJECTED',
+  ASSIGNED = 'ASSIGNED',
+  COMPLETED = 'COMPLETED',
+  PAID = 'PAID',
 }
+
