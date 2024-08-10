@@ -1,8 +1,8 @@
 import { UseQueryResult } from '@tanstack/react-query'
 import { UseFormReturn, Controller } from 'react-hook-form'
 import { InputField, Dropdown, Button } from '@components/index.ts'
-import { missionStatusTranslations } from '@pages/admin'
 import { MissionStatus } from '@models/enums'
+import { missionStatusTranslations } from '@utils/translations'
 
 type MissionsTableToolbarProps = {
   searchForm: UseFormReturn;
