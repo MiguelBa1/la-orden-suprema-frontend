@@ -1,52 +1,50 @@
-import { MissionsList, MissionStatus } from '@pages/admin'
-
-export const missionsListMock: MissionsList = [
+export const missionsListMock = [
   {
     id: 1,
     description: 'Matar al objetivo',
-    status: MissionStatus.CREATED,
+    status: 'CREATED',
     createdBy: 'Jason Bourne',
     assignedTo: 'John Wick',
   },
   {
     id: 2,
     description: 'Obtener la información',
-    status: MissionStatus.ASSIGNED,
+    status: 'ASSIGNED',
     createdBy: 'Nick Fury',
     assignedTo: 'Jason Bourne',
   },
   {
     id: 3,
     description: 'Limpiar la zona',
-    status: MissionStatus.COMPLETED,
+    status: 'COMPLETED',
     createdBy: 'Nathan Drake',
     assignedTo: 'Nikita Mears',
   },
   {
     id: 4,
     description: 'Robar el objeto',
-    status: MissionStatus.PAID,
+    status: 'PAID',
     createdBy: 'Kurt Sloan',
     assignedTo: 'Ethan Hunt',
   },
   {
     id: 5,
     description: 'Liberar al rehén',
-    status: MissionStatus.PUBLISHED,
+    status: 'PUBLISHED',
     createdBy: 'Admin',
     assignedTo: 'James Bond',
   },
   {
     id: 6,
     description: 'Negociar con el enemigo',
-    status: MissionStatus.REJECTED,
+    status: 'REJECTED',
     createdBy: 'Girona',
     assignedTo: 'Ava Faulkner',
   },
   {
     id: 7,
     description: 'Silenciar al testigo',
-    status: MissionStatus.CREATED,
+    status: 'CREATED',
     createdBy: 'John Wick',
     assignedTo: 'Lorraine Broughton',
   },

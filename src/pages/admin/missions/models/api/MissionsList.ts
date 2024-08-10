@@ -1,9 +1,7 @@
-import { MissionStatus } from '@pages/admin'
-
 type MissionItem = {
   id: number;
   description: string;
-  status: MissionStatus;
+  status: string;
   createdBy: string;
   assignedTo?: string;
 }
