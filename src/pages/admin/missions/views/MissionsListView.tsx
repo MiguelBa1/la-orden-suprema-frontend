@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Button } from '@components/UI'
-import { getMissionsList, MissionsTableToolbar } from '@pages/admin'
+import { getMissionsList, MissionsListTable, MissionsTableToolbar } from '@pages/admin'
 
 export function MissionsListView() {
   const searchForm = useForm()
@@ -27,6 +27,7 @@ export function MissionsListView() {
         </Link>
       </div>
       <MissionsTableToolbar searchForm={ searchForm } refetchAssassinsList={ MissionsListQuery.refetch } />
+      <MissionsListTable missionsListQuery={ MissionsListQuery } />
     </div>
   )
 }
