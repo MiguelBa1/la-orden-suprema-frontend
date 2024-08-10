@@ -1,5 +1,4 @@
-import { MissionStatus } from '@models/enums'
-import { MissionPaymentType } from '@models/enums/MissionPaymentType.ts'
+import { MissionPaymentType, MissionStatus } from '@models/enums'
 
 export type MissionDetails = {
   id: number;

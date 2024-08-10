@@ -1,6 +1,5 @@
 import { MissionDetails } from '@pages/admin'
-import { MissionPaymentType } from '@models/enums/MissionPaymentType.ts'
-import { MissionStatus } from '@models/enums'
+import { MissionPaymentType, MissionStatus } from '@models/enums'
 
 export const missionsDetailsMock: MissionDetails[] = [
   {
