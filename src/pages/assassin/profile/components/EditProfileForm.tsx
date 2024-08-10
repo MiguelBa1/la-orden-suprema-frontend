@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, FieldValues } from 'react-hook-form'
 import { countriesList } from '@data/index'
-import { InputField, Dropdown, Button, UpdatePhoto } from '@components/index'
+import { InputField, Dropdown, Button } from '@components/index'
+import { AssassinPhoto } from '@pages/admin'
 import { ProfileDetails } from '@pages/assassin'
 
 type EditProfileFormProps = {
@@ -10,13 +11,15 @@ type EditProfileFormProps = {
 }
 
 export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
+  const methods = useForm<FieldValues>({
+    defaultValues: profileDetailsQuery.data
+  })
+
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors } } = useForm({
-    defaultValues: profileDetailsQuery.data
-  })
+    formState: { errors } } = methods
 
   const [photoUrl, setPhotoUrl] = useState(profileDetailsQuery.data?.photoUrl || '')
 
@@ -26,10 +29,11 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
-      <UpdatePhoto
+      <AssassinPhoto
         photoUrl={ photoUrl }
         onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
         isDisabled={ false }
+        methods={ methods }
       />
       <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(() => console.log("Actualiza información del perfil")) }>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -41,7 +45,7 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
             registration={ register('name', {
               required: 'El campo nombre es requerido'
             }) }
-            error={ errors.name?.message }
+            error={ errors.name?.message as string }
             disabled={ true }
           />
           <InputField
@@ -52,7 +56,7 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
             registration={ register('alias', {
               required: 'El campo pseudónimo es requerido'
             }) }
-            error={ errors.alias?.message }
+            error={ errors.alias?.message as string }
             disabled={ true }
           />
           <Controller
@@ -66,7 +70,7 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
                 options={ countriesList }
                 onChange={ field.onChange }
                 value={ field.value }
-                error={ errors.country?.message }
+                error={ errors.country?.message as string }
               />
             ) }
           />
@@ -78,7 +82,7 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
             registration={ register('address', {
               required: 'El campo dirección es requerido'
             }) }
-            error={ errors.address?.message }
+            error={ errors.address?.message as string }
           />
           <InputField
             id="email"
@@ -93,7 +97,7 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
                 message: 'El email no es válido'
               }
             }) }
-            error={ errors.email?.message }
+            error={ errors.email?.message as string }
           />
         </div>
         <div className="flex justify-center lg:justify-end">
