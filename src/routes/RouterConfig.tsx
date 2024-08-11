@@ -8,6 +8,7 @@ import { GeneralError } from '@pages/common'
 const Login = lazy(() => import('@pages/index').then((module) => ({ default: module.Login })))
 const ForgotPassword = lazy(() => import('@pages/index').then((module) => ({ default: module.ForgotPassword })))
 const VerifyCode = lazy(() => import('@pages/index').then((module) => ({ default: module.VerifyCode })))
+const NewPassword = lazy(() => import('@pages/index').then((module) => ({ default: module.NewPassword })))
 const NoMatch = lazy(() => import('@pages/index').then((module) => ({ default: module.NoMatch })))
 
 export const router = createBrowserRouter([
@@ -33,7 +34,11 @@ export const router = createBrowserRouter([
       {
         path: 'verify-code',
         element: <VerifyCode />,
-      }
+      },
+      {
+        path: 'new-password',
+        element: <NewPassword />,
+      },
       {
         path: "app/*",
         element: <PrivateRoutes />,
