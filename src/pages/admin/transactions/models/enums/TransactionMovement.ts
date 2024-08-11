@@ -1,4 +1,4 @@
 export enum TransactionMovement{
-    INPUT = 'INPUT',
-    OUTPUT = 'OUTPUT',
+    INCOME = 'INCOME',
+    OUTCOME = 'OUTCOME',
 }

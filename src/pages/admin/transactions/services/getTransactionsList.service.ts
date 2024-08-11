@@ -1,7 +1,6 @@
 import { TransactionListMock, TransactionList, TransactionMovement } from '@pages/admin'
 
 type GetTransactionsListParams = {
-    description?: string;
     movement?: TransactionMovement;
     amount?: string;
     date?: string;
