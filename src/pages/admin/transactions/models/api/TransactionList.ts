@@ -4,7 +4,7 @@ import { TransactionMovement } from '@pages/admin/transactions/models/enums/Tran
 export type TransactionItem = {
   description: string;
   transaction: TransactionMovement;
-  amount: number;
+  amount: string;
   date: string;
 }
 

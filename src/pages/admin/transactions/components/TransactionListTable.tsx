@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import { TransactionListMock, TransactionTableColumns, type TransactionList } from '@pages/admin'
+import {TransactionTableColumns, type TransactionList } from '@pages/admin'
 
 type TransactionsTableProps = {
   transactionListQuery: UseQueryResult<TransactionList>;
@@ -31,6 +31,6 @@ export function TransactionListTable({ transactionListQuery }: TransactionsTable
   }
 
   return (
-    <Table columns={ TransactionTableColumns } data={ transactionListQuery } />
+    <Table columns={ TransactionTableColumns } data={ transactionListQuery.data } />
   )
 }
