@@ -1,4 +1,4 @@
-import { TransactionMovement } from '@pages/admin/transactions'
+import { TransactionMovement } from '../models/enums/TransactionMovement'
 
 export const TransactionListMock = [
   {
