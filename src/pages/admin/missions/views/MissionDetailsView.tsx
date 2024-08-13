@@ -1,8 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { getMissionDetailsService, MissionDetailsActions, MissionDetailsForm } from '@pages/admin'
+import { getMissionDetailsService, MissionDetailsActions, MissionDetailsForm, MissionStatusLabel } from '@pages/admin'
 import { Button, Spinner } from '@components/UI'
 import { useQuery } from '@tanstack/react-query'
-import { missionStatusTranslations } from '@utils/translations'
 
 type MissionDetailsParam = {
   missionId: string
@@ -39,14 +38,19 @@ export function MissionDetailsView() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl lg:text-2xl">
-          Información de la misión: { missionDetailsQuery.data.description } ({ missionStatusTranslations[missionDetailsQuery.data.status] })
-        </h1>
+        <div className="mb-4">
+          <h1 className="text-xl lg:text-2xl mb-4">
+            { missionDetailsQuery.data.description }
+          </h1>
+
+          <MissionStatusLabel status={ missionDetailsQuery.data.status } />
+        </div>
+
         <Button onClick={ () => navigate(-1) } variant="tertiary">
           Volver
         </Button>
       </div>
-      <MissionDetailsForm missionDetailsQuery={ missionDetailsQuery }/>
+      <MissionDetailsForm missionDetailsQuery={ missionDetailsQuery } />
       <MissionDetailsActions missionDetailsQuery={ missionDetailsQuery }/>
     </div>
   )
