@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
-import { MissionItem, MissionStatus, missionStatusTranslations } from '@pages/admin'
+import { MissionItem, MissionStatusLabel } from '@pages/admin'
+import { MissionStatus } from '@models/enums'
 
 export const MissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
   { title: 'Estado', dataIndex: 'status', key: 'status', render: (record) => (
-    <span>{ missionStatusTranslations[record.status] }</span>
+    <MissionStatusLabel status={ record.status } className="inline-block w-24"/>
   ) },
   { title: 'Creado por', dataIndex: 'createdBy', key: 'createdBy' },
   { title: 'Asignado a', dataIndex: 'assignedTo', key: 'assignedTo' },

@@ -1,2 +1,3 @@
-export * from './missionsListMock.ts'
-export * from './MissionsTableColumns.tsx'
+export * from './missionsListMock'
+export * from './MissionsTableColumns'
+export * from './missionsDetailsMock'
