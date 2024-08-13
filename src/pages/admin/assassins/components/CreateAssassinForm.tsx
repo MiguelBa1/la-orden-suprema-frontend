@@ -1,36 +1,39 @@
-import { useState } from 'react'
-import { UseQueryResult } from '@tanstack/react-query'
-import { useForm, Controller, SubmitHandler, FieldValues } from 'react-hook-form'
-import { ConfirmStatusChangeModal, AssassinPhoto, AssassinDetails } from '@pages/admin'
+import { useForm, Controller, FieldValues, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 import { countriesList } from '@data/index'
-import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
-import { useToastStore } from '@stores/index'
+import { InputField, Dropdown, Button } from '@components/index'
+import { AssassinPhoto, CreateAssassinConfirmModal } from '@pages/admin'
+import { useState, useRef } from 'react'
+import { useToastStore } from '@stores/useToastStore.ts'
+import { useNavigate } from 'react-router-dom'
 
-type EditAssassinFormProps = {
-  assassinDetailsQuery: UseQueryResult<AssassinDetails>
-}
-
-export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps) {
+export function CreateAssassinForm() {
+  const methods = useForm<FieldValues>()
+  const formRef = useRef<HTMLFormElement | null>(null)
   const { addToast } = useToastStore()
+  const navigate = useNavigate()
 
-  const methods = useForm<FieldValues>({
-    values: assassinDetailsQuery.data
-  })
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = methods
 
-  const { register, control, handleSubmit, formState: { errors } } = methods
-
-  const isInactive = assassinDetailsQuery.data?.status === 'inactive'
+  const [photoUrl, setPhotoUrl] = useState<string>()
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
-  const [photoUrl, setPhotoUrl] = useState(assassinDetailsQuery.data?.photoUrl ?? '')
 
-  if (!assassinDetailsQuery.data) {
-    return null
-  }
-
-  const onSubmit: SubmitHandler<FieldValues> = (_data) => {
+  const onSubmit: SubmitHandler<FieldValues> = () => {
+    navigate('/app/admin/assassins')
     addToast({
       type: 'success',
-      message: 'La información del asesino ha sido actualizada correctamente'
+      message: 'Asesino registrado correctamente'
+    })
+  }
+
+  const onInvalid: SubmitErrorHandler<FieldValues> = () => {
+    addToast({
+      type: 'error',
+      message: 'Por favor, completa todos los campos'
     })
   }
 
@@ -39,10 +42,11 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
       <AssassinPhoto
         photoUrl={ photoUrl }
         onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
-        isDisabled={ isInactive }
+        isDisabled={ false }
         methods={ methods }
+        required
       />
-      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(onSubmit) }>
+      <form className="lg:col-span-2 space-y-4" ref={ formRef } onSubmit={ handleSubmit(onSubmit, onInvalid) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
             id="name"
@@ -53,7 +57,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo nombre es requerido'
             }) }
             error={ errors.name?.message as string }
-            disabled={ isInactive }
           />
           <InputField
             id="alias"
@@ -64,7 +67,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo pseudónimo es requerido'
             }) }
             error={ errors.alias?.message as string }
-            disabled={ isInactive }
           />
           <Controller
             name="country"
@@ -78,7 +80,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
                 onChange={ field.onChange }
                 value={ field.value }
                 error={ errors.country?.message as string }
-                disabled={ isInactive }
               />
             ) }
           />
@@ -91,14 +92,12 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
               required: 'El campo dirección es requerido'
             }) }
             error={ errors.address?.message as string }
-            disabled={ isInactive }
           />
           <InputField
             id="email"
             label="Email"
             name="email"
             type="email"
-            disabled
             registration={ register('email', {
               required: 'El campo email es requerido',
               pattern: {
@@ -108,43 +107,19 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
             }) }
             error={ errors.email?.message as string }
           />
-          <InputField
-            id="coins"
-            label="Monedas Asesino"
-            name="coins"
-            type="number"
-            disabled
-            registration={ register('coins', {
-              required: 'El campo monedas es requerido'
-            }) }
-            error={ errors.coins?.message as string }
-          />
-          <Controller
-            name="status"
-            control={ control }
-            render={ ({ field }) => (
-              <ToggleSwitch
-                checked={ field.value === 'active' }
-                onChange={ () => {
-                  setIsConfirmModalOpen(true)
-                } }
-                label="Estado"
-              />
-            ) }
-          />
         </div>
-        { !isInactive &&
-          <div className="flex justify-center lg:justify-end">
-            <Button type="submit">Guardar</Button>
-          </div>
-        }
+        <div className="flex justify-center lg:justify-end">
+          <Button onClick={ () => setIsConfirmModalOpen(true) }>Registrar asesino</Button>
+        </div>
       </form>
 
-      <ConfirmStatusChangeModal
+      <CreateAssassinConfirmModal
         isOpen={ isConfirmModalOpen }
         onClose={ () => setIsConfirmModalOpen(false) }
-        assassin={ assassinDetailsQuery.data }
-        refetchAssassinDetails={ assassinDetailsQuery.refetch }
+        onConfirm={ () => {
+          setIsConfirmModalOpen(false)
+          formRef.current?.requestSubmit()
+        } }
       />
     </div>
   )

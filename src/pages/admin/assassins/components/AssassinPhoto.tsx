@@ -4,15 +4,16 @@ import { UseFormReturn } from 'react-hook-form'
 
 type AssassinPhotoProps = {
   methods: UseFormReturn
-  photoUrl: string
+  photoUrl?: string
   onPhotoUpdated: (newPhotoUrl: string) => void
   isDisabled: boolean
+  required?: boolean
 }
 
-export function AssassinPhoto({ methods, photoUrl, onPhotoUpdated, isDisabled }: AssassinPhotoProps) {
+export function AssassinPhoto({ methods, photoUrl, onPhotoUpdated, isDisabled, required }: AssassinPhotoProps) {
   const { register, formState: { errors } } = methods
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
-  const [preview, setPreview] = useState<string>(photoUrl)
+  const [preview, setPreview] = useState<string>(photoUrl ?? '/images/no-user-image.webp')
 
   const { ref: registerRef, ...rest } = register('photoUrl', {
     onChange: (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +23,8 @@ export function AssassinPhoto({ methods, photoUrl, onPhotoUpdated, isDisabled }:
         setPreview(urlImage)
         onPhotoUpdated(urlImage)
       }
-    }
+    },
+    required: required ? 'La foto es requerida' : undefined
   })
 
   const handleButtonClick = () => {

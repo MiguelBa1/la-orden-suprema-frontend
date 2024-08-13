@@ -4,7 +4,6 @@ export type AssassinDetails = {
   email: string;
   alias: string;
   address: string;
-  phone: string;
   status: 'active' | 'inactive';
   country: string;
   coins: number;

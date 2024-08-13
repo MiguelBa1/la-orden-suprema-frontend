@@ -31,9 +31,9 @@ export function MobileSidebar() {
         </button>
       </div>
       <div
-        className={ `lg:hidden fixed inset-0 bg-gray-800 text-white z-50 transform
+        className={ `md:hidden fixed inset-0 bg-gray-800 text-white z-50 transform
                      ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform
-                     duration-200 ease-in-out lg:hidden` }>
+                     duration-200 ease-in-out md:hidden` }>
         <div className="flex flex-col justify-between h-full">
           <div>
             <SidebarHeader isOpen={ isOpen } toggleSidebar={ toggleSidebar } />
