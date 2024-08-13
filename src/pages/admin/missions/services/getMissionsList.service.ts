@@ -1,4 +1,5 @@
-import { missionsListMock, MissionsList, MissionStatus } from '@pages/admin'
+import { missionsListMock, MissionsList } from '@pages/admin'
+import { MissionStatus } from '@models/enums'
 
 type GetMissionsListParams = {
   status?: MissionStatus;

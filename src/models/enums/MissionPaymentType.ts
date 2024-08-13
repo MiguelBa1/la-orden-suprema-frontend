@@ -1,0 +1,5 @@
+export enum MissionPaymentType {
+  COINS = 'COINS',
+  BLOOD_DEBT = 'BLOOD_DEBT',
+  BLOOD_DEBT_COLLECTION = 'BLOOD_DEBT_COLLECTION',
+}

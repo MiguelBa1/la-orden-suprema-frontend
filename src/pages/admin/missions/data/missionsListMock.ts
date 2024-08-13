@@ -1,4 +1,4 @@
-import { MissionStatus } from '../models/index'
+import { MissionStatus } from '@models/enums'
 
 export const missionsListMock = [
   {
