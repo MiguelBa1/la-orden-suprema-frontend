@@ -4,143 +4,117 @@ import { MissionList } from '@pages/assassin'
 export const missionListMock: MissionList = [
   {
     id: 1,
+    description: "Recuperar el microchip del laboratorio",
+    status: MissionStatus.PUBLISHED,
     created_by: {
       id: 1,
-      name: 'John Wick',
+      name: "Administrador de la orden"
     },
-    assigned_to: {
-      id: 2,
-      name: 'Jason Bourne',
-    },
-    description: 'Eliminación de objetivo de alto perfil',
-    status: MissionStatus.ASSIGNED,
+    assigned_to: null
   },
   {
     id: 2,
+    description: "Eliminar al objetivo en París",
+    status: MissionStatus.PUBLISHED,
     created_by: {
       id: 2,
-      name: 'Jason Bourne',
+      name: "Jason Bourne"
     },
-    assigned_to: null,
-    description: 'Recuperación de documento secreto',
-    status: MissionStatus.CREATED,
+    assigned_to: null
   },
   {
     id: 3,
+    description: "Infiltrarse en la sede de la organización rival",
+    status: MissionStatus.PUBLISHED,
     created_by: {
-      id: 1,
-      name: 'John Wick',
+      id: 3,
+      name: "Nikita Mears"
     },
-    assigned_to: {
-      id: 6,
-      name: 'Ava Faulkner',
-    },
-    description: 'Infiltración en edificio gubernamental',
-    status: MissionStatus.PAID,
+    assigned_to: null,
   },
   {
     id: 4,
+    description: "Extraer información del servidor seguro",
+    status: MissionStatus.PUBLISHED,
     created_by: {
       id: 5,
-      name: 'James Bond',
+      name: "James Bond"
     },
-    assigned_to: {
-      id: 6,
-      name: 'Ava Faulkner',
-    },
-    description: 'Protección de testigo',
-    status: MissionStatus.COMPLETED,
+    assigned_to: null,
   },
   {
     id: 5,
+    description: "Proteger al testigo clave en el juicio",
+    status: MissionStatus.PUBLISHED,
     created_by: {
-      id: 6,
-      name: 'Ava Faulkner',
+      id: 7,
+      name: "Administrador de la orden"
     },
-    assigned_to: null,
-    description: 'Neutralización de amenaza biológica',
-    status: MissionStatus.CREATED,
+    assigned_to: null
   },
   {
     id: 6,
+    description: "Recuperar el microchip del laboratorio",
+    status: MissionStatus.ASSIGNED,
     created_by: {
-      id: 5,
-      name: 'James Bond',
+      id: 1,
+      name: "John Wick"
     },
     assigned_to: {
       id: 2,
-      name: 'Jason Bourne',
-    },
-    description: 'Intercepción de envío de armas',
-    status: MissionStatus.ASSIGNED,
+      name: "Jason Bourne"
+    }
   },
   {
     id: 7,
+    description: "Eliminar al objetivo en París",
+    status: MissionStatus.COMPLETED,
     created_by: {
-      id: 1,
-      name: 'John Wick',
+      id: 3,
+      name: "Administrador de la orden"
     },
     assigned_to: {
-      id: 7,
-      name: 'Lorraine Broughton',
-    },
-    description: 'Vigilancia de objetivo sospechoso',
-    status: MissionStatus.PAID,
+      id: 2,
+      name: "Jason Bourne"
+    }
   },
   {
     id: 8,
+    description: "Infiltrarse en la sede de la organización rival",
+    status: MissionStatus.PAID,
     created_by: {
-      id: 2,
-      name: 'Jason Bourne',
+      id: 4,
+      name: "Administrador de la orden"
     },
     assigned_to: {
-      id: 5,
-      name: 'James Bond',
-    },
-    description: 'Rescate de rehén',
-    status: MissionStatus.ASSIGNED,
+      id: 2,
+      name: "Jason Bourne"
+    }
   },
   {
     id: 9,
+    description: "Extraer información del servidor seguro",
+    status: MissionStatus.ASSIGNED,
     created_by: {
-      id: 4,
-      name: 'Ethan Hunt',
+      id: 5,
+      name: "James Bond"
     },
-    assigned_to: null,
-    description: 'Desactivación de bomba',
-    status: MissionStatus.CREATED,
+    assigned_to: {
+      id: 2,
+      name: "Jason Bourne"
+    }
   },
   {
     id: 10,
+    description: "Proteger al testigo clave en el juicio",
+    status: MissionStatus.COMPLETED,
     created_by: {
       id: 6,
-      name: 'Ava Faulkner',
+      name: "Ava Faulkner"
     },
     assigned_to: {
-      id: 1,
-      name: 'John Wick',
-    },
-    description: 'Robo de información clasificada',
-    status: MissionStatus.PAID,
-  },
-  {
-    id: 11,
-    created_by: {
-      id: 1,
-      name: 'John Wick',
-    },
-    assigned_to: null,
-    description: 'Eliminación de objetivo de alto perfil',
-    status: MissionStatus.PUBLISHED,
-  },
-  {
-    id: 12,
-    created_by: {
-      id: 1,
-      name: 'John Wick',
-    },
-    assigned_to: null,
-    description: 'Recuperación de documento secreto',
-    status: MissionStatus.PUBLISHED,
+      id: 2,
+      name: "Jason Bourne"
+    }
   }
 ]

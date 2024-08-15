@@ -7,7 +7,7 @@ import { UserRole } from '@models/index'
 const AssassinHome = lazy(() => import('@pages/assassin').then((module) => ({ default: module.Home })))
 const AssassinProfile = lazy(() => import('@pages/assassin').then((module) => ({ default: module.Profile })))
 const GeneralMissionList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.GeneralMissionListView })))
-const AssignedMissionList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssignedMissionList })))
+const AssignedMissionList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssignedMissionListView })))
 
 export const assassinRouter = [
   {

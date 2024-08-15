@@ -1,2 +1,2 @@
 export * from './GeneralMissionListView'
-export * from './AssignedMissionList'
+export * from './AssignedMissionListView'
