@@ -1,2 +1,2 @@
 export * from './missionListMock'
-export * from './MissionTableColumns'
+export * from './GeneralMissionTableColumns'
