@@ -23,7 +23,7 @@ export const MissionTableColumns: Column<MissionItem>[] = [
     }
 
     return (
-      <NavLink to={ `assassin/missions/${ _record.id }` }>
+      <NavLink to={ `/app/assassin/missions/${ _record.id }` }>
         <Button variant="tertiary">
           { buttonText[_record.status] }
         </Button>

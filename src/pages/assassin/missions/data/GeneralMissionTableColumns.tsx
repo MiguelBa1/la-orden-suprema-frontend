@@ -9,7 +9,7 @@ export const GeneralMissionTableColumns: Column<MissionItem>[] = [
   } },
   { title: 'Acciones', key: 'actions', render: (_record) => {
     return (
-      <NavLink to={ `assassin/missions/${ _record.id }` }>
+      <NavLink to={ `/app/assassin/missions/${ _record.id }` }>
         <Button variant="tertiary">
           Abrir
         </Button>
