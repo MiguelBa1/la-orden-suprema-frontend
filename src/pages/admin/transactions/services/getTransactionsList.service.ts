@@ -2,7 +2,7 @@ import { TransactionListMock, TransactionList, TransactionMovement } from '@page
 
 type GetTransactionsListParams = {
     movement?: TransactionMovement;
-    amount?: string;
+    amount?: number;
     date?: string;
 }
 

@@ -1,13 +1,22 @@
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Button } from '@components/UI'
+import { Button} from '@components/UI'
 import { TransactionListTable, getTransactionsList} from '@pages/admin/transactions'
+import { InputField } from '@components/Forms'
+import { BuyCoinsModal } from '@pages/admin/transactions/components'
 
 export function TransactionListView() {
   const searchForm = useForm()
 
-  const MissionsListQuery = useQuery(
+  const [showBuyCoinsModal, setShowBuyCoinsModal] = useState(false)
+  const { register } = useForm({
+    defaultValues: {
+      coins: 500,
+    },
+  });
+
+  const TransactionListQuery = useQuery(
     {
       queryKey: ['missions', searchForm.getValues()],
       queryFn: () => getTransactionsList(searchForm.getValues()),
@@ -16,18 +25,31 @@ export function TransactionListView() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl lg:text-2xl">
-          Misiones
-        </h1>
-        <Link to="#">
-          <Button>
-            Crear misión
-          </Button>
-        </Link>
+      <h1 className="text-2xl lg:text-3xl">Transacciones</h1>
+      <div className="flex flex-col gap-1 w-[300px]">
+        <InputField
+          id="coins"
+          type="number"
+          placeholder="coins"
+          disabled
+          registration= {register('coins')}
+        />   
       </div>
-      {/* <MissionsTableToolbar searchForm={ searchForm } refetchAssassinsList={ MissionsListQuery.refetch } /> */}
-      <TransactionListTable transactionListQuery={ MissionsListQuery } />
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg lg:text-xl">
+             
+          </h2>
+        </div>
+          <Button
+          onClick={
+            () => setShowBuyCoinsModal(true)
+          }>
+            Comprar Monedas
+          </Button>
+      </div>
+      <TransactionListTable transactionListQuery={ TransactionListQuery } />
+      <BuyCoinsModal isOpen={showBuyCoinsModal} onClose={() => setShowBuyCoinsModal(false)} />
     </div>
   )
 }

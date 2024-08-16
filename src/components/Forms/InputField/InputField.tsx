@@ -7,7 +7,7 @@ type InputProps = {
   label?: string;
   placeholder?: string;
   className?: string;
-  registration: UseFormRegisterReturn;
+  registration?: UseFormRegisterReturn;
   disabled?: boolean;
   error?: string;
   autoComplete?: 'on' | 'off';

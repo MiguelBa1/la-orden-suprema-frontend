@@ -4,7 +4,7 @@ export const TransactionListMock = [
   {
     description: 'Compra monedas',
     transaction: TransactionMovement.INCOME,
-    amount: '+200',
+    amount: '+200', //TODO: change to string
     date: '08/01/2024',
   },
   {
