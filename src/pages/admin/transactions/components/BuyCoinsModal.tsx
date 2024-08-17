@@ -50,7 +50,7 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
             <form className='flex items-center gap-2 mt-4'>
                 <div className='w-full'>
                     <label htmlFor="usd" className="block text-sm font-medium text-gray-700 mb-1">
-                        Dinero(USD)
+                        Dinero (USD)
                     </label>
                     <input
                         id="usd"
