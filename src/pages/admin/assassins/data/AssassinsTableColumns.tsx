@@ -7,7 +7,7 @@ export const AssassinsTableColumns: Column<AssassinTableRow>[] = [
   { title: 'Nombre', dataIndex: 'name', key: 'name' },
   { title: 'Email', dataIndex: 'email', key: 'email' },
   { title: 'Pseudónimo', dataIndex: 'alias', key: 'alias' },
-  { title: 'Status', dataIndex: 'status', key: 'status' },
+  { title: 'Estado', dataIndex: 'status', key: 'status' },
   { title: 'País', dataIndex: 'country', key: 'country' },
   { title: 'Acciones', key: 'actions', render: (record) => (
     <NavLink to={ `/app/admin/assassins/${ record.id }` }>
