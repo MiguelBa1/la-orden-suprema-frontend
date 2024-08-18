@@ -21,7 +21,7 @@ export const MissionsTableColumns: Column<MissionItem>[] = [
     }
 
     return (
-      <NavLink to={ `#` }>
+      <NavLink to={ `/app/admin/missions/${ _record.id }` }>
         <Button variant="tertiary">
           { buttonText[_record.status] }
         </Button>
