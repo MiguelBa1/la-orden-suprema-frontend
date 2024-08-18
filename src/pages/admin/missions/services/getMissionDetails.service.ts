@@ -1,6 +1,6 @@
 import { MissionDetails, missionsDetailsMock } from '@pages/admin'
 
-export const getMissionDetailsService = async (id: number) => {
+export function getMissionDetailsService(id: number) {
   return new Promise<MissionDetails>((resolve, reject) => {
     setTimeout(() => {
 
@@ -9,6 +9,7 @@ export const getMissionDetailsService = async (id: number) => {
       if (!missionDetails) {
         reject(new Error('Mission not found'))
       }
+
       if (missionDetails && missionDetails.id === id) {
         resolve(missionDetails)
       }
