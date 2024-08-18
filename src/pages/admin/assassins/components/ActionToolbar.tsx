@@ -24,12 +24,14 @@ export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolba
       <InputField
         id="name"
         type="text"
+        name="name"
         placeholder="Nombre"
         registration={ searchForm.register('name') }
       />
       <InputField
         id="alias"
         type="text"
+        name="alias"
         placeholder="Pseudónimo"
         registration={ searchForm.register('alias') }
       />
@@ -49,12 +51,14 @@ export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolba
       <InputField
         id="email"
         type="email"
+        name="email"
         placeholder="Email"
         registration={ searchForm.register('email') }
       />
       <InputField
         id="location"
         type="text"
+        name="location"
         placeholder="Ubicación"
         registration={ searchForm.register('location') }
       />

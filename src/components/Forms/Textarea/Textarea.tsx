@@ -2,11 +2,12 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 type TextareaProps = {
   id: string;
-  name?: string;
+  name: string;
   label?: string;
   placeholder?: string;
   className?: string;
   registration: UseFormRegisterReturn;
+  required?: boolean;
   disabled?: boolean;
   error?: string;
   rows?: number;
@@ -20,6 +21,7 @@ export function Textarea({
   placeholder,
   className = '',
   registration,
+  required,
   disabled,
   error,
   rows = 3,
@@ -38,6 +40,7 @@ export function Textarea({
         id={ id }
         name={ name }
         placeholder={ placeholder }
+        required={ required }
         disabled={ disabled }
         rows={ rows }
         className={ `${baseClasses} ${error ? errorClasses : normalClasses} ${disabledClasses}` }
