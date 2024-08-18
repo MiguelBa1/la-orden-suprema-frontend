@@ -48,7 +48,9 @@ export function MissionsTableToolbar({ searchForm, refetchAssassinsList }: Missi
         placeholder="Asignado a"
         registration={ searchForm.register('createdBy') }
       />
-      <Button type="submit">
+      <Button
+        variant="secondary"
+        type="submit">
         Buscar
       </Button>
     </form>

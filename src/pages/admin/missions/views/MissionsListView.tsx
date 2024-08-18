@@ -20,7 +20,7 @@ export function MissionsListView() {
         <h1 className="text-xl lg:text-2xl">
           Misiones
         </h1>
-        <Link to="#">
+        <Link to="/app/admin/missions/create">
           <Button>
             Crear misión
           </Button>
