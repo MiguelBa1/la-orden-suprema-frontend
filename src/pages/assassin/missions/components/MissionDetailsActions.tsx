@@ -1,8 +1,10 @@
 import { UseQueryResult } from '@tanstack/react-query'
-import { AssignMissionConfirmModal, MissionDetails, } from '@pages/assassin'
+import { AssignMissionConfirmModal, CompleteMissionConfirmModal, MissionDetails, PayMissionConfirmModal, RejectMissionEvidenceConfirmModal } from '@pages/assassin'
 import { Button } from '@components/UI'
 import { useUser } from '@lib/react-query-auth.ts'
+import { MissionStatus } from '@models/enums'
 import { useState } from 'react'
+import { downloadImageFromUrl } from '@utils/missionUtils.ts'
 
 type MissionDetailsActionsProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
@@ -10,6 +12,8 @@ type MissionDetailsActionsProps = {
 
 type MissionModalStates = {
   assign: boolean
+  pay: boolean
+  rejectEvidence: false
 }
 
 export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsActionsProps) {
@@ -17,6 +21,8 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
 
   const [modalsStates, setModalsStates] = useState<MissionModalStates>({
     assign: false,
+    pay: false,
+    rejectEvidence: false
   })
 
   if (!missionDetailsQuery.data) {
@@ -38,14 +44,44 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
               Asignarme
             </Button>
           ) }
+          { missionDetailsData.created_by.id === userId && missionDetailsData.status === MissionStatus.COMPLETED && (
+            <>
+              <Button type="button" variant="primary" color="green" onClick={ () => toggleModal('pay') }>
+                Pagar
+              </Button>
+              <Button type="button" variant="primary" color="red" onClick={ () => toggleModal('rejectEvidence') }>
+                Rechazar evidencia
+              </Button>
+            </>
+          ) }
         </div>
 
         <div>
+          { missionDetailsData.image_url !== null && (
+            <Button type="button" variant="secondary" onClick={ () => downloadImageFromUrl({
+              url: missionDetailsData.image_url as string,
+              fileName: 'evidence'
+            }) }>
+              Descargar Evidencia
+            </Button>
+          ) }
         </div>
       </div>
       <AssignMissionConfirmModal
         isOpen={ modalsStates.assign }
         onClose={ () => toggleModal('assign') }
+        mission={ missionDetailsData }
+        refetchMissionDetails={ missionDetailsQuery.refetch }
+      />
+      <PayMissionConfirmModal
+        isOpen={ modalsStates.pay }
+        onClose={ () => toggleModal('pay') }
+        mission={ missionDetailsData }
+        refetchMissionDetails={ missionDetailsQuery.refetch }
+      />
+      <RejectMissionEvidenceConfirmModal
+        isOpen={ modalsStates.rejectEvidence }
+        onClose={ () => toggleModal('rejectEvidence') }
         mission={ missionDetailsData }
         refetchMissionDetails={ missionDetailsQuery.refetch }
       />
