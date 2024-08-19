@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Button, Spinner } from '@components/UI'
-import { getMissionDetails, MissionDetailsForm } from '@pages/assassin'
+import { getMissionDetails, MissionDetailsActions, MissionDetailsForm } from '@pages/assassin'
 import { MissionStatusLabel } from '@pages/admin'
 
 type MissionDetailsParam = {
@@ -51,6 +51,7 @@ export function MissionDetailsView() {
         </Button>
       </div>
       <MissionDetailsForm missionDetailsQuery={ missionDetailsQuery } />
+      <MissionDetailsActions missionDetailsQuery={ missionDetailsQuery } />
     </div>
   )
 }
