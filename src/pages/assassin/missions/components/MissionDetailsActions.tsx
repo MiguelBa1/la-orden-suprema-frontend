@@ -12,6 +12,7 @@ type MissionDetailsActionsProps = {
 
 type MissionModalStates = {
   assign: boolean
+  complete: boolean
   pay: boolean
   rejectEvidence: false
 }
@@ -21,6 +22,7 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
 
   const [modalsStates, setModalsStates] = useState<MissionModalStates>({
     assign: false,
+    complete: false,
     pay: false,
     rejectEvidence: false
   })
@@ -42,6 +44,11 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
           { missionDetailsData.created_by.id !== userId && missionDetailsData.assigned_to === null && (
             <Button type="button" variant="primary" color="green" onClick={ () => toggleModal('assign') }>
               Asignarme
+            </Button>
+          ) }
+          { missionDetailsData.assigned_to?.id === userId && missionDetailsData.status === MissionStatus.ASSIGNED && (
+            <Button type="button" variant="primary" color="green" onClick={ () => toggleModal('complete') }>
+              Completar
             </Button>
           ) }
           { missionDetailsData.created_by.id === userId && missionDetailsData.status === MissionStatus.COMPLETED && (
@@ -70,6 +77,12 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
       <AssignMissionConfirmModal
         isOpen={ modalsStates.assign }
         onClose={ () => toggleModal('assign') }
+        mission={ missionDetailsData }
+        refetchMissionDetails={ missionDetailsQuery.refetch }
+      />
+      <CompleteMissionConfirmModal
+        isOpen={ modalsStates.complete }
+        onClose={ () => toggleModal('complete') }
         mission={ missionDetailsData }
         refetchMissionDetails={ missionDetailsQuery.refetch }
       />
