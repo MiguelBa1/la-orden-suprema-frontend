@@ -1,5 +1,5 @@
 export type AssassinTableRow = {
-  id: string;
+  id: number;
   name: string;
   alias: string;
   country: string;
