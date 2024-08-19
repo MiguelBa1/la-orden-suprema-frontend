@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { Button} from '@components/UI'
-import { TransactionListTable, getTransactionsList} from '@pages/admin/transactions'
+import { TransactionListTable, getTransactionsList} from '@pages/assassin/transactions'
 import { InputField } from '@components/Forms'
-import { BuyCoinsModal } from '@pages/admin/transactions/components'
+import { BuyCoinsModal, SellCoinsModal } from '@pages/assassin/transactions/components'
 
 export function TransactionListView() {
   const searchForm = useForm()
@@ -15,6 +15,8 @@ export function TransactionListView() {
       coins: 500,
     },
   });
+
+  const [showSellCoinsModal, setShowSellCoinsModal] = useState(false)
 
   const TransactionListQuery = useQuery(
     {
@@ -41,15 +43,25 @@ export function TransactionListView() {
              
           </h2>
         </div>
+        <div className="flex justify-left items-center">
           <Button
           onClick={
             () => setShowBuyCoinsModal(true)
           }>
             Comprar Monedas
           </Button>
+          <Button
+            className='ml-6'
+            onClick={
+              () => setShowSellCoinsModal(true)
+            }>
+            Vender Monedas
+          </Button>
+        </div>
       </div>
       <TransactionListTable transactionListQuery={ TransactionListQuery } />
       <BuyCoinsModal isOpen={showBuyCoinsModal} onClose={() => setShowBuyCoinsModal(false)} />
+      <SellCoinsModal isOpen={showSellCoinsModal} onClose={() => setShowSellCoinsModal(false)} />
     </div>
   )
 }

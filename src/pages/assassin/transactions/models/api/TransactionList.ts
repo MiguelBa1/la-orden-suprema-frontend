@@ -1,4 +1,4 @@
-import { TransactionMovement } from '@pages/admin/transactions/models/enums/TransactionMovement'
+import { TransactionMovement } from '@pages/assassin/transactions/models/enums/TransactionMovement'
 
 
 export type TransactionItem = {

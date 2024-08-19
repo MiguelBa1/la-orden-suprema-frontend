@@ -1,4 +1,4 @@
-import { TransactionListMock, TransactionList, TransactionMovement } from '@pages/admin'
+import { TransactionListMock, TransactionList, TransactionMovement } from '@pages/assassin'
 
 type GetTransactionsListParams = {
     movement?: TransactionMovement;

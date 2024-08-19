@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import {TransactionTableColumns, type TransactionList } from '@pages/admin'
+import {TransactionTableColumns, type TransactionList } from '@pages/assassin'
 
 type TransactionsTableProps = {
   transactionListQuery: UseQueryResult<TransactionList>;

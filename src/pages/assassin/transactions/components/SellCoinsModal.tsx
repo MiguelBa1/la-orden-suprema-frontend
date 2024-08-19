@@ -4,12 +4,12 @@ import { ArrowRightIcon } from '@heroicons/react/16/solid';
 import { useToastStore } from '@stores/useToastStore';
 import { useEffect } from 'react';
 
-type BuyCoinsModalProps = {
+type SellCoinsModalProps = {
     isOpen: boolean;
     onClose: () => void;
 };
 
-export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
+export function SellCoinsModal({ isOpen, onClose }: SellCoinsModalProps) {
 
     const { addToast } = useToastStore();
     const { register, handleSubmit, watch, setValue } = useForm({
@@ -27,7 +27,7 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
     }, [usdValue, setValue]);
 
     const onSubmit = async () => {
-        addToast({ message: 'Monedas compradas con éxito', type: 'success' });
+        addToast({ message: 'Monedas vendidas con éxito', type: 'success' });
         onClose();
     };
 
@@ -35,14 +35,14 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            title="Comprar Monedas"
+            title="Vender Monedas"
             footerButtons={
                 <>
                     <Button onClick={onClose} variant="tertiary">
                         Cancelar
                     </Button>
                     <Button onClick={handleSubmit(onSubmit)}>
-                        Comprar
+                        Vender
                     </Button>
                 </>
             }
