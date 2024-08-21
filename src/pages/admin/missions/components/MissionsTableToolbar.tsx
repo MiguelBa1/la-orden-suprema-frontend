@@ -40,15 +40,19 @@ export function MissionsTableToolbar({ searchForm, refetchAssassinsList }: Missi
         id="created-by"
         type="text"
         placeholder="Creado por"
+        name="createdBy"
         registration={ searchForm.register('createdBy') }
       />
       <InputField
         id="assigned-to"
         type="text"
         placeholder="Asignado a"
+        name="assignedTo"
         registration={ searchForm.register('createdBy') }
       />
-      <Button type="submit">
+      <Button
+        variant="secondary"
+        type="submit">
         Buscar
       </Button>
     </form>

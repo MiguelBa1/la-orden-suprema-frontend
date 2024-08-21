@@ -31,12 +31,14 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
             id="created_by"
             label="Creada por"
             type="text"
+            name="created_by"
             registration={ register('created_by.name') }
           />
           <InputField
             id="created_at"
             label="Fecha de creación"
             type="date"
+            name="created_at"
             registration={ register('created_at') }
           />
           { hasAssignedAssassin && (
@@ -45,12 +47,14 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
                 id="assigned_to"
                 label="Asignada a"
                 type="text"
+                name="assigned_to"
                 registration={ register('assigned_to.name') }
               />
               <InputField
                 id="assigned_at"
                 label="Fecha de asignación"
                 type="date"
+                name="assigned_at"
                 registration={ register('assigned_at') }
               />
             </>
@@ -58,6 +62,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
           <Textarea
             id="details"
             label="Detalles"
+            name="details"
             registration={ register('details') }
             className="md:col-span-2"
           />
@@ -65,6 +70,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
             id="payment_type"
             label="Tipo de pago"
             type="text"
+            name="payment_type"
             registration={ register('payment_type') }
           />
           { isCoinPaymentType && (
@@ -72,6 +78,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
               id="coins_amount"
               label="Cantidad"
               type="number"
+              name="coins_amount"
               registration={ register('coins_amount') }
             />
           ) }
