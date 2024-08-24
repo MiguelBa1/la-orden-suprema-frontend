@@ -1,6 +1,6 @@
 import { assassinsDetailsMock, AssassinDetails } from '@pages/admin'
 
-export function getAssassinsDetails(id: number) {
+export function getAssassinDetails(id: number) {
   return new Promise<AssassinDetails>((resolve, reject) => {
     setTimeout(() => {
       const assassinDetails = assassinsDetailsMock.find((assassin) => assassin.id === id)
