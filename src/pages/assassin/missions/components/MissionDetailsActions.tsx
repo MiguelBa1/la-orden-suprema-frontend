@@ -37,21 +37,28 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
     setModalsStates({ ...modalsStates, [modal]: !modalsStates[modal] })
   }
 
+  const isCreatedByMe = missionDetailsData.created_by.id === userId
+  const isAssignedToMe = missionDetailsData.assigned_to?.id === userId
+  const canBeAssigned = missionDetailsData.assigned_to === null
+  const canBeCompleted = missionDetailsData.status === MissionStatus.ASSIGNED
+  const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED
+  const hasEvidence = missionDetailsData.image_url !== null
+
   return (
     <div>
       <div className="flex flex-col-reverse md:flex-row-reverse md:justify-between">
         <div className="flex flex-col mt-10 gap-4 md:flex-row md:mt-0">
-          { missionDetailsData.created_by.id !== userId && missionDetailsData.assigned_to === null && (
+          { !isCreatedByMe && canBeAssigned && (
             <Button type="button" variant="primary" color="green" onClick={ () => toggleModal('assign') }>
               Asignarme
             </Button>
           ) }
-          { missionDetailsData.assigned_to?.id === userId && missionDetailsData.status === MissionStatus.ASSIGNED && (
+          { isAssignedToMe && canBeCompleted && (
             <Button type="button" variant="primary" color="green" onClick={ () => toggleModal('complete') }>
               Completar
             </Button>
           ) }
-          { missionDetailsData.created_by.id === userId && missionDetailsData.status === MissionStatus.COMPLETED && (
+          { isCreatedByMe && canBePaid && (
             <>
               <Button type="button" variant="primary" color="green" onClick={ () => toggleModal('pay') }>
                 Pagar
@@ -64,7 +71,7 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
         </div>
 
         <div>
-          { missionDetailsData.image_url !== null && (
+          { hasEvidence && (
             <Button type="button" variant="secondary" onClick={ () => downloadImageFromUrl({
               url: missionDetailsData.image_url as string,
               fileName: 'evidence'

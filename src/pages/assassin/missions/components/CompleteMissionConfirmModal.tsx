@@ -2,7 +2,7 @@ import { completeMission, MissionDetails } from '@pages/assassin'
 import { useMutation, UseQueryResult } from '@tanstack/react-query'
 import { Button, Modal } from '@components/UI'
 import { FieldValues, useForm } from 'react-hook-form'
-import { useRef } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { useToastStore } from '@stores/useToastStore.ts'
 
 type AssignMissionProps = {
@@ -13,8 +13,14 @@ type AssignMissionProps = {
 }
 
 export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: AssignMissionProps) {
+  const [fileName, setFileName] = useState<string>('')
   const { register, handleSubmit } = useForm<FieldValues>()
-  const { ref: registerRef } = register('image_url', { required:'La foto es requerida' })
+  const { ref: registerRef, ...rest } = register('image_url', {
+    onChange: (event: ChangeEvent<HTMLInputElement>) => {
+      setFileName(event.target.files?.[0].name ?? '')
+    },
+    required:'La foto es requerida',
+  })
 
   const hiddenInputRef = useRef<HTMLInputElement|null>(null)
   const formRef = useRef<HTMLFormElement|null>(null)
@@ -65,21 +71,27 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
         </>
       }
     >
-      <p>Por favor adjunte la evidencia que demuestre que se completó la misión satisfactoriamente</p>
-      <form className="flex justify-center mt-4 mb-16" ref={ formRef } onSubmit={ handleSubmit(onSubmit, onInvalid) }>
-        <Button type="button" variant="secondary" onClick={ handleButtonClick }>
-          Subir evidencia
-        </Button>
-        <input
-          type="file"
-          accept="image/*"
-          hidden
-          ref={ (e) => {
-            registerRef(e)
-            hiddenInputRef.current = e
-          } }
-        />
-      </form>
+      <div className="space-y-4">
+        <p>Por favor adjunte la evidencia que demuestre que se completó la misión satisfactoriamente</p>
+        <form className="flex flex-col justify-center items-center gap-4" ref={ formRef } onSubmit={ handleSubmit(onSubmit, onInvalid) }>
+          <div>
+            <Button type="button" variant="secondary" onClick={ handleButtonClick }>
+              Subir evidencia
+            </Button>
+          </div>
+          <span className="text-gray-400">{ fileName }</span>
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            ref={ (e) => {
+              registerRef(e)
+              hiddenInputRef.current = e
+            } }
+            { ...rest }
+          />
+        </form>
+      </div>
     </Modal>
   )
 }
