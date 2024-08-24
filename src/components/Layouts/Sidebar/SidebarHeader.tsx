@@ -13,7 +13,7 @@ export function SidebarHeader({ isOpen, toggleSidebar }: SidebarHeaderProps) {
   if (!user) return null
 
   return (
-    <div className="p-4 flex items-center justify-between h-20">
+    <div className="p-4 flex items-center justify-between h-20 text-nowrap">
       <div className={ isOpen ? `flex flex-col` : `hidden` }>
         <span>{ user.name }</span>
         <span className="text-sm text-gray-400">{

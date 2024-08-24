@@ -8,7 +8,7 @@ type SubItemProps = {
 
 type SidebarItemProps = {
   href?: string;
-  Icon: React.ExoticComponent;
+  Icon: React.ElementType;
   label: string;
   isOpen: boolean;
   setIsOpen?: (value: boolean) => void;
@@ -36,22 +36,27 @@ export function SidebarItem({ href, Icon, label, isOpen, setIsOpen, subMenuOpen,
   }
 
   return (
-    <li className="w-full">
+    <li className="w-full text-nowrap">
       { subItems && subItems.length > 0 ? (
-        <div onClick={ toggleSubMenu } className={ `cursor-pointer p-4 flex justify-start items-center
-         gap-2 hover:bg-gray-700 transition-colors` }>
-          <div className="size-8">
+        <button onClick={ toggleSubMenu }
+          className={ `w-full cursor-pointer p-4 flex justify-start items-center
+          gap-2 hover:bg-gray-700 transition-colors` }
+        >
+          <div className="size-8 flex-shrink-0">
             <Icon/>
           </div>
           <span className={ isOpen ? 'inline' : 'hidden' }>{ label }</span>
           <span className={ isOpen ? 'inline' : 'hidden' }>{ localSubMenuOpen ? '▲' : '▼' }</span>
-        </div>
+        </button>
       ) : (
         <NavLink
-          to={ href || '/' }
-          className={ ({ isActive }) => `cursor-pointer p-4 flex justify-start items-center
-           ${isActive ? 'bg-gray-700' : ''} gap-2 hover:bg-gray-700 transition-colors` }>
-          <div className="size-8">
+          to={ href ?? '/' }
+          className={ ({ isActive }) =>
+            `cursor-pointer p-4 flex justify-start items-center
+             ${isActive ? 'bg-gray-700' : ''} gap-2 hover:bg-gray-700 transition-colors`
+          }
+        >
+          <div className="size-8 flex-shrink-0">
             <Icon/>
           </div>
           { isOpen && <span>{ label }</span> }
