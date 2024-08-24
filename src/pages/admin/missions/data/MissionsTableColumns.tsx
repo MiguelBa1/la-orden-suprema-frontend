@@ -6,7 +6,7 @@ import { MissionStatus } from '@models/enums'
 export const MissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
   { title: 'Estado', dataIndex: 'status', key: 'status', render: (record) => (
-    <MissionStatusLabel status={ record.status } className="inline-block w-24"/>
+    <MissionStatusLabel status={ record.status }/>
   ) },
   { title: 'Creado por', dataIndex: 'createdBy', key: 'createdBy' },
   { title: 'Asignado a', dataIndex: 'assignedTo', key: 'assignedTo' },

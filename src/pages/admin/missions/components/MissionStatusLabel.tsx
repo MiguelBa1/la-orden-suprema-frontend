@@ -3,10 +3,9 @@ import { missionStatusTranslations } from '@utils/translations'
 
 type MissionStatusLabelProps = {
   status: MissionStatus
-  className?: string;
 }
 
-export function MissionStatusLabel({ status, className }: MissionStatusLabelProps) {
+export function MissionStatusLabel({ status }: MissionStatusLabelProps) {
   let labelColor = ''
 
   switch (status) {
@@ -31,7 +30,7 @@ export function MissionStatusLabel({ status, className }: MissionStatusLabelProp
   }
 
   return (
-    <span className={ `px-2 py-1 text-white rounded-md ${labelColor} ${className}` }>
+    <span className={ `inline-block text-center px-2 py-1 text-white rounded-md w-32 ${labelColor}` }>
       { missionStatusTranslations[status] }
     </span>
   )
