@@ -6,7 +6,7 @@ import { MissionStatusLabel } from '@pages/admin'
 export const AssignedMissionTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
   { title: 'Estado', key: 'status', render: (record) => (
-    <MissionStatusLabel status={ record.status } className="inline-block w-24"/>
+    <MissionStatusLabel status={ record.status }/>
   ) },
   { title: 'Creado por', key: 'created_by', render: (_record) => {
     return _record.created_by.name

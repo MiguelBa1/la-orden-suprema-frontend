@@ -15,7 +15,7 @@ const missionStatusOptions = [
   { value: MissionStatus.PAID, label: missionStatusTranslations[MissionStatus.PAID] },
 ]
 
-export function GeneralMissionsTableToolbar({ searchForm, refetchMissionList }: MissionsTableToolbarProps) {
+export function AssignedMissionsTableToolbar({ searchForm, refetchMissionList }: MissionsTableToolbarProps) {
 
   return (
     <form
@@ -37,7 +37,7 @@ export function GeneralMissionsTableToolbar({ searchForm, refetchMissionList }: 
           />
         ) }
       />
-      <Button type="submit">
+      <Button type="submit" variant="secondary">
         Buscar
       </Button>
     </form>

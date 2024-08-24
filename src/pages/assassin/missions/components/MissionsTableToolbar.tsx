@@ -40,7 +40,7 @@ export function MissionsTableToolbar({ searchForm, refetchMissionList }: Mission
           />
         ) }
       />
-      <Button type="submit">
+      <Button type="submit" variant="secondary">
         Buscar
       </Button>
     </form>
