@@ -1,6 +1,6 @@
-import { AssassinTableRow } from '@pages/admin'
+import { AssassinsList } from '@pages/admin'
 
-export const assassinsListMock: AssassinTableRow[] = [
+export const assassinsListMock: AssassinsList = [
   {
     id: 1,
     name: 'John Wick',

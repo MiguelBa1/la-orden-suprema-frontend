@@ -1,4 +1,4 @@
-import { assassinsListMock, AssassinTableRow } from '@pages/admin'
+import { assassinsListMock, AssassinsList } from '@pages/admin'
 
 type GetAssassinsListParams = {
   name?: string;
@@ -9,8 +9,7 @@ type GetAssassinsListParams = {
 }
 
 export function getAssassinsList(_params: GetAssassinsListParams) {
-
-  return new Promise<AssassinTableRow[]>((resolve) => {
+  return new Promise<AssassinsList>((resolve) => {
     setTimeout(() => {
       resolve(assassinsListMock)
     }, 500)
