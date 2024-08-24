@@ -36,7 +36,7 @@ export function PayMissionConfirmModal({
           <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
-          <Button onClick={ handleConfirm }>
+          <Button onClick={ handleConfirm } color="green">
             Pagar
           </Button>
         </>

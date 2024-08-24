@@ -36,7 +36,7 @@ export function PublishMissionConfirmModal({
           <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
-          <Button onClick={ handleConfirm }>
+          <Button onClick={ handleConfirm } color="green" >
             Publicar
           </Button>
         </>

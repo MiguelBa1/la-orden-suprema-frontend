@@ -36,7 +36,7 @@ export function RejectMissionEvidenceConfirmModal({
           <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
-          <Button onClick={ handleConfirm }>
+          <Button onClick={ handleConfirm } color="red">
             Rechazar evidencia
           </Button>
         </>
