@@ -9,6 +9,7 @@ import {
 import { Button } from '@components/UI'
 import { useState } from 'react'
 import { MissionStatus } from '@models/enums'
+import { downloadImageFromUrl } from '@utils/missionUtils.ts'
 
 type MissionDetailsActionsProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
@@ -38,15 +39,6 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
   const hasEvidence = missionDetailsData.imageUrl !== null
   const canBePublished = missionDetailsData.status === MissionStatus.CREATED
   const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED
-
-  const downloadEvidence = () => {
-    const link = document.createElement('a')
-    link.href = missionDetailsData.imageUrl as string
-    link.download = 'evidence'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
 
   const toggleModal = (modal: keyof MissionModalsStates) => {
     setModalsStates({ ...modalsStates, [modal]: !modalsStates[modal] })
@@ -79,7 +71,10 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
         </div>
 
         { hasEvidence && (
-          <Button type="button" variant="secondary" onClick={ downloadEvidence }>
+          <Button type="button" variant="secondary" onClick={ () => downloadImageFromUrl({
+            url: missionDetailsData.imageUrl as string,
+            fileName: 'evidence'
+          }) }>
             Descargar Evidencia
           </Button>
         ) }
