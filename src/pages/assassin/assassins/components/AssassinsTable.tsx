@@ -1,12 +1,15 @@
+import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import { AssassinTableRow, AssassinsTableColumns } from '@pages/assassin'
+import { AssassinTableRow, getAssassinsTableColumns, BuyAssassinsDetailsModal } from '@pages/assassin'
 
 type AssassinsTableProps = {
   assassinsListQuery: UseQueryResult<AssassinTableRow[]>;
 }
 
 export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
+  const [buyAssassinsDetailsModalIsOpen, setBuyAssassinsDetailsModalIsOpen] = useState(false)
+  const [currentAssassin, setCurrentAssassin] = useState<AssassinTableRow | null>(null)
 
   if (assassinsListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">
@@ -30,8 +33,17 @@ export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
     return null
   }
 
+  const AssassinsTableColumns = getAssassinsTableColumns({ setBuyAssassinsDetailsModalIsOpen, setCurrentAssassin })
+
   return (
-    <Table columns={ AssassinsTableColumns } data={ assassinsListQuery.data } />
+    <>
+      <Table columns={ AssassinsTableColumns } data={ assassinsListQuery.data } />
+      <BuyAssassinsDetailsModal
+        isOpen={ buyAssassinsDetailsModalIsOpen }
+        onClose={ () => setBuyAssassinsDetailsModalIsOpen(false) }
+        assassin={ currentAssassin }
+      />
+    </>
   )
 
 }

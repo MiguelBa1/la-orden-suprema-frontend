@@ -4,4 +4,5 @@ export type AssassinTableRow = {
   alias: string;
   country: string;
   isPurchased: boolean;
+  price: number;
 }

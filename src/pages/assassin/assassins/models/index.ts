@@ -1,1 +1,1 @@
-export * from './AssassinTableRow'
+export * from './api'

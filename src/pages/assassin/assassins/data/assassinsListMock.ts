@@ -5,13 +5,15 @@ export const assassinsListMock = [
     alias: 'Baba Yaga',
     country: 'Estados Unidos',
     isPurchased: true,
+    price: 50,
   },
   {
     id: 2,
-    name: 'Jason Bourne',
+    name: '???',
     alias: 'David Webb',
     country: 'Estados Unidos',
     isPurchased: false,
+    price: 25,
   },
   {
     id: 3,
@@ -19,27 +21,31 @@ export const assassinsListMock = [
     alias: 'Josephine',
     country: 'Canadá',
     isPurchased: true,
+    price: 30,
   },
   {
     id: 4,
     name: 'Ethan Hunt',
-    alias: 'Dmitri',
+    alias: 'Dimitri',
     country: 'Estados Unidos',
     isPurchased: true,
+    price: 40,
   },
   {
     id: 5,
-    name: 'James Bond',
+    name: '???',
     alias: '007',
     country: 'Reino Unido',
     isPurchased: false,
+    price: 35,
   },
   {
     id: 6,
-    name: 'Ava Faulkner',
+    name: '???',
     alias: 'Madam X',
     country: 'Francia',
     isPurchased: false,
+    price: 20,
   },
   {
     id: 7,
@@ -47,5 +53,6 @@ export const assassinsListMock = [
     alias: 'Sable',
     country: 'Alemania',
     isPurchased: true,
+    price: 45,
   }
 ]
