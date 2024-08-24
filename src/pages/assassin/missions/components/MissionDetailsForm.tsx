@@ -31,6 +31,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField
             id="created_at"
+            name="created_at"
             label="Fecha de creación"
             type="date"
             registration={ register('created_at') }
@@ -38,6 +39,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
           { hasAssignedAssassin && (
             <InputField
               id="assigned_at"
+              name="assigned_at"
               label="Fecha de asignación"
               type="date"
               registration={ register('assigned_at') }
@@ -46,6 +48,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
           { missionDetailsData.created_by.id !== userId && (
             <InputField
               id="created_by"
+              name="created_by"
               label="Creada por"
               type="text"
               registration={ register('created_by.name') }
@@ -55,6 +58,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
           { hasAssignedAssassin && missionDetailsData.assigned_to?.id !== userId && (
             <InputField
               id="assigned_to"
+              name="assigned_to"
               label="Asignada a"
               type="text"
               registration={ register('assigned_to.name') }
@@ -63,12 +67,14 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
           ) }
           <Textarea
             id="details"
+            name="details"
             label="Detalles"
             registration={ register('details') }
             className="md:col-span-2"
           />
           <InputField
             id="payment_type"
+            name="payment_type"
             label="Tipo de pago"
             type="text"
             registration={ register('payment_type') }
@@ -76,6 +82,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
           { isCoinPaymentType && (
             <InputField
               id="coins_amount"
+              name="coins_amount"
               label="Cantidad"
               type="number"
               registration={ register('coins_amount') }
