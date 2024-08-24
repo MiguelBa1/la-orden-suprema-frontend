@@ -13,7 +13,6 @@ const statusOptions = [
 ]
 
 export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolbarProps) {
-
   return (
     <form
       onSubmit={ searchForm.handleSubmit( async () => {

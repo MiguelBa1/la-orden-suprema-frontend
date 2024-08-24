@@ -7,7 +7,6 @@ type AssassinsTableProps = {
 }
 
 export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
-
   if (assassinsListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">
       <Spinner />
