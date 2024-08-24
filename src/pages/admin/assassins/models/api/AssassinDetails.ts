@@ -1,3 +1,5 @@
+import { MissionStatus } from '@models/enums'
+
 export type AssassinDetails = {
   id: number;
   name: string;
@@ -16,13 +18,13 @@ export type AssassinDetails = {
 export type MissionHistory = {
   id: number;
   description: string;
-  status: 'completed' | 'failed' | 'assigned' | 'paid';
-  creator: string;
+  status: MissionStatus;
+  createdBy: string;
 }
 
 export type DebsToPay = {
   id: number;
-  creditor: {
+  assignedTo: {
     id: number;
     name: string;
   };
@@ -31,7 +33,7 @@ export type DebsToPay = {
 
 export type DebsToCollect = {
   id: number;
-  debtor: {
+  createdBy: {
     id: number;
     name: string;
   };
