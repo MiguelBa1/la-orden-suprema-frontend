@@ -1,2 +1,2 @@
-export * from './AssassinTableRow'
+export * from './AssassinsList'
 export * from './AssassinDetails'

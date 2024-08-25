@@ -1,6 +1,5 @@
-import { useState, MouseEvent } from 'react'
+import React, { useState, MouseEvent } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ReactNode } from 'react'
 
 type SubItemProps = {
   name: string;
@@ -9,7 +8,7 @@ type SubItemProps = {
 
 type SidebarItemProps = {
   href?: string;
-  icon: ReactNode;
+  Icon: React.ElementType;
   label: string;
   isOpen: boolean;
   setIsOpen?: (value: boolean) => void;
@@ -18,7 +17,7 @@ type SidebarItemProps = {
   subItems?: SubItemProps[];
 };
 
-export function SidebarItem({ href, icon, label, isOpen, setIsOpen, subMenuOpen, setSubMenuOpen, subItems }: SidebarItemProps) {
+export function SidebarItem({ href, Icon, label, isOpen, setIsOpen, subMenuOpen, setSubMenuOpen, subItems }: SidebarItemProps) {
   const [localSubMenuOpen, setLocalSubMenuOpen] = useState(false)
 
   if (!subMenuOpen && localSubMenuOpen) {
@@ -37,25 +36,34 @@ export function SidebarItem({ href, icon, label, isOpen, setIsOpen, subMenuOpen,
   }
 
   return (
-    <li className="w-full">
+    <li className="w-full text-nowrap">
       { subItems && subItems.length > 0 ? (
-        <div onClick={ toggleSubMenu } className={ `cursor-pointer p-4 flex justify-center
-         gap-2 hover:bg-gray-700 transition-colors` }>
-          { icon }
+        <button onClick={ toggleSubMenu }
+          className={ `w-full cursor-pointer p-4 flex justify-start items-center
+          gap-2 hover:bg-gray-700 transition-colors` }
+        >
+          <div className="size-8 flex-shrink-0">
+            <Icon/>
+          </div>
           <span className={ isOpen ? 'inline' : 'hidden' }>{ label }</span>
           <span className={ isOpen ? 'inline' : 'hidden' }>{ localSubMenuOpen ? '▲' : '▼' }</span>
-        </div>
+        </button>
       ) : (
         <NavLink
-          to={ href || '/' }
-          className={ ({ isActive }) => `cursor-pointer p-4 flex justify-center
-           ${isActive ? 'bg-gray-700' : ''} gap-2 hover:bg-gray-700 transition-colors` }>
-          { icon }
+          to={ href ?? '/' }
+          className={ ({ isActive }) =>
+            `cursor-pointer p-4 flex justify-start items-center
+             ${isActive ? 'bg-gray-700' : ''} gap-2 hover:bg-gray-700 transition-colors`
+          }
+        >
+          <div className="size-8 flex-shrink-0">
+            <Icon/>
+          </div>
           { isOpen && <span>{ label }</span> }
         </NavLink>
       ) }
       { subItems && localSubMenuOpen && (
-        <ul className="bg-gray-700 text-center">
+        <ul className="bg-gray-700 text-left pl-6">
           { subItems.map(subItem => (
             <SubItem key={ subItem.name } name={ subItem.name } href={ subItem.href } />
           )) }

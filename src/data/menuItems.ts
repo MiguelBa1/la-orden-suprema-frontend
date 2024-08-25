@@ -1,4 +1,12 @@
 import { UserRole } from '@models/enums'
+import React from "react"
+import {
+  ClipboardDocumentListIcon,
+  CurrencyDollarIcon,
+  HomeIcon,
+  UserCircleIcon,
+  UserGroupIcon
+} from "@heroicons/react/24/outline"
 
 type SubMenuItem = {
   name: string;
@@ -8,7 +16,7 @@ type SubMenuItem = {
 type MenuItem = {
   name: string;
   href?: string;
-  icon: string;
+  Icon: React.ElementType;
   roles: UserRole[];
   subItems?: SubMenuItem[];
 };
@@ -19,26 +27,27 @@ const basePath = {
 }
 
 const adminMenuItems: MenuItem[] = [
-  { name: 'Inicio', href: `${basePath[UserRole.ADMIN]}/home`, icon: '🏠', roles: [UserRole.ADMIN] },
-  { name: 'Asesinos', href: `${basePath[UserRole.ADMIN]}/assassins`, icon: '🔪', roles: [UserRole.ADMIN] },
-  { name: 'Misiones', href: `${basePath[UserRole.ADMIN]}/missions`, icon: '🎯', roles: [UserRole.ADMIN] },
-  { name: 'Transacciones', href: `${basePath[UserRole.ADMIN]}/transactions`, icon: '💰', roles: [UserRole.ADMIN] },
+  { name: 'Inicio', href: `${basePath[UserRole.ADMIN]}/home`, Icon: HomeIcon, roles: [UserRole.ADMIN] },
+  { name: 'Asesinos', href: `${basePath[UserRole.ADMIN]}/assassins`, Icon: UserGroupIcon, roles: [UserRole.ADMIN] },
+  { name: 'Misiones', href: `${basePath[UserRole.ADMIN]}/missions`, Icon: ClipboardDocumentListIcon, roles: [UserRole.ADMIN] },
+  { name: 'Transacciones', href: `${basePath[UserRole.ADMIN]}/transactions`, Icon: CurrencyDollarIcon, roles: [UserRole.ADMIN] },
 ]
 
 const assassinMenuItems: MenuItem[] = [
-  { name: 'Inicio', href: `${basePath[UserRole.ASSASSIN]}/home`, icon: '🏠', roles: [UserRole.ASSASSIN] },
-  { name: 'Asesinos', href: `${basePath[UserRole.ASSASSIN]}/assassins`, icon: '🔪', roles: [UserRole.ASSASSIN] },
+  { name: 'Inicio', href: `${basePath[UserRole.ASSASSIN]}/home`, Icon: HomeIcon, roles: [UserRole.ASSASSIN] },
+  { name: 'Asesinos', href: `${basePath[UserRole.ASSASSIN]}/assassins`, Icon: UserGroupIcon, roles: [UserRole.ASSASSIN] },
   {
     name: 'Misiones',
-    icon: '🎯',
     roles: [UserRole.ASSASSIN],
     subItems: [
       { name: 'General', href: `${basePath[UserRole.ASSASSIN]}/missions/general` },
       { name: 'Asignadas', href: `${basePath[UserRole.ASSASSIN]}/missions/assignments` },
       { name: 'Creadas por mí', href: `${basePath[UserRole.ASSASSIN]}/missions/created-by-me` },
     ],
+    Icon: ClipboardDocumentListIcon,
   },
-  { name: 'Transacciones', href: `${basePath[UserRole.ASSASSIN]}/transactions`, icon: '💰', roles: [UserRole.ASSASSIN] },
+  { name: 'Transacciones', href: `${basePath[UserRole.ASSASSIN]}/transactions`, Icon: CurrencyDollarIcon, roles: [UserRole.ASSASSIN] },
+  { name: 'Mi perfil', href: `${basePath[UserRole.ASSASSIN]}/profile`, Icon: UserCircleIcon, roles: [UserRole.ASSASSIN] },
 ]
 
 export const menuItems: MenuItem[] = [

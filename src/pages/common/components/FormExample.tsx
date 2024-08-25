@@ -17,6 +17,7 @@ export function FormExample() {
             <InputField
               id="name"
               type="text"
+              name="name"
               registration={ control.register('name', {
                 required: "Este campo es requerido"
               }) }

@@ -1,12 +1,11 @@
-import { AssassinTableRow } from '@pages/admin'
+import { AssassinsList } from '@pages/admin'
 
-export const assassinsListMock: AssassinTableRow[] = [
+export const assassinsListMock: AssassinsList = [
   {
     id: 1,
     name: 'John Wick',
     email: 'john@mail.com',
     alias: 'Baba Yaga',
-    phone: '1234567890',
     status: 'Activo',
     country: 'Estados Unidos',
   },
@@ -15,7 +14,6 @@ export const assassinsListMock: AssassinTableRow[] = [
     name: 'Jason Bourne',
     email: 'jason@mail.com',
     alias: 'David Webb',
-    phone: '0987654321',
     status: 'Inactivo',
     country: 'Estados Unidos',
   },
@@ -24,7 +22,6 @@ export const assassinsListMock: AssassinTableRow[] = [
     name: 'Nikita Mears',
     email: 'nikita@mail.com',
     alias: 'Josephine',
-    phone: '9876543210',
     status: 'Activo',
     country: 'Canadá',
   },
@@ -33,7 +30,6 @@ export const assassinsListMock: AssassinTableRow[] = [
     name: 'Ethan Hunt',
     email: 'ethan@mail.com',
     alias: 'Dmitri',
-    phone: '8765432109',
     status: 'Activo',
     country: 'Estados Unidos',
   },
@@ -42,7 +38,6 @@ export const assassinsListMock: AssassinTableRow[] = [
     name: 'James Bond',
     email: 'james@mail.com',
     alias: '007',
-    phone: '7654321098',
     status: 'Activo',
     country: 'Reino Unido',
   },
@@ -51,7 +46,6 @@ export const assassinsListMock: AssassinTableRow[] = [
     name: 'Ava Faulkner',
     email: 'ava@mail.com',
     alias: 'Madam X',
-    phone: '6543210987',
     status: 'Inactivo',
     country: 'Francia',
   },
@@ -60,7 +54,6 @@ export const assassinsListMock: AssassinTableRow[] = [
     name: 'Lorraine Broughton',
     email: 'lorraine@mail.com',
     alias: 'Sable',
-    phone: '5432109876',
     status: 'Activo',
     country: 'Alemania',
   }

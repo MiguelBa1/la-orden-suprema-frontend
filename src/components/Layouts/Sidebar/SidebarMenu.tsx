@@ -24,7 +24,7 @@ export function SidebarMenu({ isOpen, setIsOpen, subMenuOpen, setSubMenuOpen }: 
           <SidebarItem
             key={ item.name }
             href={ item.href }
-            icon={ item.icon }
+            Icon={ item.Icon }
             label={ item.name }
             isOpen={ isOpen }
             setIsOpen={ setIsOpen }

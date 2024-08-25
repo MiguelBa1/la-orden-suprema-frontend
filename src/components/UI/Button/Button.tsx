@@ -29,8 +29,8 @@ export function Button({
       secondary: 'border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white',
     },
     green: {
-      primary: 'bg-green-500 hover:bg-green-700 text-white',
-      secondary: 'border border-green-500 text-green-500 hover:bg-green-500 hover:text-white',
+      primary: 'bg-green-600 hover:bg-green-700 text-white',
+      secondary: 'border border-green-600 text-green-600 hover:bg-green-600 hover:text-white',
     },
     red: {
       primary: 'bg-red-500 hover:bg-red-700 text-white',

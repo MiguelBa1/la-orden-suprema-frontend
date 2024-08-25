@@ -2,12 +2,15 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 type InputProps = {
   id: string;
-  type: 'text' | 'email' | 'password' | 'number';
-  name?: string;
+  type: 'text' | 'email' | 'password' | 'number' | 'date';
+  name: string;
   label?: string;
   placeholder?: string;
   className?: string;
-  registration: UseFormRegisterReturn;
+  registration?: UseFormRegisterReturn;
+  min?: number;
+  max?: number;
+  required?: boolean;
   disabled?: boolean;
   error?: string;
   autoComplete?: 'on' | 'off';
@@ -21,6 +24,9 @@ export function InputField({
   placeholder,
   className = '',
   registration,
+  min,
+  max,
+  required,
   disabled,
   error,
   autoComplete = 'off',
@@ -39,6 +45,9 @@ export function InputField({
         name={ name }
         type={ type }
         placeholder={ placeholder }
+        required={ required }
+        min={ min }
+        max={ max }
         disabled={ disabled }
         className={ `${baseClasses} ${error ? errorClasses : normalClasses} ${disabledClasses}` }
         autoComplete={ autoComplete }
