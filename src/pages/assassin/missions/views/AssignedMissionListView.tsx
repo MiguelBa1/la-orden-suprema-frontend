@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form'
 
 export function AssignedMissionListView() {
   const searchForm = useForm()
-  const userId = useUser()?.data?.id
+  const userName = useUser()?.data?.name
 
   const assignedMissionListQuery = useQuery({
-    queryKey: ['assigned-missions', userId],
-    queryFn: () => getMissionList({ ...searchForm.getValues(), assigned_to: userId }),
+    queryKey: ['assigned-missions', userName],
+    queryFn: () => getMissionList({ ...searchForm.getValues(), assignedTo: userName }),
   })
 
   return (

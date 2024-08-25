@@ -7,11 +7,11 @@ import { useQuery } from '@tanstack/react-query'
 
 export function MissionListView() {
   const searchForm = useForm()
-  const userId = useUser()?.data?.id
+  const userName = useUser()?.data?.name
 
   const missionListQuery = useQuery({
-    queryKey: ['missions-created-by-me', userId],
-    queryFn: () => getMissionList({... searchForm.getValues(), created_by: userId }),
+    queryKey: ['missions-created-by-me', userName],
+    queryFn: () => getMissionList({... searchForm.getValues(), createdBy: userName }),
   })
 
   return (

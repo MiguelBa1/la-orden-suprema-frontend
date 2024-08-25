@@ -8,9 +8,7 @@ export const AssignedMissionTableColumns: Column<MissionItem>[] = [
   { title: 'Estado', key: 'status', render: (record) => (
     <MissionStatusLabel status={ record.status }/>
   ) },
-  { title: 'Creado por', key: 'created_by', render: (_record) => {
-    return _record.created_by.name
-  } },
+  { title: 'Creado por', dataIndex: 'createdBy', key: 'createdBy' },
   { title: 'Acciones', key: 'actions', render: (_record) => {
     return (
       <NavLink to={ `/app/assassin/missions/${ _record.id }` }>

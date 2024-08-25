@@ -1,2 +1,2 @@
-export * from './MissionList'
+export * from './MissionsList'
 export * from './MissionDetails'

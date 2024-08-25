@@ -1,9 +1,9 @@
 import { UseQueryResult } from '@tanstack/react-query'
-import { MissionList, MissionItem } from '@pages/assassin'
+import { MissionsList, MissionItem } from '@pages/assassin'
 import { Column, Spinner, Table } from '@components/UI'
 
 type MissionTableProps = {
-  missionListQuery: UseQueryResult<MissionList>;
+  missionListQuery: UseQueryResult<MissionsList>;
   missionTableColumns: Column<MissionItem>[];
 }
 
