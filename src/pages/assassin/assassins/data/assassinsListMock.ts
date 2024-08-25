@@ -1,4 +1,6 @@
-export const assassinsListMock = [
+import { AssassinsList } from '@pages/assassin'
+
+export const assassinsListMock: AssassinsList = [
   {
     id: 1,
     name: 'John Wick',

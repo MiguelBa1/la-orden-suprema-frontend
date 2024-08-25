@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import { AssassinTableRow, getAssassinsTableColumns, BuyAssassinDetailsModal } from '@pages/assassin'
+import { AssassinItem, getAssassinsTableColumns, BuyAssassinDetailsModal, AssassinsList } from '@pages/assassin'
 
 type AssassinsTableProps = {
-  assassinsListQuery: UseQueryResult<AssassinTableRow[]>;
+  assassinsListQuery: UseQueryResult<AssassinsList>;
 }
 
 export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
   const [buyAssassinsDetailsModalIsOpen, setBuyAssassinsDetailsModalIsOpen] = useState(false)
-  const [currentAssassin, setCurrentAssassin] = useState<AssassinTableRow | null>(null)
+  const [currentAssassin, setCurrentAssassin] = useState<AssassinItem | null>(null)
 
   if (assassinsListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">

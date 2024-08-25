@@ -1,11 +1,11 @@
 import { Modal, Button } from '@components/UI'
-import { AssassinTableRow } from '@pages/assassin'
+import { AssassinItem } from '@pages/assassin'
 import { useToastStore } from '@stores/index'
 
 type BuyAssassinsDetailsModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  assassin: AssassinTableRow | null;
+  assassin: AssassinItem | null;
 }
 
 export function BuyAssassinDetailsModal({ isOpen, onClose, assassin }: BuyAssassinsDetailsModalProps) {
