@@ -4,7 +4,7 @@ import { Button, Dropdown } from '@components/index.ts'
 import { MissionStatus } from '@models/enums'
 import { missionStatusTranslations } from '@utils/translations'
 
-type MissionsTableToolbarProps = {
+type AssignedMissionsTableToolbarProps = {
   searchForm: UseFormReturn;
   refetchMissionList: UseQueryResult['refetch'];
 }
@@ -15,8 +15,7 @@ const missionStatusOptions = [
   { value: MissionStatus.PAID, label: missionStatusTranslations[MissionStatus.PAID] },
 ]
 
-export function AssignedMissionsTableToolbar({ searchForm, refetchMissionList }: MissionsTableToolbarProps) {
-
+export function AssignedMissionsTableToolbar({ searchForm, refetchMissionList }: AssignedMissionsTableToolbarProps) {
   return (
     <form
       onSubmit={ searchForm.handleSubmit( async () => {

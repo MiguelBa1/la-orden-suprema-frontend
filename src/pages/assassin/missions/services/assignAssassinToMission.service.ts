@@ -2,12 +2,12 @@ import { MissionStatus } from '@models/enums'
 import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
 import { usersMock } from '@data/usersMock.ts'
 
-type AssignMissionProps = {
+type AssignAssassinToMissionProps = {
   missionId: number
   assassinId: number
 }
 
-export function assignAssassinToMission({ missionId, assassinId }: AssignMissionProps) {
+export function assignAssassinToMission({ missionId, assassinId }: AssignAssassinToMissionProps) {
   return new Promise<MissionDetails>((resolve, reject) => {
     const user = usersMock.find((user) => user.id === assassinId)
 
