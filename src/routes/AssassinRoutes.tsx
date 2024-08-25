@@ -10,8 +10,8 @@ const GeneralMissionList = lazy(() => import('@pages/assassin').then((module) =>
 const AssignedMissionList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssignedMissionListView })))
 const MissionList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.MissionListView })))
 const MissionDetails = lazy(() => import('@pages/assassin').then((module) => ({ default: module.MissionDetailsView })))
-const AssassinsListView = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssassinsListView })))
-const AssassinDetailsView = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssassinsDetailsView })))
+const AssassinsList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssassinsListView })))
+const AssassinDetails = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssassinDetailsView })))
 
 export const assassinRouter = [
   {
@@ -24,8 +24,8 @@ export const assassinRouter = [
       { path: "missions/assignments", element: <AssignedMissionList/>},
       { path: "missions/created-by-me", element: <MissionList/>},
       { path: "missions/:missionId", element: <MissionDetails/>},
-      { path: "assassins", element: <AssassinsListView/>},
-      { path: "assassins/:assassinId", element: <AssassinDetailsView/>},
+      { path: "assassins", element: <AssassinsList/>},
+      { path: "assassins/:assassinId", element: <AssassinDetails/>},
       { path: "*", element: <Navigate to="/no-match" replace /> },
     ]
   }

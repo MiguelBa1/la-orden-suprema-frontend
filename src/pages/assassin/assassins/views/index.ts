@@ -1,2 +1,2 @@
 export * from './AssassinsListView'
-export * from './AssassinsDetailsView'
+export * from './AssassinDetailsView'
