@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { MissionStatus } from '@models/enums'
-import { GeneralMissionTableColumns, getMissionList, MissionListTable } from '@pages/assassin'
+import { GeneralMissionTableColumns, getMissionList, MissionsListTable } from '@pages/assassin'
 
 export function GeneralMissionListView() {
   const generalMissionListQuery = useQuery({
@@ -15,7 +15,7 @@ export function GeneralMissionListView() {
           Misiones - General
         </h1>
       </div>
-      <MissionListTable missionListQuery={ generalMissionListQuery } missionTableColumns={ GeneralMissionTableColumns } />
+      <MissionsListTable missionListQuery={ generalMissionListQuery } missionTableColumns={ GeneralMissionTableColumns } />
     </div>
 
   )

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@components/UI'
-import { getMissionList, MissionListTable, MissionsTableToolbar, MissionTableColumns } from '@pages/assassin'
+import { getMissionList, MissionsListTable, MissionsTableToolbar, MissionTableColumns } from '@pages/assassin'
 import { useForm } from 'react-hook-form'
 import { useUser } from '@lib/react-query-auth.ts'
 import { useQuery } from '@tanstack/react-query'
@@ -27,7 +27,7 @@ export function MissionListView() {
         </Link>
       </div>
       <MissionsTableToolbar searchForm={ searchForm } refetchMissionList={ missionListQuery.refetch } />
-      <MissionListTable missionListQuery={ missionListQuery } missionTableColumns={ MissionTableColumns } />
+      <MissionsListTable missionListQuery={ missionListQuery } missionTableColumns={ MissionTableColumns } />
     </div>
   )
 }
