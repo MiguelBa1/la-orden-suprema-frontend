@@ -1,13 +1,12 @@
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import { AssassinsTableColumns, type AssassinTableRow } from '@pages/admin'
+import { AssassinsTableColumns, AssassinsList } from '@pages/admin'
 
 type AssassinsTableProps = {
-  assassinsListQuery: UseQueryResult<AssassinTableRow[]>;
+  assassinsListQuery: UseQueryResult<AssassinsList>;
 }
 
 export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
-
   if (assassinsListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">
       <Spinner />

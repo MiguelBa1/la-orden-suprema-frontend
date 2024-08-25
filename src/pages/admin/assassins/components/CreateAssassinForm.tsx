@@ -25,17 +25,11 @@ export function CreateAssassinForm() {
   const onSubmit: SubmitHandler<FieldValues> = () => {
     // TODO: Implement API call to create a new assassin
     navigate('/app/admin/assassins')
-    addToast({
-      type: 'success',
-      message: 'Asesino registrado correctamente'
-    })
+    addToast({ type: 'success', message: 'Asesino registrado correctamente' })
   }
 
   const onInvalid: SubmitErrorHandler<FieldValues> = () => {
-    addToast({
-      type: 'error',
-      message: 'Por favor, completa todos los campos'
-    })
+    addToast({ type: 'error', message: 'Por favor, completa todos los campos' })
   }
 
   return (

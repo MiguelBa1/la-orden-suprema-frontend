@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { useUser } from '@lib/react-query-auth.ts'
-import { AssignedMissionTableColumns, getMissionList, MissionListTable, AssignedMissionsTableToolbar } from '@pages/assassin'
+import { AssignedMissionsTableColumns, getMissionsList, MissionsListTable, AssignedMissionsTableToolbar } from '@pages/assassin'
 import { useForm } from 'react-hook-form'
 
-export function AssignedMissionListView() {
+export function AssignedMissionsListView() {
   const searchForm = useForm()
-  const userId = useUser()?.data?.id
+  const userName = useUser()?.data?.name
 
   const assignedMissionListQuery = useQuery({
-    queryKey: ['assigned-missions', userId],
-    queryFn: () => getMissionList({ ...searchForm.getValues(), assigned_to: userId }),
+    queryKey: ['assigned-missions', userName],
+    queryFn: () => getMissionsList({ ...searchForm.getValues(), assignedTo: userName }),
   })
 
   return (
@@ -20,7 +20,7 @@ export function AssignedMissionListView() {
         </h1>
       </div>
       <AssignedMissionsTableToolbar searchForm={ searchForm } refetchMissionList={ assignedMissionListQuery.refetch } />
-      <MissionListTable missionListQuery={ assignedMissionListQuery } missionTableColumns={ AssignedMissionTableColumns } />
+      <MissionsListTable missionListQuery={ assignedMissionListQuery } missionTableColumns={ AssignedMissionsTableColumns } />
     </div>
   )
 }

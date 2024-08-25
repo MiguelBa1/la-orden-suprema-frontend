@@ -1,5 +1,5 @@
 import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
+import { MissionDetails, missionsDetailsMock } from '@pages/admin'
 
 type RejectMissionEvidenceProps = {
   id: number

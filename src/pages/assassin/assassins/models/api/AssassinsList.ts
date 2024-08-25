@@ -1,4 +1,4 @@
-export type AssassinTableRow = {
+export type AssassinItem = {
   id: number;
   name: string;
   alias: string;
@@ -6,3 +6,5 @@ export type AssassinTableRow = {
   isPurchased: boolean;
   price: number;
 }
+
+export type AssassinsList = AssassinItem[]

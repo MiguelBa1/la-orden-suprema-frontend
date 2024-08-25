@@ -5,17 +5,17 @@ import { FieldValues, useForm } from 'react-hook-form'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useToastStore } from '@stores/useToastStore.ts'
 
-type AssignMissionProps = {
+type CompleteMissionProps = {
   isOpen: boolean;
   onClose: () => void;
   mission: MissionDetails;
   refetchMissionDetails: UseQueryResult['refetch'];
 }
 
-export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: AssignMissionProps) {
+export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: CompleteMissionProps) {
   const [fileName, setFileName] = useState<string>('')
   const { register, handleSubmit } = useForm<FieldValues>()
-  const { ref: registerRef, ...rest } = register('image_url', {
+  const { ref: registerRef, ...rest } = register('imageUrl', {
     onChange: (event: ChangeEvent<HTMLInputElement>) => {
       setFileName(event.target.files?.[0].name ?? '')
     },
@@ -39,7 +39,7 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
   })
 
   const onSubmit = () => {
-    mutation.mutate({ id: mission.id, image_url: '/images/evidence.webp' })
+    mutation.mutate({ id: mission.id, imageUrl: '/images/evidence.webp' })
     onClose()
   }
 

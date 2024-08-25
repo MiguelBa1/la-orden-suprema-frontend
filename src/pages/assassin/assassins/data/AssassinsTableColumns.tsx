@@ -1,14 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
-import { AssassinTableRow } from '@pages/assassin'
+import { AssassinItem } from '@pages/assassin'
 
 type AssassinsTableColumnsProps = {
   setBuyAssassinsDetailsModalIsOpen: (isOpen: boolean) => void;
-  setCurrentAssassin: (assassin: AssassinTableRow) => void;
+  setCurrentAssassin: (assassin: AssassinItem) => void;
 };
 
-export const getAssassinsTableColumns = ({ setBuyAssassinsDetailsModalIsOpen, setCurrentAssassin }: AssassinsTableColumnsProps): Column<AssassinTableRow>[] => {
-
+export const getAssassinsTableColumns = ({ setBuyAssassinsDetailsModalIsOpen, setCurrentAssassin }: AssassinsTableColumnsProps): Column<AssassinItem>[] => {
   return [
     { title: 'Nombre', dataIndex: 'name', key: 'name' },
     { title: 'Pseudónimo', dataIndex: 'alias', key: 'alias' },

@@ -15,7 +15,6 @@ const missionStatusOptions = [
 ]
 
 export function MissionsTableToolbar({ searchForm, refetchAssassinsList }: MissionsTableToolbarProps) {
-
   return (
     <form
       onSubmit={ searchForm.handleSubmit( async () => {
@@ -50,9 +49,7 @@ export function MissionsTableToolbar({ searchForm, refetchAssassinsList }: Missi
         name="assignedTo"
         registration={ searchForm.register('createdBy') }
       />
-      <Button
-        variant="secondary"
-        type="submit">
+      <Button variant="secondary" type="submit">
         Buscar
       </Button>
     </form>

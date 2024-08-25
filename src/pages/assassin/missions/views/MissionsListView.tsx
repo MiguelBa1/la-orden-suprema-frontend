@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@components/UI'
-import { getMissionList, MissionListTable, MissionsTableToolbar, MissionTableColumns } from '@pages/assassin'
+import { getMissionsList, MissionsListTable, MissionsTableToolbar, MissionsTableColumns } from '@pages/assassin'
 import { useForm } from 'react-hook-form'
 import { useUser } from '@lib/react-query-auth.ts'
 import { useQuery } from '@tanstack/react-query'
 
-export function MissionListView() {
+export function MissionsListView() {
   const searchForm = useForm()
-  const userId = useUser()?.data?.id
+  const userName = useUser()?.data?.name
 
   const missionListQuery = useQuery({
-    queryKey: ['missions-created-by-me', userId],
-    queryFn: () => getMissionList({... searchForm.getValues(), created_by: userId }),
+    queryKey: ['missions-created-by-me', userName],
+    queryFn: () => getMissionsList({... searchForm.getValues(), createdBy: userName }),
   })
 
   return (
@@ -27,7 +27,7 @@ export function MissionListView() {
         </Link>
       </div>
       <MissionsTableToolbar searchForm={ searchForm } refetchMissionList={ missionListQuery.refetch } />
-      <MissionListTable missionListQuery={ missionListQuery } missionTableColumns={ MissionTableColumns } />
+      <MissionsListTable missionListQuery={ missionListQuery } missionTableColumns={ MissionsTableColumns } />
     </div>
   )
 }

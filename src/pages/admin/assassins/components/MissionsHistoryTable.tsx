@@ -7,7 +7,6 @@ type MissionsHistoryTableProps = {
 }
 
 export function MissionsHistoryTable({ assassinsDetailsQuery }: MissionsHistoryTableProps) {
-
   if (assassinsDetailsQuery.data?.missionsHistory.length === 0) {
     return <div className="flex justify-center items-center h-96">
       No hay misiones para mostrar

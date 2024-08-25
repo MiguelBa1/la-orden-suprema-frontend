@@ -1,13 +1,13 @@
 import { UseQueryResult } from '@tanstack/react-query'
-import { MissionList, MissionItem } from '@pages/assassin'
+import { MissionsList, MissionItem } from '@pages/assassin'
 import { Column, Spinner, Table } from '@components/UI'
 
-type MissionTableProps = {
-  missionListQuery: UseQueryResult<MissionList>;
+type MissionsListTableProps = {
+  missionListQuery: UseQueryResult<MissionsList>;
   missionTableColumns: Column<MissionItem>[];
 }
 
-export function MissionListTable({ missionListQuery, missionTableColumns }: MissionTableProps) {
+export function MissionsListTable({ missionListQuery, missionTableColumns }: MissionsListTableProps) {
   if (missionListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">
       <Spinner />

@@ -3,25 +3,22 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { Spinner, Button, Dropdown, InputField } from '@components/index'
-import { getAssassinsDetails } from '@pages/assassin'
+import { getAssassinDetails } from '@pages/assassin'
 import { countriesList } from '@data/index'
 
 type AssassinDetailsParams = {
   assassinId: string
 }
 
-export function AssassinsDetailsView() {
+export function AssassinDetailsView() {
   const { assassinId } = useParams<AssassinDetailsParams>()
   const navigate = useNavigate()
 
-  const assassinDetailsQuery = useQuery(
-    {
-      queryKey: ['assassin', assassinId],
-      queryFn: () => getAssassinsDetails(Number(assassinId)),
-      enabled: !!assassinId,
-      staleTime: 1000 * 60 * 5,
-    }
-  )
+  const assassinDetailsQuery = useQuery({
+    queryKey: ['assassin', assassinId],
+    queryFn: () => getAssassinDetails(Number(assassinId)),
+    staleTime: 1000 * 60 * 5,
+  })
 
   const methods = useForm<FieldValues>({
     values: assassinDetailsQuery.data
@@ -51,10 +48,7 @@ export function AssassinsDetailsView() {
         <h1 className="text-xl lg:text-2xl">
           Información del asesino
         </h1>
-        <Button
-          onClick={ () => navigate(-1) }
-          variant="tertiary"
-        >
+        <Button onClick={ () => navigate(-1) } variant="tertiary">
           Volver
         </Button>
       </div>

@@ -1,11 +1,11 @@
 import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
+import { MissionDetails, missionsDetailsMock } from '@pages/admin'
 
-type RejectMissionEvidenceProps = {
+type PayMissionProps = {
   id: number
 }
 
-export function rejectMissionEvidence({ id }: RejectMissionEvidenceProps) {
+export function payMission({ id }: PayMissionProps) {
   return new Promise<MissionDetails>((resolve, reject) => {
     const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === id)
 
@@ -13,8 +13,7 @@ export function rejectMissionEvidence({ id }: RejectMissionEvidenceProps) {
       return reject('Misión no encontrada')
     }
 
-    missionsDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
-    missionsDetailsMock[missionIndex].imageUrl = null
+    missionsDetailsMock[missionIndex].status = MissionStatus.PAID
 
     resolve(missionsDetailsMock[missionIndex])
   })

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
-import { MissionItem, MissionStatusLabel } from '@pages/admin'
+import { MissionItem } from '@pages/assassin'
+import { MissionStatusLabel } from '@pages/admin'
 import { MissionStatus } from '@models/enums'
 
 export const MissionsTableColumns: Column<MissionItem>[] = [
@@ -8,11 +9,10 @@ export const MissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Estado', key: 'status', render: (record) => (
     <MissionStatusLabel status={ record.status }/>
   ) },
-  { title: 'Creado por', dataIndex: 'createdBy', key: 'createdBy' },
-  { title: 'Asignado a', dataIndex: 'assignedTo', key: 'assignedTo' },
+  { title: 'Asignada a', dataIndex: 'assignedTo', key: 'assignedTo' },
   { title: 'Acciones', key: 'actions', render: (_record) => {
     const buttonText = {
-      [MissionStatus.CREATED]: 'Revisar',
+      [MissionStatus.CREATED]: 'Abrir',
       [MissionStatus.ASSIGNED]: 'Abrir',
       [MissionStatus.COMPLETED]: 'Revisar',
       [MissionStatus.PAID]: 'Abrir',
@@ -21,7 +21,7 @@ export const MissionsTableColumns: Column<MissionItem>[] = [
     }
 
     return (
-      <NavLink to={ `/app/admin/missions/${ _record.id }` }>
+      <NavLink to={ `/app/assassin/missions/${ _record.id }` }>
         <Button variant="tertiary">
           { buttonText[_record.status] }
         </Button>

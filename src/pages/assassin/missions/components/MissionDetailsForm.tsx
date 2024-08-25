@@ -12,56 +12,56 @@ type MissionDetailsFormProps = {
 export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormProps) {
   const userId = useUser()?.data?.id
   const { data: missionDetailsData } = missionDetailsQuery
-  const paymentTypeTranslation = missionDetailsData?.payment_type && missionPaymentTypeTranslations[missionDetailsData.payment_type]
+  const paymentTypeTranslation = missionDetailsData?.paymentType && missionPaymentTypeTranslations[missionDetailsData.paymentType]
 
   const { register } = useForm({
-    values: { ...missionDetailsQuery.data, payment_type: paymentTypeTranslation },
+    values: { ...missionDetailsQuery.data, paymentType: paymentTypeTranslation },
   })
   
   if (!missionDetailsData) {
     return null
   }
 
-  const hasAssignedAssassin = missionDetailsData.assigned_to !== null
-  const isCoinPaymentType = missionDetailsData.coins_amount !== null
+  const hasAssignedAssassin = missionDetailsData.assignedTo !== null
+  const isCoinPaymentType = missionDetailsData.coinsAmount !== null
 
   return (
     <div>
       <fieldset disabled>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField
-            id="created_at"
-            name="created_at"
+            id="createdAt"
+            name="createdAt"
             label="Fecha de creación"
             type="date"
-            registration={ register('created_at') }
+            registration={ register('createdAt') }
           />
           { hasAssignedAssassin && (
             <InputField
-              id="assigned_at"
-              name="assigned_at"
+              id="assignedAt"
+              name="assignedAt"
               label="Fecha de asignación"
               type="date"
-              registration={ register('assigned_at') }
+              registration={ register('assignedAt') }
             />
           ) }
-          { missionDetailsData.created_by.id !== userId && (
+          { missionDetailsData.createdBy.id !== userId && (
             <InputField
-              id="created_by"
-              name="created_by"
+              id="createdBy"
+              name="createdBy"
               label="Creada por"
               type="text"
-              registration={ register('created_by.name') }
+              registration={ register('createdBy.name') }
               className="md:col-span-2"
             />
           ) }
-          { hasAssignedAssassin && missionDetailsData.assigned_to?.id !== userId && (
+          { hasAssignedAssassin && missionDetailsData.assignedTo?.id !== userId && (
             <InputField
-              id="assigned_to"
-              name="assigned_to"
+              id="assignedTo"
+              name="assignedTo"
               label="Asignada a"
               type="text"
-              registration={ register('assigned_to.name') }
+              registration={ register('assignedTo.name') }
               className="md:col-span-2"
             />
           ) }
@@ -73,19 +73,19 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
             className="md:col-span-2"
           />
           <InputField
-            id="payment_type"
-            name="payment_type"
+            id="paymentType"
+            name="paymentType"
             label="Tipo de pago"
             type="text"
-            registration={ register('payment_type') }
+            registration={ register('paymentType') }
           />
           { isCoinPaymentType && (
             <InputField
-              id="coins_amount"
-              name="coins_amount"
+              id="coinsAmount"
+              name="coinsAmount"
               label="Cantidad"
               type="number"
-              registration={ register('coins_amount') }
+              registration={ register('coinsAmount') }
             />
           ) }
         </div>

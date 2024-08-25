@@ -1,4 +1,4 @@
-export type AssassinTableRow = {
+export type AssassinItem = {
   id: number;
   name: string;
   email: string;
@@ -6,3 +6,5 @@ export type AssassinTableRow = {
   status: string;
   country: string;
 }
+
+export type AssassinsList = AssassinItem[]

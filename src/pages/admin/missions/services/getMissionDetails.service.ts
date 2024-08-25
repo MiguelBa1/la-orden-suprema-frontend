@@ -1,9 +1,8 @@
 import { MissionDetails, missionsDetailsMock } from '@pages/admin'
 
-export function getMissionDetailsService(id: number) {
+export function getMissionDetails(id: number) {
   return new Promise<MissionDetails>((resolve, reject) => {
     setTimeout(() => {
-
       const missionDetails = missionsDetailsMock.find((mission) => mission.id === id)
 
       if (!missionDetails) {

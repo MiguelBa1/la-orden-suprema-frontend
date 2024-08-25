@@ -1,7 +1,7 @@
 import { Modal, Button } from '@components/UI'
-import { UseQueryResult } from '@tanstack/react-query'
-import { MissionDetails, useUpdateMissionStatusMutation } from '@pages/admin'
-import { MissionStatus } from '@models/enums'
+import { useMutation, UseQueryResult } from '@tanstack/react-query'
+import { MissionDetails, payMission } from '@pages/admin'
+import { useToastStore } from '@stores/useToastStore.ts'
 
 type PublishMissionProps = {
   isOpen: boolean;
@@ -10,19 +10,22 @@ type PublishMissionProps = {
   refetchMissionDetails: UseQueryResult['refetch'];
 }
 
-export function PayMissionConfirmModal({
-  isOpen,
-  onClose,
-  mission,
-  refetchMissionDetails,
-}: PublishMissionProps) {
+export function PayMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: PublishMissionProps) {
+  const toast = useToastStore()
 
-  const { mutateAsync } = useUpdateMissionStatusMutation()
+  const mutation = useMutation({
+    mutationFn: payMission,
+    onSuccess: async () => {
+      toast.addToast({ message: 'La misión fue pagada correctamente', type: 'success' })
+      await refetchMissionDetails()
+    },
+    onError: () => {
+      toast.addToast({ message: 'Ocurrió un error al pagar la misión', type: 'error' })
+    }
+  })
 
-  const handleConfirm = async () => {
-    await mutateAsync({ id: mission.id, status: MissionStatus.PAID })
-    await refetchMissionDetails()
-
+  const handleConfirm = () => {
+    mutation.mutate({ id: mission.id })
     onClose()
   }
 
@@ -36,7 +39,7 @@ export function PayMissionConfirmModal({
           <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
-          <Button onClick={ handleConfirm }>
+          <Button onClick={ handleConfirm } color="green">
             Pagar
           </Button>
         </>

@@ -37,12 +37,12 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
     setModalsStates({ ...modalsStates, [modal]: !modalsStates[modal] })
   }
 
-  const isCreatedByMe = missionDetailsData.created_by.id === userId
-  const isAssignedToMe = missionDetailsData.assigned_to?.id === userId
-  const canBeAssigned = missionDetailsData.assigned_to === null
+  const isCreatedByMe = missionDetailsData.createdBy.id === userId
+  const isAssignedToMe = missionDetailsData.assignedTo?.id === userId
+  const canBeAssigned = missionDetailsData.assignedTo === null
   const canBeCompleted = missionDetailsData.status === MissionStatus.ASSIGNED
   const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED
-  const hasEvidence = missionDetailsData.image_url !== null
+  const hasEvidence = missionDetailsData.imageUrl !== null
 
   return (
     <div>
@@ -73,7 +73,7 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
         <div>
           { hasEvidence && (
             <Button type="button" variant="secondary" onClick={ () => downloadImageFromUrl({
-              url: missionDetailsData.image_url as string,
+              url: missionDetailsData.imageUrl as string,
               fileName: 'evidence'
             }) }>
               Descargar Evidencia

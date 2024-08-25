@@ -1,4 +1,4 @@
-export * from './GeneralMissionListView'
-export * from './AssignedMissionListView'
-export * from './MissionListView'
+export * from './GeneralMissionsListView'
+export * from './AssignedMissionsListView'
+export * from './MissionsListView'
 export * from './MissionDetailsView'

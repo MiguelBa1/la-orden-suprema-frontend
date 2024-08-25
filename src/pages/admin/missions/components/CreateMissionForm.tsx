@@ -11,30 +11,28 @@ export function CreateMissionForm() {
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const formRef = useRef<HTMLFormElement | null>(null)
 
-  const { register, watch, handleSubmit, formState: { errors } } = useForm<FieldValues>({
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FieldValues>({
     values: {
-      payment_type: 'Monedas de asesino',
+      paymentType: 'Monedas de asesino',
     }
   })
 
   const onSubmit: SubmitHandler<FieldValues> = (_data) => {
     // TODO: Implement API call to create a new mission
     navigate('/app/admin/missions')
-    addToast({
-      type: 'success',
-      message: 'Misión publicada correctamente'
-    })
+    addToast({ type: 'success', message: 'Misión publicada correctamente' })
   }
   
   const selectedQuantity = watch('quantity')
 
   return (
     <>
-      <form
-        ref={ formRef }
-        className="grid grid-cols-2 gap-4"
-        onSubmit={ handleSubmit(onSubmit) }
-      >
+      <form ref={ formRef } className="grid grid-cols-2 gap-4" onSubmit={ handleSubmit(onSubmit) }>
         <InputField
           id="description"
           name="description"
@@ -57,15 +55,15 @@ export function CreateMissionForm() {
           error={ errors.details?.message as string }
         />
         <InputField
-          id="payment_type"
-          name="payment_type"
+          id="paymentType"
+          name="paymentType"
           label="Tipo de pago"
           type="text"
           disabled
-          registration={ register('payment_type', {
+          registration={ register('paymentType', {
             required: 'Este campo es requerido',
           }) }
-          error={ errors.payment_type?.message as string }
+          error={ errors.paymentType?.message as string }
           className="col-span-2 sm:col-span-1"
         />
         <InputField
@@ -76,20 +74,13 @@ export function CreateMissionForm() {
           min={ 1 }
           registration={ register('quantity', {
             required: 'Este campo es requerido',
-            min: {
-              value: 1,
-              message: 'La cantidad mínima es 1'
-            }
+            min: { value: 1, message: 'La cantidad mínima es 1' }
           }) }
           error={ errors.quantity?.message as string }
           className="col-span-2 sm:col-span-1"
         />
         <div className="col-span-2 flex justify-center lg:justify-end">
-          <Button
-            color="green"
-            type="button"
-            onClick={ () => setShowConfirmModal(true) }
-          >
+          <Button color="green" type="button" onClick={ () => setShowConfirmModal(true) }>
             Publicar misión
           </Button>
         </div>
@@ -103,7 +94,6 @@ export function CreateMissionForm() {
         } }
         quantity={ selectedQuantity }
       />
-
     </>
   )
 }

@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { MissionStatus } from '@models/enums'
-import { GeneralMissionTableColumns, getMissionList, MissionListTable } from '@pages/assassin'
+import { GeneralMissionsTableColumns, getMissionsList, MissionsListTable } from '@pages/assassin'
 
-export function GeneralMissionListView() {
+export function GeneralMissionsListView() {
   const generalMissionListQuery = useQuery({
     queryKey: ['general-missions', MissionStatus.PUBLISHED],
-    queryFn: () => getMissionList({ status: MissionStatus.PUBLISHED }),
+    queryFn: () => getMissionsList({ status: MissionStatus.PUBLISHED }),
   })
 
   return (
@@ -15,7 +15,7 @@ export function GeneralMissionListView() {
           Misiones - General
         </h1>
       </div>
-      <MissionListTable missionListQuery={ generalMissionListQuery } missionTableColumns={ GeneralMissionTableColumns } />
+      <MissionsListTable missionListQuery={ generalMissionListQuery } missionTableColumns={ GeneralMissionsTableColumns } />
     </div>
 
   )
