@@ -16,7 +16,7 @@ type SubMenuItem = {
 type MenuItem = {
   name: string;
   href?: string;
-  Icon: React.ExoticComponent;
+  Icon: React.ElementType;
   roles: UserRole[];
   subItems?: SubMenuItem[];
 };

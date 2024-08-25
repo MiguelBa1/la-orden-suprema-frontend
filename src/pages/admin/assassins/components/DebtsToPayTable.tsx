@@ -7,7 +7,6 @@ type DebsToPayTableProps = {
 }
 
 export function DebsToPayTable({ assassinDetailsQuery }: DebsToPayTableProps) {
-
   if (assassinDetailsQuery.data?.debsToPay.length === 0) {
     return <div className="flex justify-center items-center h-96">
       No hay deudas para mostrar

@@ -29,6 +29,7 @@ export function TransactionListView() {
       <div className="flex flex-col gap-1 w-[300px]">
         <InputField
           id="coins"
+          name="coins"
           type="number"
           placeholder="coins"
           disabled
