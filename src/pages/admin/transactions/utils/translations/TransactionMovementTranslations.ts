@@ -1,4 +1,4 @@
-import { TransactionMovement } from "../../models/enums/TransactionMovement";
+import { TransactionMovement } from "../../models/enums/TransactionMovement"
 
 
 export const TransactionMovementTranslations = {

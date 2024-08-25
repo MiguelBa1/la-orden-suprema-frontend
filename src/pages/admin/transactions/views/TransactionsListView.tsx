@@ -14,7 +14,7 @@ export function TransactionListView() {
     defaultValues: {
       coins: 500,
     },
-  });
+  })
 
   const TransactionListQuery = useQuery(
     {
@@ -32,7 +32,7 @@ export function TransactionListView() {
           type="number"
           placeholder="coins"
           disabled
-          registration= {register('coins')}
+          registration= { register('coins') }
         />   
       </div>
       <div className="space-y-6">
@@ -41,15 +41,15 @@ export function TransactionListView() {
              
           </h2>
         </div>
-          <Button
+        <Button
           onClick={
             () => setShowBuyCoinsModal(true)
           }>
             Comprar Monedas
-          </Button>
+        </Button>
       </div>
       <TransactionListTable transactionListQuery={ TransactionListQuery } />
-      <BuyCoinsModal isOpen={showBuyCoinsModal} onClose={() => setShowBuyCoinsModal(false)} />
+      <BuyCoinsModal isOpen={ showBuyCoinsModal } onClose={ () => setShowBuyCoinsModal(false) } />
     </div>
   )
 }

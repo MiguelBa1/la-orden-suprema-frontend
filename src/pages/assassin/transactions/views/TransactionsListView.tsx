@@ -14,7 +14,7 @@ export function TransactionListView() {
     defaultValues: {
       coins: 500,
     },
-  });
+  })
 
   const [showSellCoinsModal, setShowSellCoinsModal] = useState(false)
 
@@ -34,7 +34,7 @@ export function TransactionListView() {
           type="number"
           placeholder="coins"
           disabled
-          registration= {register('coins')}
+          registration= { register('coins') }
         />   
       </div>
       <div className="space-y-6">
@@ -45,13 +45,13 @@ export function TransactionListView() {
         </div>
         <div className="flex justify-left items-center">
           <Button
-          onClick={
-            () => setShowBuyCoinsModal(true)
-          }>
+            onClick={
+              () => setShowBuyCoinsModal(true)
+            }>
             Comprar Monedas
           </Button>
           <Button
-            className='ml-6'
+            className="ml-6"
             onClick={
               () => setShowSellCoinsModal(true)
             }>
@@ -60,8 +60,8 @@ export function TransactionListView() {
         </div>
       </div>
       <TransactionListTable transactionListQuery={ TransactionListQuery } />
-      <BuyCoinsModal isOpen={showBuyCoinsModal} onClose={() => setShowBuyCoinsModal(false)} />
-      <SellCoinsModal isOpen={showSellCoinsModal} onClose={() => setShowSellCoinsModal(false)} />
+      <BuyCoinsModal isOpen={ showBuyCoinsModal } onClose={ () => setShowBuyCoinsModal(false) } />
+      <SellCoinsModal isOpen={ showSellCoinsModal } onClose={ () => setShowSellCoinsModal(false) } />
     </div>
   )
 }

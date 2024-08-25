@@ -1,6 +1,5 @@
-import { NavLink } from 'react-router-dom'
-import { Column, Button } from '@components/UI'
-import { TransactionMovementTranslations, TransactionMovement, TransactionItem } from '@pages/assassin/transactions'
+import { Column } from '@components/UI'
+import { TransactionMovementTranslations, TransactionItem } from '@pages/assassin/transactions'
  
 
 
