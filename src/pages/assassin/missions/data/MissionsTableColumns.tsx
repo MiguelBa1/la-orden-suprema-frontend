@@ -4,7 +4,7 @@ import { MissionItem } from '@pages/assassin'
 import { MissionStatusLabel } from '@pages/admin'
 import { MissionStatus } from '@models/enums'
 
-export const MissionTableColumns: Column<MissionItem>[] = [
+export const MissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
   { title: 'Estado', key: 'status', render: (record) => (
     <MissionStatusLabel status={ record.status }/>
