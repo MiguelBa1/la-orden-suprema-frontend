@@ -8,7 +8,6 @@ type AssassinsToolbarProps = {
 }
 
 export function AssassinsToolbar({ searchForm, refetchAssassinsList }: AssassinsToolbarProps) {
-
   return (
     <form
       onSubmit={ searchForm.handleSubmit( async () => {
@@ -23,10 +22,7 @@ export function AssassinsToolbar({ searchForm, refetchAssassinsList }: Assassins
         placeholder="Pseudónimo"
         registration={ searchForm.register('alias') }
       />
-      <Button
-        type="submit"
-        variant="secondary"
-      >
+      <Button type="submit" variant="secondary">
         Buscar
       </Button>
     </form>

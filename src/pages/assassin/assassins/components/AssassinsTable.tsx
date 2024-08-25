@@ -33,7 +33,10 @@ export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
     return null
   }
 
-  const AssassinsTableColumns = getAssassinsTableColumns({ setBuyAssassinsDetailsModalIsOpen, setCurrentAssassin })
+  const AssassinsTableColumns = getAssassinsTableColumns({
+    setBuyAssassinsDetailsModalIsOpen,
+    setCurrentAssassin
+  })
 
   return (
     <>

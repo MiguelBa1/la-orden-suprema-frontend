@@ -5,13 +5,11 @@ import { AssassinsTable, AssassinsToolbar, getAssassinsList } from '@pages/assas
 export function AssassinsListView() {
   const searchForm = useForm()
 
-  const AssassinsListQuery = useQuery(
-    {
-      queryKey: ['assassins', searchForm.getValues()],
-      queryFn: () => getAssassinsList(searchForm.getValues()),
-      staleTime: 1000 * 60 * 5,
-    }
-  )
+  const AssassinsListQuery = useQuery({
+    queryKey: ['assassins', searchForm.getValues()],
+    queryFn: () => getAssassinsList(searchForm.getValues()),
+    staleTime: 1000 * 60 * 5,
+  })
 
   return (
     <div className="space-y-6">
