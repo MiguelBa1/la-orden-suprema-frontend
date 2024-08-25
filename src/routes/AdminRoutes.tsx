@@ -11,6 +11,7 @@ const CreateAssassinView = lazy(() => import('@pages/admin').then((module) => ({
 const MissionsList = lazy(() => import('@pages/admin').then((module) => ({ default: module.MissionsListView })))
 const MissionDetails = lazy(() => import('@pages/admin').then((module) => ({ default: module.MissionDetailsView })))
 const CreateMissionView = lazy(() => import('@pages/admin').then((module) => ({ default: module.CreateMissionView })))
+const TransactionsList = lazy(() => import('@pages/admin').then((module) => ({ default: module.TransactionListView })))
 
 export const adminRouter = [
   {
@@ -24,6 +25,7 @@ export const adminRouter = [
       { path: "missions", element: <MissionsList /> },
       { path: "missions/create", element: <CreateMissionView /> },
       { path: "missions/:missionId", element: <MissionDetails /> },
+      { path: "transactions", element: <TransactionsList /> },
       { path: "*", element: <Navigate to="/no-match" replace /> },
     ],
   },
