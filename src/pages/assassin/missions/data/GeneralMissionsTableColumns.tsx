@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
 import { MissionItem } from '@pages/assassin'
 
-export const GeneralMissionTableColumns: Column<MissionItem>[] = [
+export const GeneralMissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
   { title: 'Creado por', dataIndex: 'createdBy', key: 'createdBy' },
   { title: 'Acciones', key: 'actions', render: (_record) => {
