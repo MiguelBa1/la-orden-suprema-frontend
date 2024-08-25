@@ -14,7 +14,7 @@ export function rejectMissionEvidence({ id }: RejectMissionEvidenceProps) {
     }
 
     missionDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
-    missionDetailsMock[missionIndex].image_url = null
+    missionDetailsMock[missionIndex].imageUrl = null
 
     resolve(missionDetailsMock[missionIndex])
   })

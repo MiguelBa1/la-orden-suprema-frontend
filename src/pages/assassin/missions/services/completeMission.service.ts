@@ -3,10 +3,10 @@ import { MissionDetails, missionDetailsMock } from '@pages/assassin'
 
 type CompleteMissionProps = {
   id: number
-  image_url: string
+  imageUrl: string
 }
 
-export function completeMission({ id, image_url }: CompleteMissionProps) {
+export function completeMission({ id, imageUrl }: CompleteMissionProps) {
   return new Promise<MissionDetails>((resolve, reject) => {
     const missionIndex = missionDetailsMock.findIndex((mission) => mission.id === id)
 
@@ -15,7 +15,7 @@ export function completeMission({ id, image_url }: CompleteMissionProps) {
     }
 
     missionDetailsMock[missionIndex].status = MissionStatus.COMPLETED
-    missionDetailsMock[missionIndex].image_url = image_url
+    missionDetailsMock[missionIndex].imageUrl = imageUrl
 
     resolve(missionDetailsMock[missionIndex])
   })

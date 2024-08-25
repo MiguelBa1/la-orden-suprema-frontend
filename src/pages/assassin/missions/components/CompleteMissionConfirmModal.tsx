@@ -15,7 +15,7 @@ type AssignMissionProps = {
 export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: AssignMissionProps) {
   const [fileName, setFileName] = useState<string>('')
   const { register, handleSubmit } = useForm<FieldValues>()
-  const { ref: registerRef, ...rest } = register('image_url', {
+  const { ref: registerRef, ...rest } = register('imageUrl', {
     onChange: (event: ChangeEvent<HTMLInputElement>) => {
       setFileName(event.target.files?.[0].name ?? '')
     },
@@ -39,7 +39,7 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
   })
 
   const onSubmit = () => {
-    mutation.mutate({ id: mission.id, image_url: '/images/evidence.webp' })
+    mutation.mutate({ id: mission.id, imageUrl: '/images/evidence.webp' })
     onClose()
   }
 

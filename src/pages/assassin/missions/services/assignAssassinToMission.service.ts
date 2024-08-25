@@ -22,8 +22,8 @@ export function assignAssassinToMission({ missionId, assassinId }: AssignMission
     }
 
     missionDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
-    missionDetailsMock[missionIndex].assigned_at = new Date().toISOString().split('T')[0]
-    missionDetailsMock[missionIndex].assigned_to = {
+    missionDetailsMock[missionIndex].assignedAt = new Date().toISOString().split('T')[0]
+    missionDetailsMock[missionIndex].assignedTo = {
       id: user.id,
       name: user.name
     }
