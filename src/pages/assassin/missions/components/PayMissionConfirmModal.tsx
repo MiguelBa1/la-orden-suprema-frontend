@@ -3,14 +3,14 @@ import { useMutation, UseQueryResult } from '@tanstack/react-query'
 import { MissionDetails, payMission } from '@pages/assassin'
 import { useToastStore } from '@stores/useToastStore.ts'
 
-type PublishMissionProps = {
+type PayMissionProps = {
   isOpen: boolean;
   onClose: () => void;
   mission: MissionDetails;
   refetchMissionDetails: UseQueryResult['refetch'];
 }
 
-export function PayMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails, }: PublishMissionProps) {
+export function PayMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails, }: PayMissionProps) {
   const toast = useToastStore()
 
   const mutation = useMutation({

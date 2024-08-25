@@ -57,7 +57,7 @@ export function Login() {
           <div className="flex flex-col gap-1">
             <InputField
               id="email"
-              type="email"
+              type="text"
               name="email"
               placeholder="Correo electrónico"
               registration={ register('email', {
@@ -87,7 +87,7 @@ export function Login() {
               { isPending ? 'Iniciando sesión...' : 'Iniciar sesión' }
             </Button>
             <div>
-              <a href="#" className="text-blue-500">¿Olvidaste tu contraseña?</a>
+              <a href="/forgot-password" className="text-blue-500">¿Olvidaste tu contraseña?</a>
             </div>
           </div>
         </form>

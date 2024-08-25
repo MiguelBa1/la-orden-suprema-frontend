@@ -1,22 +1,22 @@
 import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionDetailsMock } from '@pages/assassin'
+import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
 
 type CompleteMissionProps = {
   id: number
-  image_url: string
+  imageUrl: string
 }
 
-export function completeMission({ id, image_url }: CompleteMissionProps) {
+export function completeMission({ id, imageUrl }: CompleteMissionProps) {
   return new Promise<MissionDetails>((resolve, reject) => {
-    const missionIndex = missionDetailsMock.findIndex((mission) => mission.id === id)
+    const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === id)
 
     if (missionIndex === -1) {
       return reject('Misión no encontrada')
     }
 
-    missionDetailsMock[missionIndex].status = MissionStatus.COMPLETED
-    missionDetailsMock[missionIndex].image_url = image_url
+    missionsDetailsMock[missionIndex].status = MissionStatus.COMPLETED
+    missionsDetailsMock[missionIndex].imageUrl = imageUrl
 
-    resolve(missionDetailsMock[missionIndex])
+    resolve(missionsDetailsMock[missionIndex])
   })
 }

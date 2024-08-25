@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { getMissionDetailsService, MissionDetailsActions, MissionDetailsForm, MissionStatusLabel } from '@pages/admin'
+import { getMissionDetails, MissionDetailsActions, MissionDetailsForm, MissionStatusLabel } from '@pages/admin'
 import { Button, Spinner } from '@components/UI'
 import { useQuery } from '@tanstack/react-query'
 
@@ -14,8 +14,7 @@ export function MissionDetailsView() {
   const missionDetailsQuery = useQuery(
     {
       queryKey: ['mission', missionId],
-      queryFn: () => getMissionDetailsService(Number(missionId)),
-      enabled: !!missionId
+      queryFn: () => getMissionDetails(Number(missionId)),
     }
   )
 

@@ -7,7 +7,6 @@ type MissionsTableProps = {
 }
 
 export function MissionsListTable({ missionsListQuery }: MissionsTableProps) {
-
   if (missionsListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">
       <Spinner />

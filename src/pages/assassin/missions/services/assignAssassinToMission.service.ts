@@ -1,13 +1,13 @@
 import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionDetailsMock } from '@pages/assassin'
+import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
 import { usersMock } from '@data/usersMock.ts'
 
-type AssignMissionProps = {
+type AssignAssassinToMissionProps = {
   missionId: number
   assassinId: number
 }
 
-export function assignAssassinToMission({ missionId, assassinId }: AssignMissionProps) {
+export function assignAssassinToMission({ missionId, assassinId }: AssignAssassinToMissionProps) {
   return new Promise<MissionDetails>((resolve, reject) => {
     const user = usersMock.find((user) => user.id === assassinId)
 
@@ -15,19 +15,19 @@ export function assignAssassinToMission({ missionId, assassinId }: AssignMission
       return reject('Asesino no encontrado')
     }
 
-    const missionIndex = missionDetailsMock.findIndex((mission) => mission.id === missionId)
+    const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === missionId)
 
     if (missionIndex === -1) {
       return reject('Misión no encontrada')
     }
 
-    missionDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
-    missionDetailsMock[missionIndex].assigned_at = new Date().toISOString().split('T')[0]
-    missionDetailsMock[missionIndex].assigned_to = {
+    missionsDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
+    missionsDetailsMock[missionIndex].assignedAt = new Date().toISOString().split('T')[0]
+    missionsDetailsMock[missionIndex].assignedTo = {
       id: user.id,
       name: user.name
     }
 
-    resolve(missionDetailsMock[missionIndex])
+    resolve(missionsDetailsMock[missionIndex])
   })
 }

@@ -1,6 +1,6 @@
 export * from './CreateMissionForm'
 export * from './CreateMissionConfirmationModal'
-export * from './MissionListTable'
+export * from './MissionsListTable'
 export * from './AssignedMissionsTableToolbar'
 export * from './MissionsTableToolbar'
 export * from './MissionDetailsForm'

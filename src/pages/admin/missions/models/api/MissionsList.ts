@@ -1,11 +1,11 @@
 import { MissionStatus } from '@models/enums'
 
 export type MissionItem = {
-  id: string;
+  id: number;
+  createdBy: string;
+  assignedTo: string | null;
   description: string;
   status: MissionStatus;
-  createdBy: string;
-  assignedTo?: string;
 }
 
 export type MissionsList = MissionItem[]

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import {
   EditAssassinForm,
   MissionsHistoryTable,
-  getAssassinsDetails,
+  getAssassinDetails,
   DebsToPayTable,
   DebsToCollectTable,
 } from '@pages/admin/assassins'
@@ -20,8 +20,7 @@ export function AssassinDetailsView() {
   const assassinDetailsQuery = useQuery(
     {
       queryKey: ['assassin', assassinId],
-      queryFn: () => getAssassinsDetails(Number(assassinId)),
-      enabled: !!assassinId
+      queryFn: () => getAssassinDetails(Number(assassinId)),
     }
   )
 

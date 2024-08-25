@@ -17,7 +17,12 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
     values: assassinDetailsQuery.data
   })
 
-  const { register, control, handleSubmit, formState: { errors } } = methods
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = methods
 
   const isInactive = assassinDetailsQuery.data?.status === 'inactive'
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)

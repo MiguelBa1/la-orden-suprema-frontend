@@ -12,15 +12,9 @@ type ConfirmStatusChangeModalProps = {
   refetchAssassinDetails: UseQueryResult['refetch'];
 }
 
-export function ConfirmStatusChangeModal({
-  isOpen,
-  onClose,
-  assassin,
-  refetchAssassinDetails,
-}: ConfirmStatusChangeModalProps) {
-
+export function ConfirmStatusChangeModal({ isOpen, onClose, assassin, refetchAssassinDetails }: ConfirmStatusChangeModalProps) {
   const mutation = useMutation({
-    mutationFn: ({ id, status }: { id: number, status: 'active' | 'inactive' }) => updateAssassinStatus(id, status),
+    mutationFn: updateAssassinStatus,
     onSuccess: async () => {
       await refetchAssassinDetails()
     }

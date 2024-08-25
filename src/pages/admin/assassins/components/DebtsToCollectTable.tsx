@@ -7,7 +7,6 @@ type DebsToCollectTableProps = {
 }
 
 export function DebsToCollectTable({ assassinDetailsQuery }: DebsToCollectTableProps) {
-
   if (assassinDetailsQuery.data?.debsToCollect.length === 0) {
     return <div className="flex justify-center items-center h-96">
       No hay deudas para mostrar

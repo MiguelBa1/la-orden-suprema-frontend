@@ -19,7 +19,6 @@ const missionStatusOptions = [
 ]
 
 export function MissionsTableToolbar({ searchForm, refetchMissionList }: MissionsTableToolbarProps) {
-
   return (
     <form
       onSubmit={ searchForm.handleSubmit( async () => {

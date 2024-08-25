@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
-import { AssassinTableRow } from '@pages/admin'
+import { AssassinItem } from '@pages/admin'
 
-export const AssassinsTableColumns: Column<AssassinTableRow>[] = [
+export const AssassinsTableColumns: Column<AssassinItem>[] = [
   { title: 'ID', dataIndex: 'id', key: 'id' },
   { title: 'Nombre', dataIndex: 'name', key: 'name' },
   { title: 'Email', dataIndex: 'email', key: 'email' },
