@@ -1,7 +1,7 @@
 import { MissionDetails } from '@pages/assassin'
 import { MissionPaymentType, MissionStatus } from '@models/enums'
 
-export const missionDetailsMock: MissionDetails[] = [
+export const missionsDetailsMock: MissionDetails[] = [
   {
     id: 1,
     createdBy: {
