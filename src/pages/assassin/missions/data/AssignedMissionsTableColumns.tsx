@@ -3,7 +3,7 @@ import { Column, Button } from '@components/UI'
 import { MissionItem } from '@pages/assassin'
 import { MissionStatusLabel } from '@pages/admin'
 
-export const AssignedMissionTableColumns: Column<MissionItem>[] = [
+export const AssignedMissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
   { title: 'Estado', key: 'status', render: (record) => (
     <MissionStatusLabel status={ record.status }/>

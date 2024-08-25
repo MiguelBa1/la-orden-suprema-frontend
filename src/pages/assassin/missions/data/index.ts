@@ -1,5 +1,5 @@
 export * from './missionListMock'
 export * from './GeneralMissionTableColumns'
-export * from './AssignedMissionTableColumns'
+export * from './AssignedMissionsTableColumns'
 export * from './MissionTableColumns'
 export * from './missionDetailsMock'
