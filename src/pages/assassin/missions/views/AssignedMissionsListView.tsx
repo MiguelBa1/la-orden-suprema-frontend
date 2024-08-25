@@ -3,7 +3,7 @@ import { useUser } from '@lib/react-query-auth.ts'
 import { AssignedMissionsTableColumns, getMissionsList, MissionsListTable, AssignedMissionsTableToolbar } from '@pages/assassin'
 import { useForm } from 'react-hook-form'
 
-export function AssignedMissionListView() {
+export function AssignedMissionsListView() {
   const searchForm = useForm()
   const userName = useUser()?.data?.name
 
