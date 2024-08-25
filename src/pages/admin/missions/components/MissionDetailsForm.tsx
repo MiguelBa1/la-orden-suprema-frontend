@@ -10,52 +10,52 @@ type MissionDetailsFormProps = {
 
 export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormProps) {
   const { data: missionDetailsData } = missionDetailsQuery
-  const paymentTypeTranslation = missionDetailsData?.payment_type && missionPaymentTypeTranslations[missionDetailsData.payment_type]
+  const paymentTypeTranslation = missionDetailsData?.paymentType && missionPaymentTypeTranslations[missionDetailsData.paymentType]
 
   const { register } = useForm({
-    values: { ...missionDetailsQuery.data, payment_type: paymentTypeTranslation },
+    values: { ...missionDetailsQuery.data, paymentType: paymentTypeTranslation },
   })
   
   if (!missionDetailsData) {
     return null
   }
 
-  const hasAssignedAssassin = missionDetailsData.assigned_to !== null
-  const isCoinPaymentType = missionDetailsData.coins_amount !== null
+  const hasAssignedAssassin = missionDetailsData.assignedTo !== null
+  const isCoinPaymentType = missionDetailsData.coinsAmount !== null
 
   return (
     <div>
       <fieldset disabled>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputField
-            id="created_by"
+            id="createdBy"
             label="Creada por"
             type="text"
-            name="created_by"
-            registration={ register('created_by.name') }
+            name="createdBy"
+            registration={ register('createdBy.name') }
           />
           <InputField
-            id="created_at"
+            id="createdAt"
             label="Fecha de creación"
             type="date"
-            name="created_at"
-            registration={ register('created_at') }
+            name="createdAt"
+            registration={ register('createdAt') }
           />
           { hasAssignedAssassin && (
             <>
               <InputField
-                id="assigned_to"
+                id="assignedTo"
                 label="Asignada a"
                 type="text"
-                name="assigned_to"
-                registration={ register('assigned_to.name') }
+                name="assignedTo"
+                registration={ register('assignedTo.name') }
               />
               <InputField
-                id="assigned_at"
+                id="assignedAt"
                 label="Fecha de asignación"
                 type="date"
-                name="assigned_at"
-                registration={ register('assigned_at') }
+                name="assignedAt"
+                registration={ register('assignedAt') }
               />
             </>
           ) }
@@ -67,19 +67,19 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
             className="md:col-span-2"
           />
           <InputField
-            id="payment_type"
+            id="paymentType"
             label="Tipo de pago"
             type="text"
-            name="payment_type"
-            registration={ register('payment_type') }
+            name="paymentType"
+            registration={ register('paymentType') }
           />
           { isCoinPaymentType && (
             <InputField
-              id="coins_amount"
+              id="coinsAmount"
               label="Cantidad"
               type="number"
-              name="coins_amount"
-              registration={ register('coins_amount') }
+              name="coinsAmount"
+              registration={ register('coinsAmount') }
             />
           ) }
         </div>
