@@ -1,7 +1,7 @@
 import { MissionStatus } from '@models/enums'
 import { MissionsList } from '@pages/assassin'
 
-export const missionListMock: MissionsList = [
+export const missionsListMock: MissionsList = [
   {
     id: 1,
     description: "Recuperar el microchip del laboratorio",

@@ -1,4 +1,4 @@
-import { missionListMock, MissionsList } from '@pages/assassin'
+import { missionsListMock, MissionsList } from '@pages/assassin'
 import { MissionStatus } from '@models/enums'
 
 type MissionListProps = {
@@ -10,7 +10,7 @@ type MissionListProps = {
 export function getMissionList({ status, createdBy, assignedTo }: MissionListProps) {
   return new Promise<MissionsList>((resolve, reject) => {
     setTimeout(() => {
-      const missionList = missionListMock.filter((mission) => {
+      const missionList = missionsListMock.filter((mission) => {
         let match = true
 
         if (status !== undefined) {
