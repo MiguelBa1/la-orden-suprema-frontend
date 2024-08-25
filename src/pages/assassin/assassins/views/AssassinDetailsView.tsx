@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { Spinner, Button, Dropdown, InputField } from '@components/index'
-import { getAssassinsDetails } from '@pages/assassin'
+import { getAssassinDetails } from '@pages/assassin'
 import { countriesList } from '@data/index'
 
 type AssassinDetailsParams = {
@@ -16,7 +16,7 @@ export function AssassinDetailsView() {
 
   const assassinDetailsQuery = useQuery({
     queryKey: ['assassin', assassinId],
-    queryFn: () => getAssassinsDetails(Number(assassinId)),
+    queryFn: () => getAssassinDetails(Number(assassinId)),
     staleTime: 1000 * 60 * 5,
   })
 
