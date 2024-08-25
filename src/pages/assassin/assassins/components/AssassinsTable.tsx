@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { Table, Spinner } from '@components/UI'
-import { AssassinTableRow, getAssassinsTableColumns, BuyAssassinsDetailsModal } from '@pages/assassin'
+import { AssassinTableRow, getAssassinsTableColumns, BuyAssassinDetailsModal } from '@pages/assassin'
 
 type AssassinsTableProps = {
   assassinsListQuery: UseQueryResult<AssassinTableRow[]>;
@@ -38,7 +38,7 @@ export function AssassinsTable({ assassinsListQuery }: AssassinsTableProps) {
   return (
     <>
       <Table columns={ AssassinsTableColumns } data={ assassinsListQuery.data } />
-      <BuyAssassinsDetailsModal
+      <BuyAssassinDetailsModal
         isOpen={ buyAssassinsDetailsModalIsOpen }
         onClose={ () => setBuyAssassinsDetailsModalIsOpen(false) }
         assassin={ currentAssassin }
