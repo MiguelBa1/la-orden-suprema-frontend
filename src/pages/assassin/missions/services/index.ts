@@ -1,4 +1,4 @@
-export * from './getMissionList.service'
+export * from './getMissionsList.service'
 export * from './getMissionDetails.service'
 export * from './assignAssassinToMission.service'
 export * from './completeMission.service'

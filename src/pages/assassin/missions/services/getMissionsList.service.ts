@@ -7,10 +7,10 @@ type MissionListProps = {
   assignedTo?: string
 }
 
-export function getMissionList({ status, createdBy, assignedTo }: MissionListProps) {
+export function getMissionsList({ status, createdBy, assignedTo }: MissionListProps) {
   return new Promise<MissionsList>((resolve, reject) => {
     setTimeout(() => {
-      const missionList = missionsListMock.filter((mission) => {
+      const missionsList = missionsListMock.filter((mission) => {
         let match = true
 
         if (status !== undefined) {
@@ -28,12 +28,12 @@ export function getMissionList({ status, createdBy, assignedTo }: MissionListPro
         return match
       })
 
-      if (!missionList) {
+      if (!missionsList) {
         reject(new Error('No se encontraron misiones'))
       }
 
-      if (missionList) {
-        resolve(missionList)
+      if (missionsList) {
+        resolve(missionsList)
       }
     }, 500)
   })

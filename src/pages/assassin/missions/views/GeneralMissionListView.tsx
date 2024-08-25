@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { MissionStatus } from '@models/enums'
-import { GeneralMissionsTableColumns, getMissionList, MissionsListTable } from '@pages/assassin'
+import { GeneralMissionsTableColumns, getMissionsList, MissionsListTable } from '@pages/assassin'
 
 export function GeneralMissionListView() {
   const generalMissionListQuery = useQuery({
     queryKey: ['general-missions', MissionStatus.PUBLISHED],
-    queryFn: () => getMissionList({ status: MissionStatus.PUBLISHED }),
+    queryFn: () => getMissionsList({ status: MissionStatus.PUBLISHED }),
   })
 
   return (
