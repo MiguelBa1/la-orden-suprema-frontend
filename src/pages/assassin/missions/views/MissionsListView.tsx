@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useUser } from '@lib/react-query-auth.ts'
 import { useQuery } from '@tanstack/react-query'
 
-export function MissionListView() {
+export function MissionsListView() {
   const searchForm = useForm()
   const userName = useUser()?.data?.name
 
