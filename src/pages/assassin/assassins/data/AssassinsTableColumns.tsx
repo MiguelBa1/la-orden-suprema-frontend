@@ -2,17 +2,34 @@ import { NavLink } from 'react-router-dom'
 import { Column, Button } from '@components/UI'
 import { AssassinTableRow } from '@pages/assassin'
 
-export const AssassinsTableColumns: Column<AssassinTableRow>[] = [
-  { title: 'Nombre', dataIndex: 'name', key: 'name' },
-  { title: 'Pseudónimo', dataIndex: 'alias', key: 'alias' },
-  { title: 'País', dataIndex: 'country', key: 'country' },
-  { title: 'Acciones', key: 'actions', render: (record) => {
-    const buttonText = record.isPurchased ? 'Abrir' : 'Comprar Información'
+type AssassinsTableColumnsProps = {
+  setBuyAssassinsDetailsModalIsOpen: (isOpen: boolean) => void;
+  setCurrentAssassin: (assassin: AssassinTableRow) => void;
+};
 
-    return (
-      <NavLink to={ `/app/assassin/assassins/${ record.id }` }>
-        <Button variant="tertiary">{ buttonText }</Button>
-      </NavLink>
-    )
-  } },
-]
+export const getAssassinsTableColumns = ({ setBuyAssassinsDetailsModalIsOpen, setCurrentAssassin }: AssassinsTableColumnsProps): Column<AssassinTableRow>[] => {
+
+  return [
+    { title: 'Nombre', dataIndex: 'name', key: 'name' },
+    { title: 'Pseudónimo', dataIndex: 'alias', key: 'alias' },
+    { title: 'País', dataIndex: 'country', key: 'country' },
+    { title: 'Acciones', key: 'actions', render: (record) => {
+      const handleButtonClick = () => {
+        if (!record.isPurchased) {
+          setBuyAssassinsDetailsModalIsOpen(true)
+          setCurrentAssassin(record)
+        }
+      }
+
+      const buttonText = record.isPurchased ? 'Abrir' : 'Comprar Información'
+
+      return record.isPurchased ? (
+        <NavLink to={ `/app/assassin/assassins/${record.id}` }>
+          <Button variant="tertiary">{ buttonText }</Button>
+        </NavLink>
+      ) : (
+        <Button variant="tertiary" onClick={ handleButtonClick }>{ buttonText }</Button>
+      )
+    } },
+  ]
+}
