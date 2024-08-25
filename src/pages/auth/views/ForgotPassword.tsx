@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/index'
@@ -14,7 +14,7 @@ export function ForgotPassword() {
 
   const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormFields>()
 
-  const { mutateAsync: login, isPending } = useLogin({
+  const { mutateAsync: _login, isPending } = useLogin({
     onSuccess: () => {
       addToast({
         message: '¡Bienvenido!',

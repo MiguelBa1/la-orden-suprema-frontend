@@ -8,7 +8,7 @@ import { NewPasswordFormFields } from '../models'
 import { useRef } from 'react'
 
 export function NewPassword() {
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm<NewPasswordFormFields>()
+  const { register, handleSubmit, formState: { errors } } = useForm<NewPasswordFormFields>()
   const location = useLocation()
   const { addToast } = useToastStore()
   const email = location.state?.email  // Recuperar el email del estado
@@ -51,31 +51,31 @@ export function NewPassword() {
           <h1 className="text-2xl font-bold text-center">Restablecer contraseña</h1>
           <p className="text-center">Ingrese su nueva contraseña.</p>
         </div>
-        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={ handleSubmit(onSubmit) }>
           <InputField
             id="password"
             type="password"
             name="password"
             placeholder="Nueva contraseña"
-            registration={register('password', {
+            registration={ register('password', {
               required: 'Este campo es requerido',
               onChange: (e) => passwordRef.current = e.target.value // Guardar la contraseña en el ref
-            })}
-            error={errors.password?.message as string}
+            }) }
+            error={ errors.password?.message as string }
           />
           <InputField
             id="confirmPassword"
             type="password"
             name="confirmPassword"
             placeholder="Confirmar contraseña"
-            registration={register('confirmPassword', {
+            registration={ register('confirmPassword', {
               required: 'Este campo es requerido',
               validate: (value) => value === passwordRef.current || 'Las contraseñas no coinciden'
-            })}
-            error={errors.confirmPassword?.message as string}
+            }) }
+            error={ errors.confirmPassword?.message as string }
           />
           <Button type="submit" className="w-full">
-            {isPending ? 'Restableciendo contraseña...' : 'Restablecer Contraseña'}
+            { isPending ? 'Restableciendo contraseña...' : 'Restablecer Contraseña' }
           </Button>
         </form>
       </div>

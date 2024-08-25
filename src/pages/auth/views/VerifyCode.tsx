@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { VerifyCodeFormFields } from '@pages/auth/models'
 
 export function VerifyCode() {
-  const { register, handleSubmit, formState: { errors } } = useForm<VerifyCodeFormFields>();
+  const { register, handleSubmit, formState: { errors } } = useForm<VerifyCodeFormFields>()
   const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<VerifyCodeFormFields> = (data) => {
@@ -25,28 +25,28 @@ export function VerifyCode() {
           <h1 className="text-2xl font-bold text-center">Restablecer contraseña</h1>
           <p className="text-center">Ingrese un correo válido para restablecer su contraseña.</p>
         </div>
-        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={ handleSubmit(onSubmit) }>
           <div className="flex flex-col gap-1">
             <InputField
               id="email"
               type="text"
               name="email"
               placeholder="Correo electrónico"
-              registration={register('email', {
+              registration={ register('email', {
                 required: 'Este campo es requerido',
                 pattern: { value: /^\S+@\S+$/i, message: 'Correo electrónico inválido' }
-              })}
-              error={errors.email?.message as string}
+              }) }
+              error={ errors.email?.message as string }
             />
             <InputField
               id="code"
               type="text"
               name="code"
               placeholder="Código de verificación"
-              registration={register('code', {
+              registration={ register('code', {
                 required: 'Este campo es requerido'
-              })}
-              error={errors.code?.message as string}
+              }) }
+              error={ errors.code?.message as string }
             />
           </div>
           <Button type="submit" className="w-full">

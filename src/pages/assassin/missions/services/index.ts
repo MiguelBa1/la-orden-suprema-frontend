@@ -1,5 +1,6 @@
 export * from './getMissionsList.service'
 export * from './getMissionDetails.service'
+export * from './getDebtsList.service'
 export * from './assignAssassinToMission.service'
 export * from './completeMission.service'
 export * from './payMission.service'
