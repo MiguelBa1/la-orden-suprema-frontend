@@ -10,6 +10,7 @@ const GeneralMissionsList = lazy(() => import('@pages/assassin').then((module) =
 const AssignedMissionsList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssignedMissionsListView })))
 const MissionsList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.MissionsListView })))
 const MissionDetails = lazy(() => import('@pages/assassin').then((module) => ({ default: module.MissionDetailsView })))
+const CreateMission = lazy(() => import('@pages/assassin').then((module) => ({ default: module.CreateMissionView })))
 const AssassinsList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssassinsListView })))
 const AssassinDetails = lazy(() => import('@pages/assassin').then((module) => ({ default: module.AssassinDetailsView })))
 const TransactionsList = lazy(() => import('@pages/assassin').then((module) => ({ default: module.TransactionListView })))
@@ -24,6 +25,7 @@ export const assassinRouter = [
       { path: "missions/general", element: <GeneralMissionsList/>},
       { path: "missions/assignments", element: <AssignedMissionsList/>},
       { path: "missions/created-by-me", element: <MissionsList/>},
+      { path: "missions/new", element: <CreateMission/>},
       { path: "missions/:missionId", element: <MissionDetails/>},
       { path: "assassins", element: <AssassinsList/>},
       { path: "assassins/:assassinId", element: <AssassinDetails/>},
