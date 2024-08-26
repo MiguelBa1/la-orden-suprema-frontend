@@ -12,26 +12,23 @@ export function ForgotPassword() {
   const { addToast } = useToastStore()
   const { data: user } = useUser()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormFields>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<ForgotPasswordFormFields>()
 
   const { mutateAsync: _login, isPending } = useLogin({
     onSuccess: () => {
-      addToast({
-        message: '¡Bienvenido!',
-        type: 'success'
-      })
+      addToast({ message: '¡Bienvenido!', type: 'success' })
     },
     onError: () => {
-      addToast({
-        message: 'Credenciales inválidas',
-        type: 'error'
-      })
+      addToast({ message: 'Credenciales inválidas', type: 'error' })
     }
   })
 
   const navigate = useNavigate()
 
-  // Redirect to the corresponding dashboard
   useEffect(() => {
     if (user?.roles.includes(UserRole.ADMIN)) {
       navigate('/app/admin/home')
@@ -41,10 +38,6 @@ export function ForgotPassword() {
   }, [navigate, user])
 
   const onSubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
-    console.log('Correo:', data.email)
-    // Aquí podrías agregar la lógica de validación del código
-
-    // Redirigir al componente de restablecimiento de contraseña
     navigate('/verify-code', { state: { email: data.email } })
   }
 
@@ -71,10 +64,7 @@ export function ForgotPassword() {
             />
           </div>
           <div className="space-y-2 text-center">
-            <Button
-              type="submit"
-              className="w-full"
-            >
+            <Button type="submit" className="w-full">
               { isPending ? 'Enviando Código...' : 'Enviar Código' }
             </Button>
           </div>
