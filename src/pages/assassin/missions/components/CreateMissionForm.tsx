@@ -25,7 +25,6 @@ export function CreateMissionForm() {
   const { register, control, watch, trigger, handleSubmit, formState: { errors } } = useForm<FieldValues>()
 
   const selectedPaymentType = watch('payment_type')
-  const selectedDebtor = watch('debtor')
   const selectedCoins = watch('coins')
 
   const debtsQuery = useQuery({
@@ -33,6 +32,8 @@ export function CreateMissionForm() {
     queryFn: () => getDebtsList(user?.id as number),
     enabled: selectedPaymentType === MissionPaymentType.BLOOD_DEBT_COLLECTION,
   })
+
+  const selectedDebtor = debtsQuery.data?.find((item) => item.value === watch('debtor'))?.label
 
   const onSubmit: SubmitHandler<FieldValues> = (_data) => {
     // TODO: Implement API call to create a new mission
@@ -113,6 +114,7 @@ export function CreateMissionForm() {
             <Controller
               name="debtor"
               control={ control }
+              rules={ { required: 'Este campo es requerido' } }
               render={ ({ field, fieldState: { error } }) => (
                 <Dropdown
                   id="debtor"

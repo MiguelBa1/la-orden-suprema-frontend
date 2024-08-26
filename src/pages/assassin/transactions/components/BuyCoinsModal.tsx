@@ -12,7 +12,13 @@ type BuyCoinsModalProps = {
 export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
 
   const { addToast } = useToastStore()
-  const { register, handleSubmit, watch, setValue } = useForm({
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue ,
+    formState: { errors }
+  } = useForm({
     defaultValues: {
       usd: 0,
       coins: 0
@@ -56,8 +62,12 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
             id="usd"
             type="number"
             placeholder="$"
-            { ...register('usd') }
+            { ...register('usd', {
+              required: 'Este campo es requerido',
+              min: { value: 0, message: 'El valor mínimo es 0' }
+            }) }
             className="relative w-full bg-white border rounded-md shadow-sm px-3 py-2 text-left focus:outline-none focus:ring-1 sm:text-sm"
+            min={ 0 }
           />
         </div>
         <ArrowRightIcon className="w-12 h-12 mt-6" />
@@ -74,6 +84,7 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
           />
         </div>
       </form>
+      { errors.usd && <p className="mt-1 text-sm text-red-600">{ errors.usd.message }</p> }
     </Modal>
   )
 }
