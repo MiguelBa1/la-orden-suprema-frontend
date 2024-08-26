@@ -3,10 +3,10 @@ import { Modal, Button } from '@components/UI'
 type CreateAssassinConfirmModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  handleSubmit: () => void;
 }
 
-export function CreateAssassinConfirmModal({ isOpen, onClose, onConfirm }: CreateAssassinConfirmModalProps) {
+export function CreateAssassinConfirmModal({ isOpen, onClose, handleSubmit }: CreateAssassinConfirmModalProps) {
   return (
     <Modal
       isOpen={ isOpen }
@@ -17,7 +17,7 @@ export function CreateAssassinConfirmModal({ isOpen, onClose, onConfirm }: Creat
           <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
-          <Button onClick={ onConfirm }>
+          <Button onClick={ handleSubmit }>
             Registrar
           </Button>
         </>

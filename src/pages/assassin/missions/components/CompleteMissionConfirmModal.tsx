@@ -1,7 +1,7 @@
 import { completeMission, MissionDetails } from '@pages/assassin'
 import { useMutation, UseQueryResult } from '@tanstack/react-query'
 import { Button, Modal } from '@components/UI'
-import { FieldValues, useForm } from 'react-hook-form'
+import { FieldValues, useForm, FieldErrors } from 'react-hook-form'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useToastStore } from '@stores/useToastStore.ts'
 
@@ -19,7 +19,7 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
     onChange: (event: ChangeEvent<HTMLInputElement>) => {
       setFileName(event.target.files?.[0].name ?? '')
     },
-    required:'La foto es requerida',
+    required: 'La foto es requerida',
   })
 
   const hiddenInputRef = useRef<HTMLInputElement|null>(null)
@@ -43,8 +43,8 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
     onClose()
   }
 
-  const onInvalid = () => {
-    toast.addToast({ message: "La imagen es requerida", type: "error" })
+  const onInvalid = (errors: FieldErrors) => {
+    toast.addToast({ message: errors.imageUrl?.message as string, type: "error" })
     onClose()
   }
 
@@ -54,7 +54,6 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
     }
   }
 
-
   return (
     <Modal
       isOpen={ isOpen }
@@ -62,7 +61,13 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
       title="Completar misión"
       footerButtons={
         <>
-          <Button onClick={ onClose } variant="tertiary">
+          <Button
+            onClick={ () => {
+              onClose()
+              setFileName('')
+            } }
+            variant="tertiary"
+          >
             Cancelar
           </Button>
           <Button onClick={ () => formRef.current?.requestSubmit() } color="green">

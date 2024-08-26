@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { InputField, Textarea, Button } from '@components/index'
 import { useToastStore } from '@stores/useToastStore'
@@ -9,18 +9,14 @@ export function CreateMissionForm() {
   const { addToast } = useToastStore()
   const navigate = useNavigate()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
-  const formRef = useRef<HTMLFormElement | null>(null)
 
   const {
     register,
     watch,
     handleSubmit,
-    formState: { errors }
-  } = useForm<FieldValues>({
-    values: {
-      paymentType: 'Monedas de asesino',
-    }
-  })
+    formState: { errors },
+    trigger,
+  } = useForm<FieldValues>({ values: { paymentType: 'Monedas de asesino' } })
 
   const onSubmit: SubmitHandler<FieldValues> = (_data) => {
     // TODO: Implement API call to create a new mission
@@ -32,7 +28,7 @@ export function CreateMissionForm() {
 
   return (
     <>
-      <form ref={ formRef } className="grid grid-cols-2 gap-4" onSubmit={ handleSubmit(onSubmit) }>
+      <form className="grid grid-cols-2 gap-4" onSubmit={ handleSubmit(onSubmit) }>
         <InputField
           id="description"
           name="description"
@@ -80,7 +76,16 @@ export function CreateMissionForm() {
           className="col-span-2 sm:col-span-1"
         />
         <div className="col-span-2 flex justify-center lg:justify-end">
-          <Button color="green" type="button" onClick={ () => setShowConfirmModal(true) }>
+          <Button
+            color="green"
+            type="button"
+            onClick={ async () => {
+              const isValid = await trigger()
+              if (!isValid) return
+
+              setShowConfirmModal(true)
+            } }
+          >
             Publicar misión
           </Button>
         </div>
@@ -88,10 +93,7 @@ export function CreateMissionForm() {
       <CreateMissionConfirmModal
         isOpen={ showConfirmModal }
         onClose={ () => setShowConfirmModal(false) }
-        onConfirm={ () => {
-          setShowConfirmModal(false)
-          formRef.current?.requestSubmit()
-        } }
+        handleSubmit={ handleSubmit(onSubmit) }
         quantity={ selectedQuantity }
       />
     </>

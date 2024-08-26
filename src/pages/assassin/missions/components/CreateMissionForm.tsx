@@ -22,7 +22,14 @@ export function CreateMissionForm() {
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
 
-  const { register, control, watch, trigger, handleSubmit, formState: { errors } } = useForm<FieldValues>()
+  const {
+    register,
+    control,
+    watch,
+    trigger,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FieldValues>()
 
   const selectedPaymentType = watch('payment_type')
   const selectedCoins = watch('coins')
