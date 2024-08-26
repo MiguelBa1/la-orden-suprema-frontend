@@ -7,7 +7,6 @@ type TransactionsTableProps = {
 }
 
 export function TransactionListTable({ transactionListQuery }: TransactionsTableProps) {
-
   if (transactionListQuery.isFetching) {
     return <div className="flex justify-center items-center h-96">
       <Spinner />

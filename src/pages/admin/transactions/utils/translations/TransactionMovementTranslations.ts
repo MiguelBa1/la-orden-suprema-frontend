@@ -1,5 +1,4 @@
-import { TransactionMovement } from "../../models/enums/TransactionMovement"
-
+import { TransactionMovement } from '@pages/admin'
 
 export const TransactionMovementTranslations = {
   [TransactionMovement.INCOME]: 'Entrada',

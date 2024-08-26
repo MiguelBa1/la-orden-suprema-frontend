@@ -19,7 +19,6 @@ export function CreateMissionForm() {
   } = useForm<FieldValues>({ values: { paymentType: 'Monedas de asesino' } })
 
   const onSubmit: SubmitHandler<FieldValues> = (_data) => {
-    // TODO: Implement API call to create a new mission
     navigate('/app/admin/missions')
     addToast({ type: 'success', message: 'Misión publicada correctamente' })
   }

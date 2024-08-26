@@ -38,7 +38,7 @@ export function NewPassword() {
             placeholder="Nueva contraseña"
             registration={ register('password', {
               required: 'Este campo es requerido',
-              onChange: (e) => passwordRef.current = e.target.value // Guardar la contraseña en el ref
+              onChange: (e) => passwordRef.current = e.target.value
             }) }
             error={ errors.password?.message as string }
           />

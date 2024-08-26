@@ -1,7 +1,9 @@
-export const debtsListMock = [
+import { DebtsList } from '@pages/assassin'
+
+export const debtsListMock: DebtsList = [
   {
     label: 'Madam X',
-    value: 1, // id of the assassin
+    value: 1,
   },
   {
     label: '007',

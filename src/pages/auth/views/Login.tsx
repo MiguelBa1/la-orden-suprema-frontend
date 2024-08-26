@@ -31,7 +31,6 @@ export function Login() {
 
   const navigate = useNavigate()
 
-  // Redirect to the corresponding dashboard
   useEffect(() => {
     if (user?.roles.includes(UserRole.ADMIN)) {
       navigate('/app/admin/home')

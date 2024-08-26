@@ -10,7 +10,6 @@ type SellCoinsModalProps = {
 };
 
 export function SellCoinsModal({ isOpen, onClose }: SellCoinsModalProps) {
-
   const { addToast } = useToastStore()
   const {
     register,
@@ -18,18 +17,13 @@ export function SellCoinsModal({ isOpen, onClose }: SellCoinsModalProps) {
     watch,
     setValue,
     formState: { errors }
-  } = useForm({
-    defaultValues: {
-      usd: 0,
-      coins: 0
-    }
-  })
+  } = useForm({ defaultValues: { usd: 0, coins: 0 } })
 
-  const coinsValue = watch('coins', 0) // Observar el valor del input USD
+  const coinsValue = watch('coins', 0)
 
   useEffect(() => {
     const usdValue = coinsValue * 10
-    setValue('usd', usdValue) // Actualizar el valor del input deshabilitado
+    setValue('usd', usdValue)
   }, [coinsValue, setValue])
 
   const onSubmit = async () => {

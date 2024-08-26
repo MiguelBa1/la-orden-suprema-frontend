@@ -1,1 +1,1 @@
-export * from './getTransactionsList.service.ts'
+export * from './getTransactionsList.service'

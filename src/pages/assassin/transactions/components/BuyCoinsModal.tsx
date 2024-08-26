@@ -10,7 +10,6 @@ type BuyCoinsModalProps = {
 };
 
 export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
-
   const { addToast } = useToastStore()
   const {
     register,
@@ -18,18 +17,13 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
     watch,
     setValue ,
     formState: { errors }
-  } = useForm({
-    defaultValues: {
-      usd: 0,
-      coins: 0
-    }
-  })
+  } = useForm({ defaultValues: { usd: 0, coins: 0 } })
 
-  const usdValue = watch('usd', 0) // Observar el valor del input USD
+  const usdValue = watch('usd', 0)
 
   useEffect(() => {
     const coins = usdValue / 10
-    setValue('coins', coins) // Actualizar el valor del input deshabilitado
+    setValue('coins', coins)
   }, [usdValue, setValue])
 
   const onSubmit = async () => {
@@ -45,10 +39,10 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
       footerButtons={
         <>
           <Button onClick={ onClose } variant="tertiary">
-                        Cancelar
+            Cancelar
           </Button>
           <Button onClick={ handleSubmit(onSubmit) }>
-                        Comprar
+            Comprar
           </Button>
         </>
       }
@@ -56,7 +50,7 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
       <form className="flex items-center gap-2 mt-4">
         <div className="w-full">
           <label htmlFor="usd" className="block text-sm font-medium text-gray-700 mb-1">
-                        Dinero (USD)
+            Dinero (USD)
           </label>
           <input
             id="usd"
@@ -73,7 +67,7 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
         <ArrowRightIcon className="w-12 h-12 mt-6" />
         <div className="w-full">
           <label htmlFor="coins" className="block text-sm font-medium text-gray-700 mb-1">
-                        Monedas
+            Monedas
           </label>
           <input
             id="coins"

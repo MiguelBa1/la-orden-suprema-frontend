@@ -23,7 +23,6 @@ export function CreateAssassinForm() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
 
   const onSubmit: SubmitHandler<FieldValues> = () => {
-    // TODO: Implement API call to create a new assassin
     navigate('/app/admin/assassins')
     addToast({ type: 'success', message: 'Asesino registrado correctamente' })
   }

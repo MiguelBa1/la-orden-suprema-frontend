@@ -43,7 +43,6 @@ export function CreateMissionForm() {
   const selectedDebtor = debtsQuery.data?.find((item) => item.value === watch('debtor'))?.label
 
   const onSubmit: SubmitHandler<FieldValues> = (_data) => {
-    // TODO: Implement API call to create a new mission
     navigate(-1)
     addToast({
       type: 'success',

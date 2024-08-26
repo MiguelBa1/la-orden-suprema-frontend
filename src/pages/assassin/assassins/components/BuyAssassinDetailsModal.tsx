@@ -12,7 +12,6 @@ export function BuyAssassinDetailsModal({ isOpen, onClose, assassin }: BuyAssass
   const { addToast } = useToastStore()
 
   const handleBuyAssassin = () => {
-    // TODO: Implement buy assassin logic
     addToast({ message: '¡Compra exitosa!', type: 'success', })
     onClose()
   }
