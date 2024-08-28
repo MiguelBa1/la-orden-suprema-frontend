@@ -3,7 +3,6 @@ import { Column, Button } from '@components/UI'
 import { AssassinItem } from '@pages/admin'
 
 export const AssassinsTableColumns: Column<AssassinItem>[] = [
-  { title: 'ID', dataIndex: 'id', key: 'id' },
   { title: 'Nombre', dataIndex: 'name', key: 'name' },
   { title: 'Email', dataIndex: 'email', key: 'email' },
   { title: 'Pseudónimo', dataIndex: 'alias', key: 'alias' },

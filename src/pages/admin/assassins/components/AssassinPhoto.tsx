@@ -58,7 +58,7 @@ export function AssassinPhoto({ methods, photoUrl, onPhotoUpdated, isDisabled, r
         variant="secondary"
         onClick={ handleButtonClick }
       >
-        { preview ? 'Cambiar imagen' : 'Subir imagen' }
+        Subir foto
       </Button>
     </div>
   )

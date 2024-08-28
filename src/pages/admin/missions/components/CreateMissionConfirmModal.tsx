@@ -3,11 +3,11 @@ import { Modal, Button } from '@components/UI'
 type CreateMissionConfirmModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  handleSubmit: () => void;
   quantity: number;
 }
 
-export function CreateMissionConfirmModal({ isOpen, onClose, onConfirm, quantity }: CreateMissionConfirmModalProps) {
+export function CreateMissionConfirmModal({ isOpen, onClose, handleSubmit, quantity }: CreateMissionConfirmModalProps) {
   return (
     <Modal
       isOpen={ isOpen }
@@ -18,10 +18,7 @@ export function CreateMissionConfirmModal({ isOpen, onClose, onConfirm, quantity
           <Button onClick={ onClose } variant="tertiary">
             Cancelar
           </Button>
-          <Button
-            onClick={ onConfirm }
-            color="green"
-          >
+          <Button onClick={ handleSubmit } color="green">
             Publicar
           </Button>
         </>

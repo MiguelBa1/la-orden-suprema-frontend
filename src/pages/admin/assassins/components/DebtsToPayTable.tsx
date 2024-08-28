@@ -19,7 +19,7 @@ export function DebsToPayTable({ assassinDetailsQuery }: DebsToPayTableProps) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-base lg:text-xl">Deudas pendientes</h2>
+      <h2 className="text-base lg:text-xl">Deudas por pagar</h2>
       <Table columns={ DebsToPayTableColumns } data={ assassinDetailsQuery.data.debsToPay } />
     </div>
   )

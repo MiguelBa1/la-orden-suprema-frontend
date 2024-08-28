@@ -18,7 +18,6 @@ export function MobileSidebar() {
   }
 
   useEffect(() => {
-    // Close the sidebar when the location changes
     setIsOpen(false)
     setSubMenusOpen(false)
   }, [location])

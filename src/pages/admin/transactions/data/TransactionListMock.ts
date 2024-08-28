@@ -1,10 +1,11 @@
 import { TransactionMovement } from '../models/enums/TransactionMovement'
+import { TransactionList } from '@pages/admin'
 
-export const TransactionListMock = [
+export const TransactionListMock: TransactionList = [
   {
     description: 'Compra monedas',
     transaction: TransactionMovement.INCOME,
-    amount: '+200', //TODO: change to string
+    amount: '+200',
     date: '08/01/2024',
   },
   {

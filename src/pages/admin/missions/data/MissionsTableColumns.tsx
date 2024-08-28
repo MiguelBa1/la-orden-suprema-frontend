@@ -8,7 +8,7 @@ export const MissionsTableColumns: Column<MissionItem>[] = [
   { title: 'Estado', key: 'status', render: (record) => (
     <MissionStatusLabel status={ record.status }/>
   ) },
-  { title: 'Creado por', dataIndex: 'createdBy', key: 'createdBy' },
+  { title: 'Creador', dataIndex: 'createdBy', key: 'createdBy' },
   { title: 'Asignado a', dataIndex: 'assignedTo', key: 'assignedTo' },
   { title: 'Acciones', key: 'actions', render: (_record) => {
     const buttonText = {

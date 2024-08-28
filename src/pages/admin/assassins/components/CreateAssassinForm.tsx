@@ -1,14 +1,13 @@
-import { useForm, Controller, FieldValues, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
+import { useForm, Controller, FieldValues, SubmitHandler } from 'react-hook-form'
 import { countriesList } from '@data/index'
 import { InputField, Dropdown, Button } from '@components/index'
 import { AssassinPhoto, CreateAssassinConfirmModal } from '@pages/admin'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useToastStore } from '@stores/useToastStore.ts'
 import { useNavigate } from 'react-router-dom'
 
 export function CreateAssassinForm() {
   const methods = useForm<FieldValues>()
-  const formRef = useRef<HTMLFormElement | null>(null)
   const { addToast } = useToastStore()
   const navigate = useNavigate()
 
@@ -16,20 +15,16 @@ export function CreateAssassinForm() {
     register,
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    trigger
   } = methods
 
   const [photoUrl, setPhotoUrl] = useState<string>()
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
 
   const onSubmit: SubmitHandler<FieldValues> = () => {
-    // TODO: Implement API call to create a new assassin
     navigate('/app/admin/assassins')
     addToast({ type: 'success', message: 'Asesino registrado correctamente' })
-  }
-
-  const onInvalid: SubmitErrorHandler<FieldValues> = () => {
-    addToast({ type: 'error', message: 'Por favor, completa todos los campos' })
   }
 
   return (
@@ -41,7 +36,7 @@ export function CreateAssassinForm() {
         methods={ methods }
         required
       />
-      <form className="lg:col-span-2 space-y-4" ref={ formRef } onSubmit={ handleSubmit(onSubmit, onInvalid) }>
+      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(onSubmit) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
             id="name"
@@ -104,17 +99,22 @@ export function CreateAssassinForm() {
           />
         </div>
         <div className="flex justify-center lg:justify-end">
-          <Button onClick={ () => setIsConfirmModalOpen(true) }>Registrar asesino</Button>
+          <Button onClick={ async () => {
+            const isValid = await trigger()
+            if (!isValid) return
+
+            setIsConfirmModalOpen(true)
+          } }
+          >
+            Registrar asesino
+          </Button>
         </div>
       </form>
 
       <CreateAssassinConfirmModal
         isOpen={ isConfirmModalOpen }
         onClose={ () => setIsConfirmModalOpen(false) }
-        onConfirm={ () => {
-          setIsConfirmModalOpen(false)
-          formRef.current?.requestSubmit()
-        } }
+        handleSubmit={ handleSubmit(onSubmit) }
       />
     </div>
   )

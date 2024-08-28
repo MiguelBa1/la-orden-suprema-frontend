@@ -76,3 +76,15 @@ pnpm lint
 ```
 
 This will run ESLint and Prettier according to the project's configuration.
+
+## Credentials
+The credentials for the users are the following:  
+
+**Admin**
+- **Username:** admin@mail.com
+- **Password:** pass
+
+**Assassin**
+- **Username:** assassin@mail.com
+- **Password:** pass
+

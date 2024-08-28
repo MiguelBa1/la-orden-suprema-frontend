@@ -1,46 +1,25 @@
-import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { useLogin } from '@lib/index'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useToastStore } from '@stores/index'
-import { NewPasswordFormFields } from '../models'
 import { useRef } from 'react'
 
 export function NewPassword() {
-  const { register, handleSubmit, formState: { errors } } = useForm<NewPasswordFormFields>()
-  const location = useLocation()
+  const navigate = useNavigate()
   const { addToast } = useToastStore()
-  const email = location.state?.email  // Recuperar el email del estado
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FieldValues>()
 
   const passwordRef = useRef<string | null>(null)
-  
-  const { mutateAsync: login, isPending } = useLogin({
-    onSuccess: () => {
-      addToast({
-        message: '¡Contraseña reestablecida con éxito!',
-        type: 'success'
-      })
-    },
-    onError: () => {
-      addToast({
-        message: 'Error al restablecer la contraseña',
-        type: 'error'
-      })
-    }
-  })
 
-  const onSubmit: SubmitHandler<NewPasswordFormFields> = async (data) => {
-    console.log('Contraseña restablecida:', data.password)
-    if (email) {
-      const payload = {
-        email: email,
-        password: data.password
-      }
-      await login(payload)
-    } else {
-      console.error('Error: No se encontró el email para proceder con el restablecimiento de contraseña.')
-    }
+  const onSubmit: SubmitHandler<FieldValues> = async () => {
+    addToast({ message: '¡Contraseña reestablecida con éxito!', type: 'success' })
+    navigate('/auth/login')
   }
 
   return (
@@ -51,7 +30,7 @@ export function NewPassword() {
           <h1 className="text-2xl font-bold text-center">Restablecer contraseña</h1>
           <p className="text-center">Ingrese su nueva contraseña.</p>
         </div>
-        <form className="space-y-6" onSubmit={ handleSubmit(onSubmit) }>
+        <form className="space-y-4" onSubmit={ handleSubmit(onSubmit) }>
           <InputField
             id="password"
             type="password"
@@ -59,7 +38,7 @@ export function NewPassword() {
             placeholder="Nueva contraseña"
             registration={ register('password', {
               required: 'Este campo es requerido',
-              onChange: (e) => passwordRef.current = e.target.value // Guardar la contraseña en el ref
+              onChange: (e) => passwordRef.current = e.target.value
             }) }
             error={ errors.password?.message as string }
           />
@@ -75,7 +54,7 @@ export function NewPassword() {
             error={ errors.confirmPassword?.message as string }
           />
           <Button type="submit" className="w-full">
-            { isPending ? 'Restableciendo contraseña...' : 'Restablecer Contraseña' }
+            Restablecer contraseña
           </Button>
         </form>
       </div>

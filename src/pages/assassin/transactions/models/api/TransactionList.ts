@@ -1,5 +1,4 @@
-import { TransactionMovement } from '@pages/assassin/transactions/models/enums/TransactionMovement'
-
+import { TransactionMovement } from '@pages/assassin'
 
 export type TransactionItem = {
   description: string;
@@ -7,6 +6,5 @@ export type TransactionItem = {
   amount: string;
   date: string;
 }
-
 
 export type TransactionList = TransactionItem[]

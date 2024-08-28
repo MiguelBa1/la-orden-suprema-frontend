@@ -1,19 +1,20 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { VerifyCodeFormFields } from '@pages/auth/models'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 
 export function VerifyCode() {
-  const { register, handleSubmit, formState: { errors } } = useForm<VerifyCodeFormFields>()
+  const location = useLocation()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FieldValues>({ values: { email: location.state.email }  })
+
   const navigate = useNavigate()
 
-  const onSubmit: SubmitHandler<VerifyCodeFormFields> = (data) => {
-    console.log('Correo:', data.email)
-    console.log('Código de verificación:', data.code)
-    // Aquí podrías agregar la lógica de validación del código
-
-    // Redirigir al componente de restablecimiento de contraseña
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     navigate('/new-password', { state: { email: data.email } })
   }
 
@@ -26,7 +27,7 @@ export function VerifyCode() {
           <p className="text-center">Ingrese un correo válido para restablecer su contraseña.</p>
         </div>
         <form className="space-y-6" onSubmit={ handleSubmit(onSubmit) }>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-4">
             <InputField
               id="email"
               type="text"
@@ -37,6 +38,7 @@ export function VerifyCode() {
                 pattern: { value: /^\S+@\S+$/i, message: 'Correo electrónico inválido' }
               }) }
               error={ errors.email?.message as string }
+              disabled
             />
             <InputField
               id="code"

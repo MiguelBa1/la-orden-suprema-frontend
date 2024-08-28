@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Button } from '@components/UI'
 import { getMissionsList, MissionsListTable, MissionsTableToolbar, MissionsTableColumns } from '@pages/assassin'
 import { useForm } from 'react-hook-form'
@@ -20,11 +20,11 @@ export function MissionsListView() {
         <h1 className="text-xl lg:text-2xl">
           Misiones - Creadas por mi
         </h1>
-        <Link to="assassin/missions/create">
+        <NavLink to="/app/assassin/missions/new">
           <Button>
             Crear misión
           </Button>
-        </Link>
+        </NavLink>
       </div>
       <MissionsTableToolbar searchForm={ searchForm } refetchMissionList={ missionListQuery.refetch } />
       <MissionsListTable missionListQuery={ missionListQuery } missionTableColumns={ MissionsTableColumns } />
