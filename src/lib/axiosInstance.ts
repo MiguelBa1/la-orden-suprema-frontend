@@ -25,8 +25,12 @@ axiosInstance.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log(error)
-    const errorMessage = error.response?.data?.message || 'Error desconocido'
-    return Promise.reject(new Error(errorMessage))
+    const errorMessage = error?.response?.data?.message || {
+      message: 'Ocurrió un error inesperado',
+    }
+    
+    return Promise.reject({
+      message: errorMessage,
+    })
   }
 )

@@ -21,9 +21,9 @@ export function Login() {
         type: 'success'
       })
     },
-    onError: () => {
+    onError: (error) => {
       addToast({
-        message: 'Credenciales inválidas',
+        message: error?.message ?? 'Error al iniciar sesión',
         type: 'error'
       })
     }
