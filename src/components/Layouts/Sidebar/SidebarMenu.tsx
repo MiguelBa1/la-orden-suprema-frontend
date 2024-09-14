@@ -11,7 +11,7 @@ type SidebarMenuProps = {
 
 export function SidebarMenu({ isOpen, setIsOpen, subMenuOpen, setSubMenuOpen }: SidebarMenuProps) {
   const { data: user } = useUser()
-  const userRoles = user?.roles
+  const userRoles = user?.role
 
   const visibleMenuItems = menuItems.filter(menuItem =>
     menuItem.roles.some(role => userRoles?.includes(role))

@@ -30,9 +30,9 @@ export function ForgotPassword() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user?.roles.includes(UserRole.ADMIN)) {
+    if (user?.role === UserRole.ADMIN) {
       navigate('/app/admin/home')
-    } else if (user?.roles.includes(UserRole.ASSASSIN)) {
+    } else if (user?.role === UserRole.ASSASSIN) {
       navigate('/app/assassin/home')
     }
   }, [navigate, user])
