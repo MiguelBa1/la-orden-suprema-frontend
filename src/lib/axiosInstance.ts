@@ -25,12 +25,21 @@ axiosInstance.interceptors.response.use(
     return response
   },
   (error) => {
-    const errorMessage = error?.response?.data?.message || {
-      message: 'Ocurrió un error inesperado',
+    const statusCode = error?.response?.status
+
+    let errorMessage
+
+    if (statusCode && statusCode >= 500) {
+      errorMessage = 'Error interno del servidor. Por favor, inténtalo más tarde.'
+    } else if (statusCode && statusCode >= 400) {
+      errorMessage = error?.response?.data?.message || 'Error en la solicitud.'
+    } else {
+      errorMessage = 'Ocurrió un error inesperado. Por favor, inténtalo más tarde.'
     }
-    
+
     return Promise.reject({
       message: errorMessage,
+      statusCode,
     })
   }
 )
