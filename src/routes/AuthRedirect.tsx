@@ -14,11 +14,11 @@ export function AuthRedirect() {
     return null
   }
 
-  if (user?.roles.includes(UserRole.ADMIN)) {
+  if (user?.role === UserRole.ADMIN) {
     return <Navigate to="/app/admin/home" replace />
   }
 
-  if (user?.roles.includes(UserRole.ASSASSIN)) {
+  if (user?.role === UserRole.ASSASSIN) {
     return <Navigate to="/app/assassin/home" replace />
   }
 

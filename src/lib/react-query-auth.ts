@@ -1,16 +1,15 @@
 import { configureAuth } from 'react-query-auth'
-import { loginUserMock } from '@services/index'
+import { loginUser, getUserService } from '@services/index'
 import { User, Credential } from '@models/api'
 
 const getUser = async (): Promise<User | null> => {
-  const user = localStorage.getItem('user')
-  return user ? JSON.parse(user) : null
+  return await getUserService()
 }
 
 const loginFn = async (credential: Credential) => {
-  const user = await loginUserMock(credential)
-  localStorage.setItem('user', JSON.stringify(user))
-  return user
+  const token = await loginUser(credential)
+  localStorage.setItem('token', JSON.stringify(token))
+  return await getUser()
 }
 
 const logoutFn = async (): Promise<void> => {

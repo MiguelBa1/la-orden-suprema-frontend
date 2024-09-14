@@ -13,7 +13,7 @@ export function RoleBasedRoute ({ allowedRoles }: RoleBasedRouteProps) {
     return null
   }
 
-  if (user.roles.some((role) => allowedRoles.includes(role))) {
+  if (allowedRoles.includes(user.role)) {
     return <Outlet />
   }
 

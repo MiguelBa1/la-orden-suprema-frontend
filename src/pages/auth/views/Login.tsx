@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
@@ -21,9 +22,11 @@ export function Login() {
         type: 'success'
       })
     },
-    onError: () => {
+    onError: (error: unknown) => {
+      const axiosError = error as AxiosError
+
       addToast({
-        message: 'Credenciales inválidas',
+        message: axiosError.message ?? 'Error al iniciar sesión',
         type: 'error'
       })
     }
@@ -32,9 +35,9 @@ export function Login() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user?.roles.includes(UserRole.ADMIN)) {
+    if (user?.role === UserRole.ADMIN) {
       navigate('/app/admin/home')
-    } else if (user?.roles.includes(UserRole.ASSASSIN)) {
+    } else if (user?.role === UserRole.ASSASSIN) {
       navigate('/app/assassin/home')
     }
   }, [navigate, user])
@@ -73,7 +76,8 @@ export function Login() {
               name="password"
               placeholder="Contraseña"
               registration={ register('password', {
-                required: 'Este campo es requerido'
+                required: 'Este campo es requerido',
+                minLength: { value: 8, message: 'La contraseña debe tener al menos 8 caracteres' }
               }) }
               error={ errors.password?.message as string }
             />
