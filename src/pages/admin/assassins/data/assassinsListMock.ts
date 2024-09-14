@@ -2,7 +2,7 @@ import { AssassinsList } from '@pages/admin'
 
 export const assassinsListMock: AssassinsList = [
   {
-    id: 1,
+    _id: 1,
     name: 'John Wick',
     email: 'john@mail.com',
     alias: 'Baba Yaga',
@@ -10,7 +10,7 @@ export const assassinsListMock: AssassinsList = [
     country: 'Estados Unidos',
   },
   {
-    id: 2,
+    _id: 2,
     name: 'Jason Bourne',
     email: 'jason@mail.com',
     alias: 'David Webb',
@@ -18,7 +18,7 @@ export const assassinsListMock: AssassinsList = [
     country: 'Estados Unidos',
   },
   {
-    id: 3,
+    _id: 3,
     name: 'Nikita Mears',
     email: 'nikita@mail.com',
     alias: 'Josephine',
@@ -26,7 +26,7 @@ export const assassinsListMock: AssassinsList = [
     country: 'Canadá',
   },
   {
-    id: 4,
+    _id: 4,
     name: 'Ethan Hunt',
     email: 'ethan@mail.com',
     alias: 'Dmitri',
@@ -34,7 +34,7 @@ export const assassinsListMock: AssassinsList = [
     country: 'Estados Unidos',
   },
   {
-    id: 5,
+    _id: 5,
     name: 'James Bond',
     email: 'james@mail.com',
     alias: '007',
@@ -42,7 +42,7 @@ export const assassinsListMock: AssassinsList = [
     country: 'Reino Unido',
   },
   {
-    id: 6,
+    _id: 6,
     name: 'Ava Faulkner',
     email: 'ava@mail.com',
     alias: 'Madam X',
@@ -50,7 +50,7 @@ export const assassinsListMock: AssassinsList = [
     country: 'Francia',
   },
   {
-    id: 7,
+    _id: 7,
     name: 'Lorraine Broughton',
     email: 'lorraine@mail.com',
     alias: 'Sable',

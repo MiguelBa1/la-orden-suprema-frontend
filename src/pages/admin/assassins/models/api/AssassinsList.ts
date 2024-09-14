@@ -1,9 +1,11 @@
+import { AssassinStatus } from '@models/enums'
+
 export type AssassinItem = {
-  id: number;
+  _id: number;
   name: string;
   email: string;
   alias: string;
-  status: string;
+  status: AssassinStatus;
   country: string;
 }
 

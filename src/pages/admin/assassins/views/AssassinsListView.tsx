@@ -11,6 +11,7 @@ export function AssassinsListView() {
     {
       queryKey: ['assassins', searchForm.getValues()],
       queryFn: () => getAssassinsList(searchForm.getValues()),
+      staleTime: 1000 * 60,
     }
   )
 
