@@ -4,18 +4,18 @@ import { UseFormReturn } from 'react-hook-form'
 
 type AssassinPhotoProps = {
   methods: UseFormReturn
-  photoUrl?: string
+  profilePicture?: string
   onPhotoUpdated: (newPhotoUrl: string) => void
   isDisabled: boolean
   required?: boolean
 }
 
-export function AssassinPhoto({ methods, photoUrl, onPhotoUpdated, isDisabled, required }: AssassinPhotoProps) {
+export function AssassinPhoto({ methods, profilePicture, onPhotoUpdated, isDisabled, required }: AssassinPhotoProps) {
   const { register, formState: { errors } } = methods
   const hiddenInputRef = useRef<HTMLInputElement | null>(null)
-  const [preview, setPreview] = useState<string>(photoUrl ?? '/images/no-user-image.webp')
+  const [preview, setPreview] = useState<string>(profilePicture ?? '/images/no-user-image.webp')
 
-  const { ref: registerRef, ...rest } = register('photoUrl', {
+  const { ref: registerRef, ...rest } = register('profilePicture', {
     onChange: (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0]
       if (file) {
@@ -49,7 +49,7 @@ export function AssassinPhoto({ methods, photoUrl, onPhotoUpdated, isDisabled, r
         disabled={ isDisabled }
       />
       <span className="text-sm text-red-500">
-        { errors.photoUrl?.message as string }
+        { errors.profilePicture?.message as string }
       </span>
 
       <Button
