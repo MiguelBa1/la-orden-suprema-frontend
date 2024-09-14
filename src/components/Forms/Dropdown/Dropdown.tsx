@@ -9,7 +9,7 @@ type Option = {
 
 type DropdownProps = {
   id: string;
-  options: Option[];
+  options?: Option[];
   value: string | number;
   onChange: (value: string | number) => void;
   label?: string;
@@ -21,7 +21,7 @@ type DropdownProps = {
 
 export function Dropdown({
   id,
-  options,
+  options = [],
   value,
   onChange,
   label,
