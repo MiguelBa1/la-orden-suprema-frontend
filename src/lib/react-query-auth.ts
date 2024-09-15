@@ -13,7 +13,7 @@ const loginFn = async (credential: Credential) => {
 }
 
 const logoutFn = async (): Promise<void> => {
-  localStorage.removeItem('user')
+  localStorage.removeItem('token')
 }
 
 export const { useUser, useLogin, useLogout, AuthLoader } = configureAuth({
