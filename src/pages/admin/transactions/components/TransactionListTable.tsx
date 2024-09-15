@@ -19,9 +19,9 @@ export function TransactionListTable({ transactionListQuery }: TransactionsTable
     </div>
   }
 
-  if (transactionListQuery.data?.length === 0) {
+  if (transactionListQuery.data?.transactions?.length === 0) {
     return <div className="flex justify-center items-center h-96">
-      No se encontraron resultados
+      No hay transacciones para mostrar
     </div>
   }
 
@@ -30,6 +30,6 @@ export function TransactionListTable({ transactionListQuery }: TransactionsTable
   }
 
   return (
-    <Table columns={ TransactionTableColumns } data={ transactionListQuery.data } />
+    <Table columns={ TransactionTableColumns } data={ transactionListQuery.data.transactions } />
   )
 }

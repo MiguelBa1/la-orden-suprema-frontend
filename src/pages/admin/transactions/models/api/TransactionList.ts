@@ -1,10 +1,11 @@
-import { TransactionMovement } from '@pages/admin'
-
 export type TransactionItem = {
   description: string;
-  transaction: TransactionMovement;
+  type: string;
   amount: string;
   date: string;
 }
 
-export type TransactionList = TransactionItem[]
+export type TransactionList = {
+  coins: number;
+  transactions: TransactionItem[];
+}

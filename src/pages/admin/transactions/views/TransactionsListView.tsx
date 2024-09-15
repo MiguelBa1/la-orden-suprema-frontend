@@ -7,14 +7,17 @@ import { InputField } from '@components/Forms'
 import { BuyCoinsModal } from '@pages/admin/transactions/components'
 
 export function TransactionListView() {
-  const searchForm = useForm()
 
   const [showBuyCoinsModal, setShowBuyCoinsModal] = useState(false)
-  const { register } = useForm({ defaultValues: { coins: 500, } })
 
   const TransactionListQuery = useQuery({
-    queryKey: ['missions', searchForm.getValues()],
-    queryFn: () => getTransactionsList(searchForm.getValues()),
+    queryKey: ['missions'],
+    queryFn: () => getTransactionsList(),
+    staleTime: 1000 * 60,
+  })
+
+  const { register } = useForm({
+    values: { coins: TransactionListQuery.data?.coins }
   })
 
   return (
@@ -24,6 +27,7 @@ export function TransactionListView() {
         <InputField
           id="coins"
           name="coins"
+          label="Monedas disponibles"
           type="number"
           placeholder="coins"
           disabled
@@ -34,7 +38,11 @@ export function TransactionListView() {
         Comprar Monedas
       </Button>
       <TransactionListTable transactionListQuery={ TransactionListQuery } />
-      <BuyCoinsModal isOpen={ showBuyCoinsModal } onClose={ () => setShowBuyCoinsModal(false) } />
+      <BuyCoinsModal
+        isOpen={ showBuyCoinsModal }
+        onClose={ () => setShowBuyCoinsModal(false) }
+        refetchTransactions={ TransactionListQuery.refetch }
+      />
     </div>
   )
 }
