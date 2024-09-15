@@ -7,4 +7,7 @@ export type TransactionItem = {
   date: string;
 }
 
-export type TransactionList = TransactionItem[]
+export type TransactionList = {
+  coins: number;
+  transactions: TransactionItem[];
+}
