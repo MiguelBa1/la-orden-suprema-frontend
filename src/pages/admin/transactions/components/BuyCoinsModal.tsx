@@ -1,16 +1,40 @@
+import { useEffect } from 'react'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+import { useQuery, useMutation, UseQueryResult } from '@tanstack/react-query'
 import { Modal, Button } from '@components/UI'
-import { useForm } from 'react-hook-form'
 import { ArrowRightIcon } from '@heroicons/react/16/solid'
 import { useToastStore } from '@stores/useToastStore'
-import { useEffect } from 'react'
+import { buyCoins } from '@pages/admin'
+import { getConfiguration } from '@services/index'
 
 type BuyCoinsModalProps = {
     isOpen: boolean;
     onClose: () => void;
+    refetchTransactions: UseQueryResult['refetch'];
 };
 
-export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
+export function BuyCoinsModal({ isOpen, onClose, refetchTransactions }: BuyCoinsModalProps) {
   const { addToast } = useToastStore()
+
+  const { data: configuration } = useQuery({
+    queryKey: ['configuration'],
+    queryFn: getConfiguration,
+    staleTime: 1000 * 60,
+  })
+
+  const buyCoinsMutation = useMutation({
+    mutationFn: buyCoins,
+    onSuccess: async () => {
+      onClose()
+      addToast({ message: 'Monedas compradas con éxito', type: 'success' })
+      await refetchTransactions()
+    },
+    onError: (error) => {
+      onClose()
+      addToast({ message: error.message, type: 'error' })
+    },
+  })
+
   const {
     register,
     handleSubmit,
@@ -22,13 +46,14 @@ export function BuyCoinsModal({ isOpen, onClose }: BuyCoinsModalProps) {
   const usdValue = watch('usd', 0)
 
   useEffect(() => {
-    const coins = usdValue / 10
-    setValue('coins', coins)
-  }, [usdValue, setValue])
+    if (!configuration) return
 
-  const onSubmit = async () => {
-    addToast({ message: 'Monedas compradas con éxito', type: 'success' })
-    onClose()
+    const coins = usdValue / configuration.MONEY_PER_COIN
+    setValue('coins', coins)
+  }, [usdValue, setValue, configuration])
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    await buyCoinsMutation.mutateAsync(Number(data.coins))
   }
 
   return (

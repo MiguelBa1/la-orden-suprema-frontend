@@ -38,7 +38,11 @@ export function TransactionListView() {
         Comprar Monedas
       </Button>
       <TransactionListTable transactionListQuery={ TransactionListQuery } />
-      <BuyCoinsModal isOpen={ showBuyCoinsModal } onClose={ () => setShowBuyCoinsModal(false) } />
+      <BuyCoinsModal
+        isOpen={ showBuyCoinsModal }
+        onClose={ () => setShowBuyCoinsModal(false) }
+        refetchTransactions={ TransactionListQuery.refetch }
+      />
     </div>
   )
 }

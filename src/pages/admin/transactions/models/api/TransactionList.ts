@@ -1,8 +1,6 @@
-import { TransactionMovement } from '@pages/admin'
-
 export type TransactionItem = {
   description: string;
-  transaction: TransactionMovement;
+  type: string;
   amount: string;
   date: string;
 }
