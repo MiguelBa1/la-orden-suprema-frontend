@@ -1,7 +1,7 @@
 export type TransactionItem = {
   description: string;
   type: string;
-  amount: string;
+  amount: number;
   date: string;
 }
 
