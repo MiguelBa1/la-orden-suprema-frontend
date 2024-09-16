@@ -1,9 +1,12 @@
 export type ProfileDetails = {
-  id: number;
+  _id: string;
   name: string;
-  email: string;
   alias: string;
-  address: string;
   country: string;
-  photoUrl: string;
+  address: string;
+  email: string;
+  profilePicture:  {
+    buffer?: string
+    mimetype?: string
+  };
 }

@@ -2,20 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { EditProfileForm, getProfileDetails } from '@pages/assassin'
 import { Spinner, Button } from '@components/UI'
-import { useUser } from '@lib/react-query-auth.ts'
 
 export function Profile() {
-
-  const userId = useUser()?.data?.id
   const navigate = useNavigate()
 
-  const profileDetailsQuery = useQuery(
-    {
-      queryKey: ['profile', userId],
-      queryFn: () => getProfileDetails(Number(userId)),
-      enabled: !!userId
-    }
-  )
+  const profileDetailsQuery = useQuery({
+    queryKey: ['profile'],
+    queryFn: getProfileDetails,
+  })
 
   if (profileDetailsQuery.isFetching) {
     return <div className="h-full flex justify-center items-center">
@@ -25,7 +19,7 @@ export function Profile() {
 
   if (profileDetailsQuery.isError) {
     return <div className="h-full flex justify-center items-center">
-      <p>Error al cargar la información del asesino</p>
+      <p>Error al cargar el perfil</p>
     </div>
   }
 
