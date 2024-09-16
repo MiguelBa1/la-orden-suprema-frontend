@@ -1,6 +1,8 @@
 import { Modal, Button } from '@components/UI'
-import { AssassinItem } from '@pages/assassin'
+import { AssassinItem, purchaseAssassinInformation } from '@pages/assassin'
 import { useToastStore } from '@stores/index'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { getConfiguration } from '@services/getConfiguration.service'
 
 type BuyAssassinsDetailsModalProps = {
   isOpen: boolean;
@@ -9,10 +11,28 @@ type BuyAssassinsDetailsModalProps = {
 }
 
 export function BuyAssassinDetailsModal({ isOpen, onClose, assassin }: BuyAssassinsDetailsModalProps) {
+  const queryClient = useQueryClient()
   const { addToast } = useToastStore()
 
+  const { data: configuration } = useQuery({
+    queryKey: ['configuration'],
+    queryFn: getConfiguration,
+    staleTime: 1000 * 60,
+  })
+
+  const mutation = useMutation({
+    mutationFn: purchaseAssassinInformation,
+    onSuccess: async (data) => {
+      addToast({ type: 'success', message: data.message })
+      await queryClient.invalidateQueries({ queryKey: ['assassins'] })
+    },
+    onError: (error) => {
+      addToast({ type: 'error', message: error.message })
+    }
+  })
+
   const handleBuyAssassin = () => {
-    addToast({ message: '¡Compra exitosa!', type: 'success', })
+    mutation.mutate(assassin?._id)
     onClose()
   }
 
@@ -35,7 +55,7 @@ export function BuyAssassinDetailsModal({ isOpen, onClose, assassin }: BuyAssass
       </p>
       <p>
         Esto le permitirá ver: Nombre completo, dirección y foto.
-        Esta acción tiene un costo de <span className="font-bold">{ assassin?.price }</span> monedas de asesino.
+        Esta acción tiene un costo de <span className="font-bold">{ configuration?.INFORMATION_PRICE }</span> monedas de asesino.
       </p>
     </Modal>
   )
