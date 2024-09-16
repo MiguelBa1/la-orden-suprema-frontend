@@ -23,7 +23,7 @@ export const getAssassinsTableColumns = ({ setBuyAssassinsDetailsModalIsOpen, se
       const buttonText = record.isPurchased ? 'Abrir' : 'Comprar Información'
 
       return record.isPurchased ? (
-        <NavLink to={ `/app/assassin/assassins/${record.id}` }>
+        <NavLink to={ `/app/assassin/assassins/${record._id}` }>
           <Button variant="tertiary">{ buttonText }</Button>
         </NavLink>
       ) : (
