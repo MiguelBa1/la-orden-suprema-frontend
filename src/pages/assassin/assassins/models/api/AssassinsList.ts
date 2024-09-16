@@ -1,10 +1,9 @@
 export type AssassinItem = {
-  id: number;
+  _id: string;
   name: string;
   alias: string;
   country: string;
   isPurchased: boolean;
-  price: number;
 }
 
 export type AssassinsList = AssassinItem[]

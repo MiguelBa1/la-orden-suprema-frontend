@@ -1,13 +1,12 @@
-import { assassinsListMock, AssassinsList } from '@pages/assassin'
+import { AssassinsList } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance.ts'
 
 type GetAssassinsListParams = {
   alias?: string;
 }
 
-export function getAssassinsList(_params: GetAssassinsListParams) {
-  return new Promise<AssassinsList>((resolve) => {
-    setTimeout(() => {
-      resolve(assassinsListMock)
-    }, 500)
-  })
+export async function getAssassinsList(params: GetAssassinsListParams) {
+  const { data } = await axiosInstance.get<AssassinsList>('/assassins', { params })
+
+  return data
 }
