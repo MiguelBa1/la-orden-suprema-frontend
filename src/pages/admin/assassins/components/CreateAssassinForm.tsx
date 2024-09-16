@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useForm, Controller, FieldValues, SubmitHandler } from 'react-hook-form'
 import { InputField, Dropdown, Button } from '@components/index'
 import { AssassinPhoto, CreateAssassinConfirmModal, createAssassin } from '@pages/admin'
@@ -8,14 +8,16 @@ import { useToastStore } from '@stores/useToastStore.ts'
 import { getCountries } from '@services/getCountries.service'
 
 export function CreateAssassinForm() {
+  const queryClient = useQueryClient()
   const methods = useForm<FieldValues>()
   const { addToast } = useToastStore()
   const navigate = useNavigate()
 
   const createAssassinMutation = useMutation({
     mutationFn: createAssassin,
-    onSuccess: () => {
+    onSuccess: async () => {
       addToast({ type: 'success', message: 'Asesino registrado correctamente' })
+      await queryClient.invalidateQueries({ queryKey: ['assassins'] })
       navigate('/app/admin/assassins')
     },
     onError: (error) => {
@@ -43,7 +45,6 @@ export function CreateAssassinForm() {
     trigger
   } = methods
 
-  const [profilePicture, setProfilePicture] = useState<string>()
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -57,15 +58,11 @@ export function CreateAssassinForm() {
     }
 
     createAssassinMutation.mutate(payload)
-
-    addToast({ type: 'success', message: 'Asesino registrado correctamente' })
   }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
       <AssassinPhoto
-        profilePicture={ profilePicture }
-        onPhotoUpdated={ (newPhotoUrl) => setProfilePicture(newPhotoUrl) }
         isDisabled={ false }
         methods={ methods }
         required

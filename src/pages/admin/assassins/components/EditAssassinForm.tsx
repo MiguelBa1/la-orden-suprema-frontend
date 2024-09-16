@@ -26,7 +26,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
 
   const isInactive = assassinDetailsQuery.data?.status === 'inactive'
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
-  const [photoUrl, setPhotoUrl] = useState(assassinDetailsQuery.data?.photoUrl ?? '')
 
   if (!assassinDetailsQuery.data) {
     return null
@@ -42,8 +41,7 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
       <AssassinPhoto
-        profilePicture={ photoUrl }
-        onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
+        profilePicture={ assassinDetailsQuery.data.profilePicture }
         isDisabled={ isInactive }
         methods={ methods }
       />
