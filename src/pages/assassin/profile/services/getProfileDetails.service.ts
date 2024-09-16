@@ -1,17 +1,8 @@
-import { ProfileDetails, profileDetailsMock } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance.ts'
+import { ProfileDetails } from '@pages/assassin'
 
-export const getProfileDetails = async (id: number) => {
-  return new Promise<ProfileDetails>((resolve, reject) => {
-    setTimeout(() => {
-      const profileDetails = profileDetailsMock.find((profile) => profile.id === id)
+export async function getProfileDetails() {
+  const { data } = await axiosInstance.get<ProfileDetails>('/me')
 
-      if (!profileDetails) {
-        reject(new Error('Profile not found'))
-      }
-
-      if (profileDetails && profileDetails.id === id) {
-        resolve(profileDetails)
-      }
-    }, 500)
-  })
+  return data
 }

@@ -1,16 +1,49 @@
-import { useState } from 'react'
-import { UseQueryResult } from '@tanstack/react-query'
+import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query'
 import { useForm, Controller, FieldValues } from 'react-hook-form'
-import { countriesList } from '@data/index'
 import { InputField, Dropdown, Button } from '@components/index'
 import { AssassinPhoto } from '@pages/admin'
-import { ProfileDetails } from '@pages/assassin'
+import { ProfileDetails, updateProfile } from '@pages/assassin'
+import { getCountries } from '@services/getCountries.service.ts'
+import { useToastStore } from '@stores/useToastStore.ts'
 
 type EditProfileFormProps = {
   profileDetailsQuery: UseQueryResult<ProfileDetails>
 }
 
 export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
+  const { addToast } = useToastStore()
+
+  const { data: countries } = useQuery({
+    queryKey: ['countries'],
+    queryFn: getCountries,
+    select: (data) => {
+      return data.map((country) => ({
+        label: country,
+        value: country
+      }))
+    }
+  })
+
+  const mutation = useMutation({
+    mutationFn: updateProfile,
+    onSuccess: async (data) => {
+      addToast({ type: 'success', message: data.message })
+    },
+    onError: (error) => {
+      addToast({ type: 'error', message: error.message })
+    }
+  })
+
+  const onSubmit = (data: FieldValues) => {
+    const payload = {
+      country: data.country,
+      address: data.address,
+      profilePicture: data.profilePicture[0]
+    }
+
+    mutation.mutate(payload)
+  }
+
   const methods = useForm<FieldValues>({
     defaultValues: profileDetailsQuery.data
   })
@@ -19,9 +52,8 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
     register,
     control,
     handleSubmit,
-    formState: { errors } } = methods
-
-  const [photoUrl, setPhotoUrl] = useState(profileDetailsQuery.data?.photoUrl || '')
+    formState: { errors }
+  } = methods
 
   if (!profileDetailsQuery.data) {
     return null
@@ -30,12 +62,11 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
       <AssassinPhoto
-        profilePicture={ photoUrl }
-        onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
+        profilePicture={ profileDetailsQuery.data.profilePicture }
         isDisabled={ false }
         methods={ methods }
       />
-      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(() => console.log("Actualiza información del perfil")) }>
+      <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(onSubmit) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
             id="name"
@@ -67,7 +98,7 @@ export function EditProfileForm({ profileDetailsQuery }: EditProfileFormProps) {
               <Dropdown
                 id="country"
                 label="País"
-                options={ countriesList }
+                options={ countries }
                 onChange={ field.onChange }
                 value={ field.value }
                 error={ errors.country?.message as string }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm, Controller, SubmitHandler, FieldValues } from 'react-hook-form'
-import { ConfirmStatusChangeModal, AssassinPhoto, AssassinDetails } from '@pages/admin'
+import { ConfirmStatusChangeModal, AssassinDetails } from '@pages/admin'
 import { countriesList } from '@data/index'
 import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
 import { useToastStore } from '@stores/index'
@@ -26,7 +26,6 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
 
   const isInactive = assassinDetailsQuery.data?.status === 'inactive'
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
-  const [photoUrl, setPhotoUrl] = useState(assassinDetailsQuery.data?.photoUrl ?? '')
 
   if (!assassinDetailsQuery.data) {
     return null
@@ -41,12 +40,11 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
-      <AssassinPhoto
-        profilePicture={ photoUrl }
-        onPhotoUpdated={ (newPhotoUrl) => setPhotoUrl(newPhotoUrl) }
-        isDisabled={ isInactive }
-        methods={ methods }
-      />
+      { /*<AssassinPhoto*/ }
+      { /*  profilePicture={ assassinDetailsQuery.data.profilePicture }*/ }
+      { /*  isDisabled={ isInactive }*/ }
+      { /*  methods={ methods }*/ }
+      { /*/>*/ }
       <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(onSubmit) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
