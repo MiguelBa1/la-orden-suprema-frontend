@@ -1,8 +1,11 @@
 export type AssassinDetails = {
-  id: number;
+  _id: string;
   name: string;
   alias: string;
-  address: string;
   country: string;
-  photoUrl: string;
+  address: string;
+  profilePicture: {
+    buffer?: string
+    mimetype?: string
+  };
 }

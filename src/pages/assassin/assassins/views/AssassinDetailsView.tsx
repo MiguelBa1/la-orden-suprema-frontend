@@ -1,10 +1,9 @@
-import { useForm, Controller, FieldValues } from 'react-hook-form'
+import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { useQuery } from '@tanstack/react-query'
-import { useParams, useNavigate } from 'react-router-dom'
-
-import { Spinner, Button, Dropdown, InputField } from '@components/index'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Dropdown, InputField, Spinner } from '@components/index'
 import { getAssassinDetails } from '@pages/assassin'
-import { countriesList } from '@data/index'
+import { getCountries } from '@services/getCountries.service'
 
 type AssassinDetailsParams = {
   assassinId: string
@@ -14,9 +13,20 @@ export function AssassinDetailsView() {
   const { assassinId } = useParams<AssassinDetailsParams>()
   const navigate = useNavigate()
 
+  const { data: countries } = useQuery({
+    queryKey: ['countries'],
+    queryFn: () => getCountries(),
+    select: (data) => {
+      return data.map((country) => ({
+        label: country,
+        value: country
+      }))
+    }
+  })
+
   const assassinDetailsQuery = useQuery({
     queryKey: ['assassin', assassinId],
-    queryFn: () => getAssassinDetails(Number(assassinId)),
+    queryFn: () => getAssassinDetails(assassinId),
     staleTime: 1000 * 60 * 5,
   })
 
@@ -42,6 +52,15 @@ export function AssassinDetailsView() {
     </div>
   }
 
+  if (!assassinDetailsQuery.data) {
+    return null
+  }
+
+  let profileImage = '/images/no-user-image.webp'
+  if (assassinDetailsQuery.data.profilePicture?.buffer && assassinDetailsQuery.data.profilePicture.mimetype) {
+    profileImage = `data:${assassinDetailsQuery.data.profilePicture.mimetype};base64,${assassinDetailsQuery.data.profilePicture.buffer}`
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -55,7 +74,7 @@ export function AssassinDetailsView() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
         <div className="flex justify-center">
           <img
-            src={ assassinDetailsQuery.data?.photoUrl ?? '/images/no-user-image.webp' }
+            src={ profileImage }
             alt="Foto del usuario"
             className="w-56 h-56 lg:w-64 lg:h-64 object-cover rounded-full"
           />
@@ -85,7 +104,7 @@ export function AssassinDetailsView() {
                 <Dropdown
                   id="country"
                   label="País"
-                  options={ countriesList }
+                  options={ countries }
                   onChange={ field.onChange }
                   value={ field.value }
                   disabled
