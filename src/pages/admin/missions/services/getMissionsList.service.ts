@@ -1,17 +1,15 @@
-import { missionsListMock, MissionsList } from '@pages/admin'
+import { MissionsList } from '@pages/admin'
 import { MissionStatus } from '@models/enums'
+import { axiosInstance } from '@lib/axiosInstance.ts'
 
 type GetMissionsListParams = {
   status?: MissionStatus;
   createdBy?: string;
-  assignedTo?: string;
 }
 
-export function getMissionsList(_params: GetMissionsListParams) {
-  return new Promise<MissionsList>((resolve) => {
-    setTimeout(() => {
-      resolve(missionsListMock)
-    }, 500)
-  })
+export async function getMissionsList(params: GetMissionsListParams) {
+  const { data } = await axiosInstance.get<MissionsList>('/missions/admin', { params })
+
+  return data
 }
 
