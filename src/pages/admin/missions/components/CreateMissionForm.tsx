@@ -1,26 +1,54 @@
 import { useState } from 'react'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { InputField, Textarea, Button } from '@components/index'
+import { Controller, FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { InputField, Textarea, Button, Dropdown } from '@components/index'
 import { useToastStore } from '@stores/useToastStore'
-import { CreateMissionConfirmModal } from '@pages/admin'
+import { createMission, CreateMissionConfirmModal } from '@pages/admin'
 import { useNavigate } from 'react-router-dom'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { MissionPaymentType } from '@models/enums'
+
+const missionTypes = [
+  { label: 'Monedas de asesino', value: MissionPaymentType.COINS },
+  { label: 'Deuda de sangre', value: MissionPaymentType.BLOOD_DEBT },
+  { label: 'Cobro de deuda de sangre', value: MissionPaymentType.BLOOD_DEBT_COLLECTION },
+]
 
 export function CreateMissionForm() {
+  const queryClient = useQueryClient()
   const { addToast } = useToastStore()
   const navigate = useNavigate()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
 
+  const mutation = useMutation({
+    mutationFn: createMission,
+    onSuccess: async (data) => {
+      addToast({ type: 'success', message: data.message })
+      await queryClient.invalidateQueries({ queryKey: ['missions'] })
+      navigate('/app/admin/missions')
+    },
+    onError: (error) => {
+      addToast({ type: 'error', message: error.message })
+    }
+  })
+
   const {
     register,
+    control,
     watch,
     handleSubmit,
     formState: { errors },
     trigger,
-  } = useForm<FieldValues>({ values: { paymentType: 'Monedas de asesino' } })
+  } = useForm<FieldValues>({ values: { paymentType: MissionPaymentType.COINS } })
 
-  const onSubmit: SubmitHandler<FieldValues> = (_data) => {
-    navigate('/app/admin/missions')
-    addToast({ type: 'success', message: 'Misión publicada correctamente' })
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const payload = {
+      description: data.description,
+      details: data.details,
+      paymentType: data.paymentType,
+      coinsAmount: Number(data.quantity)
+    }
+
+    mutation.mutate(payload)
   }
   
   const selectedQuantity = watch('quantity')
@@ -49,17 +77,22 @@ export function CreateMissionForm() {
           className="col-span-2"
           error={ errors.details?.message as string }
         />
-        <InputField
-          id="paymentType"
+        <Controller
           name="paymentType"
-          label="Tipo de pago"
-          type="text"
-          disabled
-          registration={ register('paymentType', {
-            required: 'Este campo es requerido',
-          }) }
-          error={ errors.paymentType?.message as string }
-          className="col-span-2 sm:col-span-1"
+          control={ control }
+          rules={ { required: 'Este campo es requerido' } }
+          render={ ({ field }) => (
+            <Dropdown
+              id="paymentType"
+              label="Tipo de pago"
+              options={ missionTypes }
+              value={ field.value }
+              onChange={ field.onChange }
+              error={ errors.payment_type?.message as string }
+              className="col-span-2 sm:col-span-1"
+              disabled
+            />
+          ) }
         />
         <InputField
           id="quantity"
