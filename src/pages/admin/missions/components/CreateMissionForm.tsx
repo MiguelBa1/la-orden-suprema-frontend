@@ -28,6 +28,7 @@ export function CreateMissionForm() {
     },
     onError: (error) => {
       addToast({ type: 'error', message: error.message })
+      setShowConfirmModal(false)
     }
   })
 

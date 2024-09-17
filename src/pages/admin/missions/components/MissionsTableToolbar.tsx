@@ -10,8 +10,12 @@ type MissionsTableToolbarProps = {
 }
 
 const missionStatusOptions = [
-  { value: 'active', label: missionStatusTranslations[MissionStatus.CREATED] },
-  { value: 'inactive', label: missionStatusTranslations[MissionStatus.ASSIGNED] },
+  { value: MissionStatus.CREATED, label: missionStatusTranslations[MissionStatus.CREATED] },
+  { value: MissionStatus.PUBLISHED, label: missionStatusTranslations[MissionStatus.PUBLISHED] },
+  { value: MissionStatus.REJECTED, label: missionStatusTranslations[MissionStatus.REJECTED] },
+  { value: MissionStatus.ASSIGNED, label: missionStatusTranslations[MissionStatus.ASSIGNED] },
+  { value: MissionStatus.COMPLETED, label: missionStatusTranslations[MissionStatus.COMPLETED] },
+  { value: MissionStatus.PAID, label: missionStatusTranslations[MissionStatus.PAID] },
 ]
 
 export function MissionsTableToolbar({ searchForm, refetchAssassinsList }: MissionsTableToolbarProps) {
