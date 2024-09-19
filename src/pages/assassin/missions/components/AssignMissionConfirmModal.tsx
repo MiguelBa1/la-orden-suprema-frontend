@@ -27,7 +27,7 @@ export function AssignMissionConfirmModal({ isOpen, onClose, mission, refetchMis
   })
 
   const handleConfirm = () => {
-    mutation.mutate({ missionId: mission.id, assassinId: Number(userId) })
+    mutation.mutate({ missionId: mission._id, assassinId: Number(userId) })
     onClose()
   }
 

@@ -25,7 +25,7 @@ export function RejectMissionEvidenceConfirmModal({ isOpen, onClose, mission, re
   })
 
   const handleConfirm = () => {
-    mutation.mutate({ id: mission.id })
+    mutation.mutate({ id: mission._id })
     onClose()
   }
 

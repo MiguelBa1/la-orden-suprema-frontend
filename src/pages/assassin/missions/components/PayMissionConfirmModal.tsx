@@ -25,7 +25,7 @@ export function PayMissionConfirmModal({ isOpen, onClose, mission, refetchMissio
   })
 
   const handleConfirm = () => {
-    mutation.mutate({ id: mission.id })
+    mutation.mutate({ id: mission._id })
     onClose()
   }
 

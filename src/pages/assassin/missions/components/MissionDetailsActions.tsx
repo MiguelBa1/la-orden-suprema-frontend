@@ -42,7 +42,7 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
   const canBeAssigned = missionDetailsData.assignedTo === null
   const canBeCompleted = missionDetailsData.status === MissionStatus.ASSIGNED
   const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED
-  const hasEvidence = missionDetailsData.imageUrl !== null
+  const hasEvidence = [MissionStatus.COMPLETED, MissionStatus.PAID].includes(missionDetailsData.status)
 
   return (
     <div>

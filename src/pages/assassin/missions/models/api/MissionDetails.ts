@@ -1,7 +1,7 @@
 import { MissionPaymentType, MissionStatus } from '@models/enums'
 
 export type MissionDetails = {
-  id: number;
+  _id: number;
   createdBy: {
     id: number;
     name: string;

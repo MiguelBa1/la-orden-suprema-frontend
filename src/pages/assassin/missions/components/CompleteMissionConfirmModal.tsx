@@ -39,7 +39,7 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
   })
 
   const onSubmit = () => {
-    mutation.mutate({ id: mission.id, imageUrl: '/images/evidence.webp' })
+    mutation.mutate({ id: mission._id, imageUrl: '/images/evidence.webp' })
     onClose()
   }
 

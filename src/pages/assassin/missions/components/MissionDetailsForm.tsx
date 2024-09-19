@@ -1,9 +1,11 @@
+import dayjs from 'dayjs'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { InputField, Textarea } from '@components/Forms'
 import { missionPaymentTypeTranslations } from '@utils/translations'
 import { MissionDetails } from '@pages/assassin'
 import { useUser } from '@lib/react-query-auth.ts'
+import { MissionPaymentType } from '@models/enums'
 
 type MissionDetailsFormProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
@@ -15,7 +17,11 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
   const paymentTypeTranslation = missionDetailsData?.paymentType && missionPaymentTypeTranslations[missionDetailsData.paymentType]
 
   const { register } = useForm({
-    values: { ...missionDetailsQuery.data, paymentType: paymentTypeTranslation },
+    values: {
+      ...missionDetailsQuery.data,
+      paymentType: paymentTypeTranslation,
+      createdAt: dayjs(missionDetailsData?.createdAt).format('YYYY-MM-DD'),
+    },
   })
   
   if (!missionDetailsData) {
@@ -23,7 +29,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
   }
 
   const hasAssignedAssassin = missionDetailsData.assignedTo !== null
-  const isCoinPaymentType = missionDetailsData.coinsAmount !== null
+  const isCoinPaymentType = missionDetailsData.paymentType === MissionPaymentType.COINS
 
   return (
     <div>
