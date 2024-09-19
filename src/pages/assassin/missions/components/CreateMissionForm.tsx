@@ -1,12 +1,11 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState, useRef } from 'react'
-import { useUser } from '@lib/react-query-auth.ts'
 import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, Controller, useForm } from 'react-hook-form'
 import { InputField, Dropdown, Textarea, Button } from '@components/index'
 import { useToastStore } from '@stores/index'
 import { MissionPaymentType } from '@models/enums'
-import { getDebtsList, CreateMissionConfirmationModal } from '@pages/assassin'
+import { getDebtsList, CreateMissionConfirmationModal, createMission } from '@pages/assassin'
 
 const missionTypes = [
   { label: 'Monedas de asesino', value: MissionPaymentType.COINS },
@@ -15,12 +14,25 @@ const missionTypes = [
 ]
 
 export function CreateMissionForm() {
+  const queryClient = useQueryClient()
   const { addToast } = useToastStore()
-  const { data: user } = useUser()
   const navigate = useNavigate()
   const formRef = useRef<HTMLFormElement | null>(null)
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false)
+
+  const mutation = useMutation({
+    mutationFn: createMission,
+    onSuccess: async (data) => {
+      addToast({ type: 'success', message: data.message })
+      await queryClient.invalidateQueries({ queryKey: ['created-by-me-missions'] })
+      navigate('/app/assassin/missions/created-by-me')
+    },
+    onError: (error) => {
+      addToast({ type: 'error', message: error.message })
+      setIsConfirmationModalOpen(false)
+    }
+  })
 
   const {
     register,
@@ -31,23 +43,27 @@ export function CreateMissionForm() {
     formState: { errors }
   } = useForm<FieldValues>()
 
-  const selectedPaymentType = watch('payment_type')
+  const selectedPaymentType = watch('paymentType')
   const selectedCoins = watch('coins')
 
   const debtsQuery = useQuery({
     queryKey: ['debts'],
-    queryFn: () => getDebtsList(user?.id as number),
+    queryFn: getDebtsList,
     enabled: selectedPaymentType === MissionPaymentType.BLOOD_DEBT_COLLECTION,
   })
 
   const selectedDebtor = debtsQuery.data?.find((item) => item.value === watch('debtor'))?.label
 
-  const onSubmit: SubmitHandler<FieldValues> = (_data) => {
-    navigate(-1)
-    addToast({
-      type: 'success',
-      message: 'Misión publicada correctamente'
-    })
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const payload = {
+      description: data.description,
+      details: data.details,
+      paymentType: data.paymentType,
+      coinsAmount: data.coins ? Number(data.coins) : undefined,
+      assignedTo: data.debtor ?? undefined,
+    }
+
+    mutation.mutate(payload)
   }
 
   return (
@@ -82,17 +98,17 @@ export function CreateMissionForm() {
         />
         <div className="grid grid-cols-2 gap-4 col-span-2 lg:col-span-1">
           <Controller
-            name="payment_type"
+            name="paymentType"
             control={ control }
             rules={ { required: 'Este campo es requerido' } }
             render={ ({ field }) => (
               <Dropdown
-                id="payment_type"
+                id="paymentType"
                 label="Tipo de pago"
                 options={ missionTypes }
                 value={ field.value }
                 onChange={ field.onChange }
-                error={ errors.payment_type?.message as string }
+                error={ errors.paymentType?.message as string }
                 className="col-span-2 sm:col-span-1"
               />
             ) }

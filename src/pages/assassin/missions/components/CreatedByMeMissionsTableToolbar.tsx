@@ -18,7 +18,7 @@ const missionStatusOptions = [
   { value: MissionStatus.PAID, label: missionStatusTranslations[MissionStatus.PAID] },
 ]
 
-export function MissionsTableToolbar({ searchForm, refetchMissionList }: MissionsTableToolbarProps) {
+export function CreatedByMeMissionsTableToolbar({ searchForm, refetchMissionList }: MissionsTableToolbarProps) {
   return (
     <form
       onSubmit={ searchForm.handleSubmit( async () => {

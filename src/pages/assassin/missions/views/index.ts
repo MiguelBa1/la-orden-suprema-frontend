@@ -1,5 +1,5 @@
 export * from './GeneralMissionsListView'
 export * from './AssignedMissionsListView'
-export * from './MissionsListView'
+export * from './CreatedByMeMissionsListView'
 export * from './CreateMissionView'
 export * from './MissionDetailsView'
