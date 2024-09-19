@@ -18,7 +18,7 @@ type MissionModalStates = {
 }
 
 export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsActionsProps) {
-  const userId = useUser()?.data?.id
+  const user = useUser()?.data
 
   const [modalsStates, setModalsStates] = useState<MissionModalStates>({
     assign: false,
@@ -37,8 +37,8 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
     setModalsStates({ ...modalsStates, [modal]: !modalsStates[modal] })
   }
 
-  const isCreatedByMe = missionDetailsData.createdBy === userId
-  const isAssignedToMe = missionDetailsData.assignedTo === userId
+  const isCreatedByMe = missionDetailsData.createdBy === user?.alias
+  const isAssignedToMe = missionDetailsData.assignedTo === user?.alias
   const canBeAssigned = missionDetailsData.assignedTo === null
   const canBeCompleted = missionDetailsData.status === MissionStatus.ASSIGNED
   const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED

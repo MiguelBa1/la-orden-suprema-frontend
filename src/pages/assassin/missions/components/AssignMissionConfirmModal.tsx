@@ -12,7 +12,7 @@ type AssignMissionProps = {
 }
 
 export function AssignMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: AssignMissionProps) {
-  const userId = useUser()?.data?.id
+  const userId = useUser()?.data?._id
   const toast = useToastStore()
 
   const mutation = useMutation({

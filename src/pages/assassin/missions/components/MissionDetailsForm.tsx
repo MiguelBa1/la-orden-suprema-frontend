@@ -12,7 +12,7 @@ type MissionDetailsFormProps = {
 }
 
 export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormProps) {
-  const userId = useUser()?.data?.id
+  const userId = useUser()?.data?._id
   const { data: missionDetailsData } = missionDetailsQuery
   const paymentTypeTranslation = missionDetailsData?.paymentType && missionPaymentTypeTranslations[missionDetailsData.paymentType]
 
@@ -21,6 +21,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
       ...missionDetailsQuery.data,
       paymentType: paymentTypeTranslation,
       createdAt: dayjs(missionDetailsData?.createdAt).format('YYYY-MM-DD'),
+      assignedAt: missionDetailsData?.assignedAt ? dayjs(missionDetailsData.assignedAt).format('YYYY-MM-DD') : null,
     },
   })
   
