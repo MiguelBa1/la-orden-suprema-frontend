@@ -1,11 +1,16 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type CompleteMissionProps = {
-  id: number
-  imageUrl: string
+  id: string
+  evidence: File
 }
 
-export function completeMission({ id, imageUrl }: CompleteMissionProps) {
+export async function completeMission({ id, evidence }: CompleteMissionProps) {
+  const formData = new FormData()
+  formData.append('evidence', evidence)
 
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${id}/complete`, formData)
+
+  return data
 }

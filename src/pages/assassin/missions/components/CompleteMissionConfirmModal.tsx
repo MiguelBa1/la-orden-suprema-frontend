@@ -1,7 +1,7 @@
 import { completeMission, MissionDetails } from '@pages/assassin'
 import { useMutation, UseQueryResult } from '@tanstack/react-query'
 import { Button, Modal } from '@components/UI'
-import { FieldValues, useForm, FieldErrors } from 'react-hook-form'
+import { SubmitHandler, FieldValues, useForm, FieldErrors } from 'react-hook-form'
 import { ChangeEvent, useRef, useState } from 'react'
 import { useToastStore } from '@stores/useToastStore.ts'
 
@@ -14,8 +14,8 @@ type CompleteMissionProps = {
 
 export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: CompleteMissionProps) {
   const [fileName, setFileName] = useState<string>('')
-  const { register, handleSubmit } = useForm<FieldValues>()
-  const { ref: registerRef, ...rest } = register('imageUrl', {
+  const { register, handleSubmit } = useForm()
+  const { ref: registerRef, ...rest } = register('evidence', {
     onChange: (event: ChangeEvent<HTMLInputElement>) => {
       setFileName(event.target.files?.[0].name ?? '')
     },
@@ -38,13 +38,18 @@ export function CompleteMissionConfirmModal({ isOpen, onClose, mission, refetchM
     }
   })
 
-  const onSubmit = () => {
-    mutation.mutate({ id: mission._id, imageUrl: '/images/evidence.webp' })
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const payload = {
+      id: mission._id,
+      evidence: data.evidence[0]
+    }
+
+    await mutation.mutateAsync(payload)
     onClose()
   }
 
   const onInvalid = (errors: FieldErrors) => {
-    toast.addToast({ message: errors.imageUrl?.message as string, type: "error" })
+    toast.addToast({ message: errors.evidence?.message as string, type: "error" })
     onClose()
   }
 
