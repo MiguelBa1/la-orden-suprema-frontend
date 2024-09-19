@@ -37,8 +37,8 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
     setModalsStates({ ...modalsStates, [modal]: !modalsStates[modal] })
   }
 
-  const isCreatedByMe = missionDetailsData.createdBy.id === userId
-  const isAssignedToMe = missionDetailsData.assignedTo?.id === userId
+  const isCreatedByMe = missionDetailsData.createdBy === userId
+  const isAssignedToMe = missionDetailsData.assignedTo === userId
   const canBeAssigned = missionDetailsData.assignedTo === null
   const canBeCompleted = missionDetailsData.status === MissionStatus.ASSIGNED
   const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED

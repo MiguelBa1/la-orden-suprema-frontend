@@ -51,23 +51,23 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
               registration={ register('assignedAt') }
             />
           ) }
-          { missionDetailsData.createdBy.id !== userId && (
+          { missionDetailsData.createdBy !== userId && (
             <InputField
               id="createdBy"
               name="createdBy"
               label="Creada por"
               type="text"
-              registration={ register('createdBy.name') }
+              registration={ register('createdBy') }
               className="md:col-span-2"
             />
           ) }
-          { hasAssignedAssassin && missionDetailsData.assignedTo?.id !== userId && (
+          { hasAssignedAssassin && missionDetailsData.assignedTo !== userId && (
             <InputField
               id="assignedTo"
               name="assignedTo"
               label="Asignada a"
               type="text"
-              registration={ register('assignedTo.name') }
+              registration={ register('assignedTo') }
               className="md:col-span-2"
             />
           ) }

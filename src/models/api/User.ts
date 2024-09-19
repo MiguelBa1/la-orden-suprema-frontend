@@ -1,7 +1,7 @@
 import { UserRole } from '@models/enums'
 
 export type User = {
-  id: number;
+  id: string;
   name: string;
   email: string;
   role: UserRole;
