@@ -1,11 +1,5 @@
 import { UseQueryResult } from '@tanstack/react-query'
-import {
-  MissionDetails,
-  PayMissionConfirmModal,
-  PublishMissionConfirmModal,
-  RejectMissionConfirmModal,
-  RejectMissionEvidenceConfirmModal,
-} from '@pages/admin'
+import { MissionDetails, PayMissionConfirmModal, PublishMissionConfirmModal, RejectMissionConfirmModal, RejectMissionEvidenceConfirmModal } from '@pages/admin'
 import { Button } from '@components/UI'
 import { useState } from 'react'
 import { MissionStatus } from '@models/enums'

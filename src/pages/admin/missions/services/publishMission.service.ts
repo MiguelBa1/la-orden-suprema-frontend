@@ -1,20 +1,12 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionsDetailsMock } from '@pages/admin'
+import { axiosInstance } from '@lib/axiosInstance.ts'
+import { ResponseMessage } from '@models/api'
 
-type PayMissionProps = {
-  id: number
+type PublishMissionProps = {
+  id: string
 }
 
-export function publishMission({ id }: PayMissionProps) {
-  return new Promise<MissionDetails>((resolve, reject) => {
-    const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === id)
+export async function publishMission({ id }: PublishMissionProps) {
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${id}/publish`)
 
-    if (missionIndex === -1) {
-      return reject('Misión no encontrada')
-    }
-
-    missionsDetailsMock[missionIndex].status = MissionStatus.PUBLISHED
-
-    resolve(missionsDetailsMock[missionIndex])
-  })
+  return data
 }

@@ -1,5 +1,5 @@
 import { Modal, Button } from '@components/UI'
-import { useMutation, UseQueryResult } from '@tanstack/react-query'
+import { useMutation, useQueryClient, UseQueryResult } from '@tanstack/react-query'
 import { MissionDetails, publishMission } from '@pages/admin'
 import { useToastStore } from '@stores/useToastStore.ts'
 
@@ -11,21 +11,23 @@ type PublishMissionProps = {
 }
 
 export function PublishMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: PublishMissionProps) {
-  const toast = useToastStore()
+  const { addToast } = useToastStore()
+  const queryClient = useQueryClient()
 
   const mutation = useMutation({
     mutationFn: publishMission,
-    onSuccess: async () => {
-      toast.addToast({ message: 'La misión fue publicada correctamente', type: 'success' })
+    onSuccess: async (data) => {
+      addToast({ message: data.message, type: 'success' })
+      await queryClient.invalidateQueries({ queryKey: ['missions'] })
       await refetchMissionDetails()
     },
-    onError: () => {
-      toast.addToast({ message: 'Ocurrió un error al publicar la misión', type: 'error' })
+    onError: (error) => {
+      addToast({ message: error.message, type: 'error' })
     }
   })
 
   const handleConfirm = () => {
-    mutation.mutate({ id: mission.id })
+    mutation.mutate({ id: mission._id })
     onClose()
   }
 
