@@ -15,17 +15,26 @@ export function RejectMissionEvidenceConfirmModal({ isOpen, onClose, mission, re
 
   const mutation = useMutation({
     mutationFn: rejectMissionEvidence,
-    onSuccess: async () => {
-      toast.addToast({ message: 'La evidencia fue rechazada correctamente', type: 'success' })
+    onSuccess: async (data) => {
+      toast.addToast({
+        message: data.message,
+        type: 'success'
+      })
       await refetchMissionDetails()
     },
-    onError: () => {
-      toast.addToast({ message: 'Ocurrió un error al rechazar la evidencia', type: 'error' })
+    onError: (error) => {
+      toast.addToast({
+        message: error.message,
+        type: 'error'
+      })
     }
   })
 
-  const handleConfirm = () => {
-    mutation.mutate({ id: mission._id })
+  const handleConfirm = async () => {
+    await mutation.mutateAsync({
+      missionId: mission._id,
+      assassinId: mission.assignedTo
+    })
     onClose()
   }
 
