@@ -1,10 +1,19 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type PayMissionProps = {
-  id: number
+  missionId: string;
+  assassinId: string | null;
 }
 
-export function payMission({ id }: PayMissionProps) {
+export async function payMission({ missionId, assassinId }: PayMissionProps) {
+  if (!assassinId) {
+    throw new Error('Assassin ID is required')
+  }
 
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${missionId}/pay`, {
+    userId: assassinId
+  })
+
+  return data
 }

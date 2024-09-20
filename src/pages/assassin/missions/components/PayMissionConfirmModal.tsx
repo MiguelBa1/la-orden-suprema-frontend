@@ -15,17 +15,25 @@ export function PayMissionConfirmModal({ isOpen, onClose, mission, refetchMissio
 
   const mutation = useMutation({
     mutationFn: payMission,
-    onSuccess: async () => {
-      toast.addToast({ message: 'La misión fue pagada correctamente', type: 'success' })
+    onSuccess: async (data) => {
+      toast.addToast({
+        message: data.message,
+        type: 'success' })
       await refetchMissionDetails()
     },
-    onError: () => {
-      toast.addToast({ message: 'Ocurrió un error al pagar la misión', type: 'error' })
+    onError: (error) => {
+      toast.addToast({
+        message: error.message ?? 'Ocurrió un error al pagar la misión',
+        type: 'error'
+      })
     }
   })
 
-  const handleConfirm = () => {
-    mutation.mutate({ id: mission._id })
+  const handleConfirm = async () => {
+    await mutation.mutateAsync({
+      missionId: mission._id,
+      assassinId: mission.assignedTo
+    })
     onClose()
   }
 
