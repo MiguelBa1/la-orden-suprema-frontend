@@ -73,7 +73,10 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
         <div>
           { hasEvidence && (
             <Button type="button" variant="secondary" onClick={ () => downloadImageFromUrl({
-              url: missionDetailsData.imageUrl as string,
+              image: {
+                buffer: missionDetailsData.evidence?.buffer,
+                mimetype: missionDetailsData.evidence?.mimetype
+              },
               fileName: 'evidence'
             }) }>
               Descargar Evidencia

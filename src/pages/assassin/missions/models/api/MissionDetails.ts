@@ -9,7 +9,10 @@ export type MissionDetails = {
   paymentType: MissionPaymentType
   coinsAmount: number | null;
   status: MissionStatus;
-  imageUrl: string | null;
+  evidence?: {
+    buffer?: string
+    mimetype?: string
+  };
   createdAt: string;
   assignedAt: string | null;
 }
