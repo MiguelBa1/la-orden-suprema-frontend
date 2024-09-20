@@ -1,13 +1,17 @@
-import { useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import { useRef } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { sendNewPassword } from '@pages/auth'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { useToastStore } from '@stores/index'
-import { useRef } from 'react'
 
 export function NewPassword() {
   const navigate = useNavigate()
   const { addToast } = useToastStore()
+  const location = useLocation()
+  const { email, resetToken } = location.state as { email: string, resetToken: string }
 
   const {
     register,
@@ -17,8 +21,29 @@ export function NewPassword() {
 
   const passwordRef = useRef<string | null>(null)
 
-  const onSubmit: SubmitHandler<FieldValues> = async () => {
-    addToast({ message: '¡Contraseña reestablecida con éxito!', type: 'success' })
+  const { mutateAsync: sendPassword } = useMutation({
+    mutationFn: sendNewPassword,
+    onSuccess: (data) => {
+      addToast({
+        type: 'success',
+        message: data.message,
+      })
+    },
+    onError: (error) => {
+      addToast({
+        type: 'error',
+        message: error.message,
+      })
+    }
+  })
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    await sendPassword({
+      email,
+      password: data.password,
+      resetToken
+    })
+
     navigate('/auth/login')
   }
 
