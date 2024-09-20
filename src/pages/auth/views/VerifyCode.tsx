@@ -1,10 +1,15 @@
+import { useMutation } from '@tanstack/react-query'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
-import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+import { sendVerificationCode } from '@pages/auth'
+import { useToastStore } from '@stores/index'
 
 export function VerifyCode() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { addToast } = useToastStore()
 
   const {
     register,
@@ -12,10 +17,33 @@ export function VerifyCode() {
     formState: { errors }
   } = useForm<FieldValues>({ values: { email: location.state.email }  })
 
-  const navigate = useNavigate()
+  const { mutateAsync: sendCode } = useMutation({
+    mutationFn: sendVerificationCode,
+    onSuccess: (data) => {
+      addToast({
+        type: 'success',
+        message: data.message,
+      })
+    },
+    onError: (error) => {
+      addToast({
+        type: 'error',
+        message: error.message,
+      })
+    }
+  })
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    navigate('/new-password', { state: { email: data.email } })
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const response = await sendCode({
+      code: data.code,
+      email: data.email
+    })
+    navigate('/new-password', {
+      state: {
+        email: data.email,
+        resetToken: response.resetToken
+      }
+    })
   }
 
   return (
