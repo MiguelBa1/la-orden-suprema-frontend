@@ -1,20 +1,19 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type PayMissionProps = {
-  id: number
+  missionId: string;
+  assassinId: string | null;
 }
 
-export function payMission({ id }: PayMissionProps) {
-  return new Promise<MissionDetails>((resolve, reject) => {
-    const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === id)
+export async function payMission({ missionId, assassinId }: PayMissionProps) {
+  if (!assassinId) {
+    throw new Error('Assassin ID is required')
+  }
 
-    if (missionIndex === -1) {
-      return reject('Misión no encontrada')
-    }
-
-    missionsDetailsMock[missionIndex].status = MissionStatus.PAID
-
-    resolve(missionsDetailsMock[missionIndex])
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${missionId}/pay`, {
+    userId: assassinId
   })
+
+  return data
 }

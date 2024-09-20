@@ -1,17 +1,12 @@
-import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { MissionDetails } from '@pages/assassin'
 
-export function getMissionDetails(id: number) {
-  return new Promise<MissionDetails>((resolve, reject) => {
-    setTimeout(() => {
-      const missionsDetails = missionsDetailsMock.find((mission) => mission.id === id)
+export async function getMissionDetails(id?: string) {
+  if (!id) {
+    throw new Error('Mission ID is required')
+  }
 
-      if (!missionsDetails) {
-        reject(new Error('Misión no encontrada'))
-      }
+  const { data } = await axiosInstance.get<MissionDetails>(`/missions/${id}`)
 
-      if (missionsDetails && missionsDetails.id === id) {
-        resolve(missionsDetails)
-      }
-    }, 500)
-  })
+  return data
 }

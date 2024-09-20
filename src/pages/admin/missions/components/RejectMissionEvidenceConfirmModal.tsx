@@ -1,31 +1,33 @@
 import { Modal, Button } from '@components/UI'
-import { useMutation, UseQueryResult } from '@tanstack/react-query'
+import { useMutation, useQueryClient, UseQueryResult } from '@tanstack/react-query'
 import { MissionDetails, rejectMissionEvidence } from '@pages/admin'
 import { useToastStore } from '@stores/useToastStore.ts'
 
-type PublishMissionProps = {
+type RejectMissionEvidenceProps = {
   isOpen: boolean;
   onClose: () => void;
   mission: MissionDetails;
   refetchMissionDetails: UseQueryResult['refetch'];
 }
 
-export function RejectMissionEvidenceConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: PublishMissionProps) {
-  const toast = useToastStore()
+export function RejectMissionEvidenceConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: RejectMissionEvidenceProps) {
+  const { addToast } = useToastStore()
+  const queryClient = useQueryClient()
 
   const mutation = useMutation({
     mutationFn: rejectMissionEvidence,
-    onSuccess: async () => {
-      toast.addToast({ message: 'La evidencia fue rechazada correctamente', type: 'success' })
+    onSuccess: async (data) => {
+      addToast({ message: data.message, type: 'success' })
+      await queryClient.invalidateQueries({ queryKey: ['missions']})
       await refetchMissionDetails()
     },
-    onError: () => {
-      toast.addToast({ message: 'Ocurrió un error al rechazar la evidencia', type: 'error' })
+    onError: (error) => {
+      addToast({ message: error.message, type: 'error' })
     }
   })
 
   const handleConfirm = () => {
-    mutation.mutate({ id: mission.id })
+    mutation.mutate({ id: mission._id })
     onClose()
   }
 

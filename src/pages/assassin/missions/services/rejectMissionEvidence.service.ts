@@ -1,21 +1,19 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type RejectMissionEvidenceProps = {
-  id: number
+  missionId: string;
+  assassinId: string | null;
 }
 
-export function rejectMissionEvidence({ id }: RejectMissionEvidenceProps) {
-  return new Promise<MissionDetails>((resolve, reject) => {
-    const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === id)
+export async function rejectMissionEvidence({ missionId, assassinId }: RejectMissionEvidenceProps) {
+  if (!assassinId) {
+    throw new Error('Assassin ID is required')
+  }
 
-    if (missionIndex === -1) {
-      return reject('Misión no encontrada')
-    }
-
-    missionsDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
-    missionsDetailsMock[missionIndex].imageUrl = null
-
-    resolve(missionsDetailsMock[missionIndex])
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${missionId}/reject-evidence`, {
+    userId: assassinId
   })
+
+  return data
 }

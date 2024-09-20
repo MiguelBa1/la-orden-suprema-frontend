@@ -1,6 +1,4 @@
-export * from './missionsListMock'
 export * from './GeneralMissionsTableColumns'
 export * from './AssignedMissionsTableColumns'
 export * from './CreatedByMeMissionsTableColumns'
-export * from './missionsDetailsMock'
 export * from './debtsListMock'

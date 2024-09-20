@@ -1,11 +1,5 @@
 import { UseQueryResult } from '@tanstack/react-query'
-import {
-  MissionDetails,
-  PayMissionConfirmModal,
-  PublishMissionConfirmModal,
-  RejectMissionConfirmModal,
-  RejectMissionEvidenceConfirmModal,
-} from '@pages/admin'
+import { MissionDetails, PayMissionConfirmModal, PublishMissionConfirmModal, RejectMissionConfirmModal, RejectMissionEvidenceConfirmModal } from '@pages/admin'
 import { Button } from '@components/UI'
 import { useState } from 'react'
 import { MissionStatus } from '@models/enums'
@@ -36,7 +30,7 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
 
   const { data: missionDetailsData } = missionDetailsQuery
 
-  const hasEvidence = missionDetailsData.imageUrl !== null
+  const hasEvidence = missionDetailsData.evidence !== undefined
   const canBePublished = missionDetailsData.status === MissionStatus.CREATED
   const canBePaid = missionDetailsData.status === MissionStatus.COMPLETED
 
@@ -72,7 +66,10 @@ export function MissionDetailsActions({ missionDetailsQuery }: MissionDetailsAct
 
         { hasEvidence && (
           <Button type="button" variant="secondary" onClick={ () => downloadImageFromUrl({
-            url: missionDetailsData.imageUrl as string,
+            image: {
+              buffer: missionDetailsData.evidence?.buffer,
+              mimetype: missionDetailsData.evidence?.mimetype
+            },
             fileName: 'evidence'
           }) }>
             Descargar Evidencia

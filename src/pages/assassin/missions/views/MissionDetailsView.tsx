@@ -15,7 +15,8 @@ export function MissionDetailsView() {
   const missionDetailsQuery = useQuery(
     {
       queryKey: ['mission', missionId],
-      queryFn: () => getMissionDetails(Number(missionId)),
+      queryFn: () => getMissionDetails(missionId),
+      staleTime: 30000,
     }
   )
 

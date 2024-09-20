@@ -3,7 +3,7 @@ import { GeneralMissionsListTable, GeneralMissionsTableColumns, getGeneralMissio
 
 export function GeneralMissionsListView() {
   const generalMissionListQuery = useQuery({
-    queryKey: ['general-missions'],
+    queryKey: ['generalMissions'],
     queryFn: getGeneralMissionsList,
     staleTime: 1000 * 60 * 5,
   })

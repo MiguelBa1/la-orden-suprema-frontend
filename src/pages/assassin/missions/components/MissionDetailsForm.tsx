@@ -1,21 +1,28 @@
+import dayjs from 'dayjs'
 import { UseQueryResult } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { InputField, Textarea } from '@components/Forms'
 import { missionPaymentTypeTranslations } from '@utils/translations'
 import { MissionDetails } from '@pages/assassin'
 import { useUser } from '@lib/react-query-auth.ts'
+import { MissionPaymentType } from '@models/enums'
 
 type MissionDetailsFormProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
 }
 
 export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormProps) {
-  const userId = useUser()?.data?.id
+  const userId = useUser()?.data?._id
   const { data: missionDetailsData } = missionDetailsQuery
   const paymentTypeTranslation = missionDetailsData?.paymentType && missionPaymentTypeTranslations[missionDetailsData.paymentType]
 
   const { register } = useForm({
-    values: { ...missionDetailsQuery.data, paymentType: paymentTypeTranslation },
+    values: {
+      ...missionDetailsQuery.data,
+      paymentType: paymentTypeTranslation,
+      createdAt: dayjs(missionDetailsData?.createdAt).format('YYYY-MM-DD'),
+      assignedAt: missionDetailsData?.assignedAt ? dayjs(missionDetailsData.assignedAt).format('YYYY-MM-DD') : null,
+    },
   })
   
   if (!missionDetailsData) {
@@ -23,7 +30,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
   }
 
   const hasAssignedAssassin = missionDetailsData.assignedTo !== null
-  const isCoinPaymentType = missionDetailsData.coinsAmount !== null
+  const isCoinPaymentType = missionDetailsData.paymentType === MissionPaymentType.COINS
 
   return (
     <div>
@@ -45,23 +52,23 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
               registration={ register('assignedAt') }
             />
           ) }
-          { missionDetailsData.createdBy.id !== userId && (
+          { missionDetailsData.createdBy !== userId && (
             <InputField
               id="createdBy"
               name="createdBy"
               label="Creada por"
               type="text"
-              registration={ register('createdBy.name') }
+              registration={ register('createdBy') }
               className="md:col-span-2"
             />
           ) }
-          { hasAssignedAssassin && missionDetailsData.assignedTo?.id !== userId && (
+          { hasAssignedAssassin && missionDetailsData.assignedTo !== userId && (
             <InputField
               id="assignedTo"
               name="assignedTo"
               label="Asignada a"
               type="text"
-              registration={ register('assignedTo.name') }
+              registration={ register('assignedTo') }
               className="md:col-span-2"
             />
           ) }

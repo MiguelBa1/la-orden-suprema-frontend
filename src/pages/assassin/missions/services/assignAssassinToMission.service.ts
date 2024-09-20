@@ -1,33 +1,12 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails, missionsDetailsMock } from '@pages/assassin'
-import { usersMock } from '@data/usersMock.ts'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type AssignAssassinToMissionProps = {
-  missionId: number
-  assassinId: number
+  missionId: string
 }
 
-export function assignAssassinToMission({ missionId, assassinId }: AssignAssassinToMissionProps) {
-  return new Promise<MissionDetails>((resolve, reject) => {
-    const user = usersMock.find((user) => user.id === assassinId)
+export async function assignAssassinToMission({ missionId }: AssignAssassinToMissionProps) {
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${missionId}/assign`)
 
-    if (!user) {
-      return reject('Asesino no encontrado')
-    }
-
-    const missionIndex = missionsDetailsMock.findIndex((mission) => mission.id === missionId)
-
-    if (missionIndex === -1) {
-      return reject('Misión no encontrada')
-    }
-
-    missionsDetailsMock[missionIndex].status = MissionStatus.ASSIGNED
-    missionsDetailsMock[missionIndex].assignedAt = new Date().toISOString().split('T')[0]
-    missionsDetailsMock[missionIndex].assignedTo = {
-      id: user.id,
-      name: user.name
-    }
-
-    resolve(missionsDetailsMock[missionIndex])
-  })
+  return data
 }

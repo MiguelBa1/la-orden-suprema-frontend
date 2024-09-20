@@ -8,8 +8,9 @@ export function AssignedMissionsListView() {
   const userName = useUser()?.data?.name
 
   const assignedMissionListQuery = useQuery({
-    queryKey: ['assigned-missions', userName],
-    queryFn: () => getMissionsList({ ...searchForm.getValues(), assignedTo: userName }),
+    queryKey: ['assignedMissions', userName],
+    queryFn: getMissionsList,
+    staleTime: 30000,
   })
 
   return (
