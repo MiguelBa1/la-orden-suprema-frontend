@@ -1,16 +1,19 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
 import { UserIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
-import { useLogin, useUser } from '@lib/index'
+import { useUser } from '@lib/index'
 import { useToastStore } from '@stores/index'
-import { ForgotPasswordFormFields} from '@pages/auth/models'
+import { ForgotPasswordFormFields, sendEmail  } from '@pages/auth'
 import { UserRole } from '@models/enums'
 
 export function ForgotPassword() {
   const { addToast } = useToastStore()
-  const { data: user } = useUser()
+  const { data: user } = useUser({
+    enabled: localStorage.getItem('token') !== null
+  })
 
   const {
     register,
@@ -18,12 +21,13 @@ export function ForgotPassword() {
     formState: { errors }
   } = useForm<ForgotPasswordFormFields>()
 
-  const { mutateAsync: _login, isPending } = useLogin({
-    onSuccess: () => {
-      addToast({ message: '¡Bienvenido!', type: 'success' })
+  const { mutateAsync: sendEmailMutation, isPending } = useMutation( {
+    mutationFn: sendEmail,
+    onSuccess: (data) => {
+      addToast({ message: data.message, type: 'success' })
     },
-    onError: () => {
-      addToast({ message: 'Credenciales inválidas', type: 'error' })
+    onError: (error) => {
+      addToast({ message: error.message, type: 'error' })
     }
   })
 
@@ -37,7 +41,8 @@ export function ForgotPassword() {
     }
   }, [navigate, user])
 
-  const onSubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
+  const onSubmit: SubmitHandler<ForgotPasswordFormFields> = async (data) => {
+    await  sendEmailMutation(data.email)
     navigate('/verify-code', { state: { email: data.email } })
   }
 
@@ -47,7 +52,7 @@ export function ForgotPassword() {
         <UserIcon className="m-auto w-32 h-32" />
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold text-center">Restablecer contraseña</h1>
-          <p className="text-center">Ingrese un correo válido para reestablecer su contraseña.</p>
+          <p className="text-center">Ingrese un correo válido para restablecer su contraseña.</p>
         </div>
         <form className="space-y-6" onSubmit={ handleSubmit(onSubmit) }>
           <div className="flex flex-col gap-1">
