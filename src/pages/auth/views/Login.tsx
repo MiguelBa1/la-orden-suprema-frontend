@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { UserIcon } from '@heroicons/react/24/outline'
+import { UserIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { InputField, Button } from '@components/index'
 import { useLogin, useUser } from '@lib/index'
 import { useToastStore } from '@stores/index'
@@ -12,6 +12,7 @@ import { UserRole } from '@models/enums'
 export function Login() {
   const { addToast } = useToastStore()
   const { data: user } = useUser()
+  const [showPassword, setShowPassword] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormFields>()
 
@@ -69,10 +70,10 @@ export function Login() {
               error={ errors.email?.message as string }
             />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 relative">
             <InputField
               id="password"
-              type="password"
+              type={ showPassword ? 'text' : 'password' }
               name="password"
               placeholder="Contraseña"
               registration={ register('password', {
@@ -81,6 +82,13 @@ export function Login() {
               }) }
               error={ errors.password?.message as string }
             />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500"
+              onClick={ () => setShowPassword(prevState => !prevState) }
+            >
+              { showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" /> }
+            </button>
           </div>
           <div className="space-y-2 text-center">
             <Button
