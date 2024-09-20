@@ -1,13 +1,13 @@
 import { MissionPaymentType, MissionStatus } from '@models/enums'
 
 export type MissionDetails = {
-  id: number;
+  _id: string;
   createdBy: {
-    id: number;
+    _id: string;
     name: string;
   };
   assignedTo: {
-    id: number;
+    _id: string;
     name: string;
   } | null;
   description: string;
@@ -15,7 +15,14 @@ export type MissionDetails = {
   paymentType: MissionPaymentType
   coinsAmount: number | null;
   status: MissionStatus;
-  imageUrl: string | null;
   createdAt: string;
+  publishedAt: string | null;
+  rejectedAt: string | null;
   assignedAt: string | null;
+  completedAt: string | null;
+  paidAt: string | null;
+  evidence?: {
+    buffer?: string
+    mimetype?: string
+  };
 }

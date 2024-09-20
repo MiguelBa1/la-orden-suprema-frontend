@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { MissionDetails } from '@pages/admin'
 import { InputField, Textarea } from '@components/Forms'
 import { missionPaymentTypeTranslations } from '@utils/translations'
+import dayjs from 'dayjs'
 
 type MissionDetailsFormProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
@@ -13,7 +14,12 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
   const paymentTypeTranslation = missionDetailsData?.paymentType && missionPaymentTypeTranslations[missionDetailsData.paymentType]
 
   const { register } = useForm({
-    values: { ...missionDetailsQuery.data, paymentType: paymentTypeTranslation },
+    values: {
+      ...missionDetailsQuery.data,
+      paymentType: paymentTypeTranslation,
+      createdAt: dayjs(missionDetailsData?.createdAt).format('YYYY-MM-DD'),
+      assignedAt: missionDetailsData?.assignedAt ? dayjs(missionDetailsData.assignedAt).format('YYYY-MM-DD') : null,
+    },
   })
   
   if (!missionDetailsData) {
