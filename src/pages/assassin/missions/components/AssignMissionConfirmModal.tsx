@@ -1,8 +1,7 @@
 import { Modal, Button } from '@components/UI'
-import { useMutation, UseQueryResult } from '@tanstack/react-query'
+import { useMutation, UseQueryResult, useQueryClient } from '@tanstack/react-query'
 import { useToastStore } from '@stores/useToastStore.ts'
 import { assignAssassinToMission, MissionDetails } from '@pages/assassin'
-import { useUser } from '@lib/react-query-auth.ts'
 
 type AssignMissionProps = {
   isOpen: boolean;
@@ -12,8 +11,8 @@ type AssignMissionProps = {
 }
 
 export function AssignMissionConfirmModal({ isOpen, onClose, mission, refetchMissionDetails }: AssignMissionProps) {
-  const userId = useUser()?.data?._id
   const toast = useToastStore()
+  const queryClient = useQueryClient()
 
   const mutation = useMutation({
     mutationFn: assignAssassinToMission,
@@ -26,8 +25,12 @@ export function AssignMissionConfirmModal({ isOpen, onClose, mission, refetchMis
     }
   })
 
-  const handleConfirm = () => {
-    mutation.mutate({ missionId: mission._id, assassinId: Number(userId) })
+  const handleConfirm = async () => {
+    await mutation.mutateAsync({ missionId: mission._id })
+    await queryClient.invalidateQueries({
+      queryKey: ['generalMissions'],
+    })
+
     onClose()
   }
 

@@ -1,12 +1,12 @@
-import { MissionStatus } from '@models/enums'
-import { MissionDetails } from '@pages/assassin'
-import { usersMock } from '@data/usersMock.ts'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type AssignAssassinToMissionProps = {
-  missionId: number
-  assassinId: number
+  missionId: string
 }
 
-export function assignAssassinToMission({ missionId, assassinId }: AssignAssassinToMissionProps) {
+export async function assignAssassinToMission({ missionId }: AssignAssassinToMissionProps) {
+  const { data } = await axiosInstance.put<ResponseMessage>(`/missions/${missionId}/assign`)
 
+  return data
 }
