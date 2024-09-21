@@ -1,17 +1,12 @@
-import { assassinsDetailsMock, AssassinDetails } from '@pages/admin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { AssassinDetails } from '@pages/admin'
 
-export function getAssassinDetails(id: number) {
-  return new Promise<AssassinDetails>((resolve, reject) => {
-    setTimeout(() => {
-      const assassinDetails = assassinsDetailsMock.find((assassin) => assassin.id === id)
+export async function getAssassinDetails(id?: string) {
+  if (!id) {
+    throw new Error('No id provided')
+  }
 
-      if (!assassinDetails) {
-        reject(new Error('Assassin not found'))
-      }
+  const { data } = await axiosInstance.get<AssassinDetails>(`/assassins/${id}`)
 
-      if (assassinDetails && assassinDetails.id === id) {
-        resolve(assassinDetails)
-      }
-    }, 500)
-  })
+  return data
 }

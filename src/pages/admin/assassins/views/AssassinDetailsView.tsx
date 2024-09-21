@@ -1,9 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
+import { useIsFetching } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   EditAssassinForm,
   MissionsHistoryTable,
-  getAssassinDetails,
   DebsToPayTable,
   DebsToCollectTable,
 } from '@pages/admin/assassins'
@@ -17,49 +16,32 @@ export function AssassinDetailsView() {
   const { assassinId } = useParams<AssassinDetailsParams>()
   const navigate = useNavigate()
 
-  const assassinDetailsQuery = useQuery(
-    {
-      queryKey: ['assassin', assassinId],
-      queryFn: () => getAssassinDetails(Number(assassinId)),
-    }
-  )
-
-  if (!assassinId) {
-    return null
-  }
-
-  if (assassinDetailsQuery.isFetching) {
-    return <div className="h-full flex justify-center items-center">
-      <Spinner />
-    </div>
-  }
-
-  if (assassinDetailsQuery.isError) {
-    return <div className="h-full flex justify-center items-center">
-      <p>Error al cargar la información del asesino</p>
-    </div>
-  }
+  const isFetching = useIsFetching()
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl lg:text-2xl">
-          Información del asesino
-        </h1>
-        <Button
-          onClick={ () => navigate(-1) }
-          variant="tertiary"
-        >
+        <h1 className="text-xl lg:text-2xl">Información del asesino</h1>
+        <Button onClick={ () => navigate(-1) } variant="tertiary">
           Volver
         </Button>
       </div>
-      <EditAssassinForm assassinDetailsQuery={ assassinDetailsQuery } />
-      <hr className="border-t-2 border-gray-300" />
-      <MissionsHistoryTable assassinsDetailsQuery={ assassinDetailsQuery } />
-      <hr className="border-t-2 border-gray-300" />
-      <div className="grid lg:grid-cols-2 gap-4">
-        <DebsToPayTable assassinDetailsQuery={ assassinDetailsQuery } />
-        <DebsToCollectTable assassinDetailsQuery={ assassinDetailsQuery } />
+
+      { isFetching > 0 && (
+        <div className="h-full flex justify-center items-center">
+          <Spinner />
+        </div>
+      ) }
+
+      <div className={ `${isFetching > 0 ? 'hidden' : 'block'} space-y-6` }>
+        <EditAssassinForm assassinId={ assassinId } />
+        <hr className="border-t-2 border-gray-300" />
+        <MissionsHistoryTable assassinId={ assassinId } />
+        <hr className="border-t-2 border-gray-300" />
+        <div className="grid lg:grid-cols-2 gap-4">
+          <DebsToPayTable assassinId={ assassinId } />
+          <DebsToCollectTable assassinId={ assassinId } />
+        </div>
       </div>
     </div>
   )

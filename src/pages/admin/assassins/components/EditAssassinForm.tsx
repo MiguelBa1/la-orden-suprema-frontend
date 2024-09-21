@@ -1,17 +1,24 @@
 import { useState } from 'react'
-import { UseQueryResult } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useForm, Controller, SubmitHandler, FieldValues } from 'react-hook-form'
-import { ConfirmStatusChangeModal, AssassinDetails } from '@pages/admin'
+import { AssassinPhoto, ConfirmStatusChangeModal, getAssassinDetails } from '@pages/admin'
 import { countriesList } from '@data/index'
 import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
 import { useToastStore } from '@stores/index'
 
 type EditAssassinFormProps = {
-  assassinDetailsQuery: UseQueryResult<AssassinDetails>
+  assassinId?: string
 }
 
-export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps) {
+export function EditAssassinForm({ assassinId }: EditAssassinFormProps) {
   const { addToast } = useToastStore()
+
+  const assassinDetailsQuery = useQuery(
+    {
+      queryKey: ['assassin', assassinId],
+      queryFn: () => getAssassinDetails(assassinId),
+    }
+  )
 
   const methods = useForm<FieldValues>({
     values: assassinDetailsQuery.data
@@ -25,7 +32,18 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
   } = methods
 
   const isInactive = assassinDetailsQuery.data?.status === 'inactive'
+
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+
+  if (!assassinId) {
+    return null
+  }
+
+  if (assassinDetailsQuery.isError) {
+    return <div className="h-full flex justify-center items-center">
+      <p>Error al cargar la información del asesino</p>
+    </div>
+  }
 
   if (!assassinDetailsQuery.data) {
     return null
@@ -39,12 +57,12 @@ export function EditAssassinForm({ assassinDetailsQuery }: EditAssassinFormProps
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4" >
-      { /*<AssassinPhoto*/ }
-      { /*  profilePicture={ assassinDetailsQuery.data.profilePicture }*/ }
-      { /*  isDisabled={ isInactive }*/ }
-      { /*  methods={ methods }*/ }
-      { /*/>*/ }
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <AssassinPhoto
+        profilePicture={ assassinDetailsQuery.data.profilePicture }
+        isDisabled={ isInactive }
+        methods={ methods }
+      />
       <form className="lg:col-span-2 space-y-4" onSubmit={ handleSubmit(onSubmit) }>
         <div className="grid sm:grid-cols-2 gap-4">
           <InputField
