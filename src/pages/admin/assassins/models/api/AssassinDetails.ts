@@ -1,5 +1,5 @@
 export type AssassinDetails = {
-  id: number;
+  _id: string;
   name: string;
   email: string;
   alias: string;

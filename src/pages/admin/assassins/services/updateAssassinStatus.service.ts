@@ -1,18 +1,13 @@
-import { AssassinDetails } from '@pages/admin'
-import { assassinsDetailsMock } from '@pages/admin'
+import { axiosInstance } from '@lib/axiosInstance'
+import { ResponseMessage } from '@models/api'
 
 type UpdateAssassinStatusProps = {
-  id: number;
+  id: string;
   status: 'active' | 'inactive';
 }
 
-export function updateAssassinStatus({ id, status }: UpdateAssassinStatusProps) {
-  return new Promise<AssassinDetails>((resolve) => {
-    const assassinIndex = assassinsDetailsMock.findIndex(assassin => assassin.id === id)
+export async function updateAssassinStatus({ id, status }: UpdateAssassinStatusProps) {
+  const { data } = await axiosInstance.put<ResponseMessage>(`/assassins/${id}/status`, { status })
 
-    if (assassinIndex !== -1) {
-      assassinsDetailsMock[assassinIndex].status = status
-      resolve(assassinsDetailsMock[assassinIndex])
-    }
-  })
+  return data
 }

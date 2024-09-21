@@ -1,5 +1,4 @@
 export * from './AssassinsTableColumns'
-export * from './assassinsDetailsMock'
 export * from './statusesList'
 export * from './MissionsHistoryTableColumns'
 export * from './DebsToPayTableColumns'
