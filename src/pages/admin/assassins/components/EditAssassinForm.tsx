@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { useForm, Controller, SubmitHandler, FieldValues } from 'react-hook-form'
-import { AssassinPhoto, ConfirmStatusChangeModal, getAssassinDetails } from '@pages/admin'
-import { countriesList } from '@data/index'
+import { AssassinPhoto, ConfirmStatusChangeModal, getAssassinDetails, updateAssassinDetails } from '@pages/admin'
 import { InputField, Dropdown, Button, ToggleSwitch } from '@components/index'
 import { useToastStore } from '@stores/index'
+import { getCountries } from '@services/index'
 
 type EditAssassinFormProps = {
   assassinId?: string
@@ -13,12 +13,33 @@ type EditAssassinFormProps = {
 export function EditAssassinForm({ assassinId }: EditAssassinFormProps) {
   const { addToast } = useToastStore()
 
+  const { data: countries } = useQuery({
+    queryKey: ['countries'],
+    queryFn: getCountries,
+    select: (data) => {
+      return data.map((country) => ({
+        label: country,
+        value: country
+      }))
+    }
+  })
+
   const assassinDetailsQuery = useQuery(
     {
       queryKey: ['assassin', assassinId],
       queryFn: () => getAssassinDetails(assassinId),
     }
   )
+
+  const { mutateAsync: updateAssassinDetailsMutation } = useMutation({
+    mutationFn: updateAssassinDetails,
+    onSuccess: async (data) => {
+      addToast({ type: 'success', message: data.message })
+    },
+    onError: (error) => {
+      addToast({ type: 'error', message: error.message })
+    }
+  })
 
   const methods = useForm<FieldValues>({
     values: assassinDetailsQuery.data
@@ -49,11 +70,17 @@ export function EditAssassinForm({ assassinId }: EditAssassinFormProps) {
     return null
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = (_data) => {
-    addToast({
-      type: 'success',
-      message: 'La información del asesino ha sido actualizada correctamente'
-    })
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const payload = {
+      name: data.name,
+      alias: data.alias,
+      country: data.country,
+      address: data.address,
+      status: data.status,
+    }
+
+    await updateAssassinDetailsMutation({ id: assassinId, data: payload })
+
   }
 
   return (
@@ -95,7 +122,7 @@ export function EditAssassinForm({ assassinId }: EditAssassinFormProps) {
               <Dropdown
                 id="country"
                 label="País"
-                options={ countriesList }
+                options={ countries }
                 onChange={ field.onChange }
                 value={ field.value }
                 error={ errors.country?.message as string }
