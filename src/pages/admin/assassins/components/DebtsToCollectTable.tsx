@@ -1,26 +1,31 @@
-import { UseQueryResult } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { Table } from '@components/UI'
-import { DebsToCollectTableColumns, type AssassinDetails } from '@pages/admin/assassins'
+import { DebsToCollectTableColumns, getDebts  } from '@pages/admin/assassins'
 
 type DebsToCollectTableProps = {
-  assassinDetailsQuery: UseQueryResult<AssassinDetails>
+  assassinId?: string
 }
 
-export function DebsToCollectTable({ assassinDetailsQuery }: DebsToCollectTableProps) {
-  if (assassinDetailsQuery.data?.debsToCollect.length === 0) {
-    return <div className="flex justify-center items-center h-96">
-      No hay deudas para mostrar
-    </div>
+export function DebsToCollectTable({ assassinId }: DebsToCollectTableProps) {
+  const debtsQuery = useQuery({
+    queryKey: ['debsToPay', assassinId],
+    queryFn: () => getDebts(assassinId)
+  })
+
+  if (!debtsQuery.data) {
+    return null
   }
 
-  if (!assassinDetailsQuery.data) {
-    return null
+  if (debtsQuery.data.debtsToCollect.length === 0) {
+    return <div className="flex justify-center items-center h-96">
+      No hay deudas a cobrar
+    </div>
   }
 
   return (
     <div className="space-y-4">
-      <h2 className="text-base lg:text-xl">Deudas a cobrar</h2>
-      <Table columns={ DebsToCollectTableColumns } data={ assassinDetailsQuery.data.debsToCollect } />
+      <h2 className="text-base lg:text-xl">Cobros de deudas de sangre</h2>
+      <Table columns={ DebsToCollectTableColumns } data={ debtsQuery.data.debtsToCollect } />
     </div>
   )
 }

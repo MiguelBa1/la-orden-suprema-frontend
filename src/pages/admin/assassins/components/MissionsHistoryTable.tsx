@@ -1,26 +1,32 @@
-import { UseQueryResult } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { Table } from '@components/UI'
-import { MissionsHistoryTableColumns, type AssassinDetails } from '@pages/admin/assassins'
+import { getMissionsHistory } from '@pages/admin/assassins'
+import { MissionsHistoryTableColumns } from '@pages/admin/assassins'
 
 type MissionsHistoryTableProps = {
-  assassinsDetailsQuery: UseQueryResult<AssassinDetails>
+  assassinId?: string
 }
 
-export function MissionsHistoryTable({ assassinsDetailsQuery }: MissionsHistoryTableProps) {
-  if (assassinsDetailsQuery.data?.missionsHistory.length === 0) {
-    return <div className="flex justify-center items-center h-96">
-      No hay misiones para mostrar
-    </div>
+export function MissionsHistoryTable({ assassinId }: MissionsHistoryTableProps) {
+  const missionsHistoryQuery = useQuery({
+    queryKey: ['missionsHistory', assassinId],
+    queryFn: () => getMissionsHistory(assassinId)
+  })
+
+  if (!missionsHistoryQuery.data) {
+    return null
   }
 
-  if (!assassinsDetailsQuery.data) {
-    return null
+  if (missionsHistoryQuery.data?.length === 0) {
+    return <div className="flex justify-center items-center h-96">
+      No hay historial de misiones
+    </div>
   }
 
   return (
     <div className="space-y-4">
       <h2 className="text-base lg:text-xl">Historial de misiones</h2>
-      <Table columns={ MissionsHistoryTableColumns } data={ assassinsDetailsQuery.data.missionsHistory } />
+      <Table columns={ MissionsHistoryTableColumns } data={ missionsHistoryQuery.data } />
     </div>
   )
 }

@@ -9,8 +9,8 @@ export const MissionsHistoryTableColumns: Column<MissionHistory>[] = [
     <MissionStatusLabel status={ record.status }/>
   ) },
   { title: 'Creador', dataIndex: 'createdBy', key: 'createdBy' },
-  { title: 'Acciones', key: 'actions', render: () => (
-    <NavLink to="/app/admin/missions/1">
+  { title: 'Acciones', key: 'actions', render: (record) => (
+    <NavLink to={ `/app/admin/missions/${record._id}` }>
       <Button variant="tertiary">Abrir</Button>
     </NavLink>
   ) },
