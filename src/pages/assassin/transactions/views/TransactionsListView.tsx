@@ -30,6 +30,7 @@ export function TransactionListView() {
         <InputField
           id="coins"
           name="coins"
+          label="Monedas disponibles"
           type="number"
           placeholder="coins"
           disabled
