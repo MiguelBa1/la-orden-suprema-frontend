@@ -1,34 +1,58 @@
+import { useEffect } from 'react'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+import { useQuery, useMutation, UseQueryResult } from '@tanstack/react-query'
 import { Modal, Button } from '@components/UI'
-import { useForm } from 'react-hook-form'
 import { ArrowRightIcon } from '@heroicons/react/16/solid'
 import { useToastStore } from '@stores/useToastStore'
-import { useEffect } from 'react'
+import { getConfiguration } from '@services/index'
+import { sellCoins } from '@pages/assassin'
 
 type SellCoinsModalProps = {
     isOpen: boolean;
     onClose: () => void;
+    refetchTransactions: UseQueryResult['refetch'];
 };
 
-export function SellCoinsModal({ isOpen, onClose }: SellCoinsModalProps) {
+export function SellCoinsModal({ isOpen, onClose, refetchTransactions }: SellCoinsModalProps) {
   const { addToast } = useToastStore()
+
+  const { data: configuration } = useQuery({
+    queryKey: ['configuration'],
+    queryFn: getConfiguration,
+    staleTime: 1000 * 60,
+  })
+
+  const sellCoinsMutation = useMutation({
+    mutationFn: sellCoins,
+    onSuccess: async (data) => {
+      onClose()
+      addToast({ message: data.message, type: 'success' })
+      await refetchTransactions()
+    },
+    onError: (error) => {
+      onClose()
+      addToast({ message: error.message, type: 'error' })
+    },
+  })
+
   const {
     register,
     handleSubmit,
     watch,
     setValue,
     formState: { errors }
-  } = useForm({ defaultValues: { usd: 0, coins: 0 } })
+  } = useForm({ defaultValues: { coins: 0, usd: 0 } })
 
   const coinsValue = watch('coins', 0)
 
   useEffect(() => {
-    const usdValue = coinsValue * 10
-    setValue('usd', usdValue)
-  }, [coinsValue, setValue])
+    if (!configuration) return
+    const usd =coinsValue * configuration.MONEY_PER_COIN
+    setValue('usd', usd)
+  }, [coinsValue, setValue, configuration])
 
-  const onSubmit = async () => {
-    addToast({ message: 'Monedas vendidas con éxito', type: 'success' })
-    onClose()
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    await sellCoinsMutation.mutateAsync(Number(data.coins))
   }
 
   return (

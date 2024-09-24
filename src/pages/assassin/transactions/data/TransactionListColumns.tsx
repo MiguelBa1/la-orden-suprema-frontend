@@ -1,13 +1,14 @@
 import { Column } from '@components/UI'
-import { TransactionMovementTranslations, TransactionItem } from '@pages/assassin/transactions'
+import {TransactionItem } from '@pages/assassin/transactions'
+import dayjs from 'dayjs'
 
 export const TransactionTableColumns: Column<TransactionItem>[] = [
   { title: 'Descripción', dataIndex: 'description', key: 'description' },
-  { title: 'Movimiento', dataIndex: 'transaction', key: 'transaction', render: (record) => (
-    <span>{ TransactionMovementTranslations[record.transaction] }</span>
-  ) },
+  { title: 'Movimiento', dataIndex: 'type', key: 'transaction' },
   { title: 'Cantidad', dataIndex: 'amount', key: 'amount' },
-  { title: 'Fecha', dataIndex: 'date', key: 'date' },
+  { title: 'Fecha', dataIndex: 'date', key: 'date', render: record => {
+    return dayjs(record.date).format('DD/MM/YYYY HH:mm')
+  } }
 ]
 
 
