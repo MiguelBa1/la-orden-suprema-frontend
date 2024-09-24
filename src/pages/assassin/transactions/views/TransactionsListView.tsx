@@ -51,7 +51,11 @@ export function TransactionListView() {
         onClose={ () => setShowBuyCoinsModal(false) }
         refetchTransactions={ TransactionListQuery.refetch }
       />
-      <SellCoinsModal isOpen={ showSellCoinsModal } onClose={ () => setShowSellCoinsModal(false) } />
+      <SellCoinsModal
+        isOpen={ showSellCoinsModal }
+        onClose={ () => setShowSellCoinsModal(false) }
+        refetchTransactions={ TransactionListQuery.refetch }
+      />
     </div>
   )
 }

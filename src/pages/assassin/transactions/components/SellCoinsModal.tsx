@@ -4,8 +4,8 @@ import { useQuery, useMutation, UseQueryResult } from '@tanstack/react-query'
 import { Modal, Button } from '@components/UI'
 import { ArrowRightIcon } from '@heroicons/react/16/solid'
 import { useToastStore } from '@stores/useToastStore'
-import { buyCoins } from '@pages/admin'
 import { getConfiguration } from '@services/index'
+import { sellCoins } from '@pages/assassin'
 
 type SellCoinsModalProps = {
     isOpen: boolean;
@@ -23,10 +23,10 @@ export function SellCoinsModal({ isOpen, onClose, refetchTransactions }: SellCoi
   })
 
   const sellCoinsMutation = useMutation({
-    mutationFn: buyCoins,
-    onSuccess: async () => {
+    mutationFn: sellCoins,
+    onSuccess: async (data) => {
       onClose()
-      addToast({ message: 'Monedas compradas con éxito', type: 'success' })
+      addToast({ message: data.message, type: 'success' })
       await refetchTransactions()
     },
     onError: (error) => {
@@ -47,9 +47,9 @@ export function SellCoinsModal({ isOpen, onClose, refetchTransactions }: SellCoi
 
   useEffect(() => {
     if (!configuration) return
-    const usd =coinsValue / configuration.COIN_PER_MONEY
-   setValue('usd', usd)
- }, [coinsValue, setValue, configuration])
+    const usd =coinsValue * configuration.MONEY_PER_COIN
+    setValue('usd', usd)
+  }, [coinsValue, setValue, configuration])
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     await sellCoinsMutation.mutateAsync(Number(data.coins))
