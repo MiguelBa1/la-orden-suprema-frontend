@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FieldValues, SubmitHandler, Controller, useForm } from 'react-hook-form'
 import { InputField, Dropdown, Textarea, Button } from '@components/index'
@@ -40,11 +40,18 @@ export function CreateMissionForm() {
     watch,
     trigger,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    unregister,
   } = useForm<FieldValues>()
 
   const selectedPaymentType = watch('paymentType')
   const selectedCoins = watch('coins')
+
+  useEffect(() => {
+    if (selectedPaymentType !== MissionPaymentType.COINS) {
+      unregister('coins')
+    }
+  }, [selectedPaymentType, unregister])
 
   const debtsQuery = useQuery({
     queryKey: ['debts'],

@@ -11,7 +11,6 @@ export function MissionsListView() {
     {
       queryKey: ['missions', searchForm.getValues()],
       queryFn: () => getMissionsList(searchForm.getValues()),
-      staleTime: 1000 * 60,
     }
   )
 

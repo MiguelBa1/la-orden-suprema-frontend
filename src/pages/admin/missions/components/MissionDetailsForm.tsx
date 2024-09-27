@@ -4,6 +4,7 @@ import { MissionDetails } from '@pages/admin'
 import { InputField, Textarea } from '@components/Forms'
 import { missionPaymentTypeTranslations } from '@utils/translations'
 import dayjs from 'dayjs'
+import { MissionPaymentType } from '@models/enums'
 
 type MissionDetailsFormProps = {
   missionDetailsQuery: UseQueryResult<MissionDetails>
@@ -27,7 +28,7 @@ export function MissionDetailsForm({ missionDetailsQuery }: MissionDetailsFormPr
   }
 
   const hasAssignedAssassin = missionDetailsData.assignedTo !== null
-  const isCoinPaymentType = missionDetailsData.coinsAmount !== null
+  const isCoinPaymentType = missionDetailsData.paymentType === MissionPaymentType.COINS
 
   return (
     <div>

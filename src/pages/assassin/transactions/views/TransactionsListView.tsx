@@ -16,7 +16,6 @@ export function TransactionListView() {
   const TransactionListQuery = useQuery({
     queryKey: ['missions'],
     queryFn: () => getTransactionsList(),
-    staleTime: 1000 * 60,
   })
 
   const { register } = useForm({

@@ -5,7 +5,6 @@ export function GeneralMissionsListView() {
   const generalMissionListQuery = useQuery({
     queryKey: ['generalMissions'],
     queryFn: getGeneralMissionsList,
-    staleTime: 1000 * 60 * 5,
   })
 
   return (

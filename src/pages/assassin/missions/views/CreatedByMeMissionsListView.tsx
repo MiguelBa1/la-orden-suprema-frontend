@@ -10,7 +10,6 @@ export function CreatedByMeMissionsListView() {
   const missionListQuery = useQuery({
     queryKey: ['created-by-me-missions', searchForm.getValues()],
     queryFn: () => getCreatedByMeMissionsList(searchForm.getValues()),
-    staleTime: 1000 * 60 * 5,
   })
 
   return (

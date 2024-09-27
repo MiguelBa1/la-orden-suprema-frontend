@@ -27,7 +27,6 @@ export function AssassinDetailsView() {
   const assassinDetailsQuery = useQuery({
     queryKey: ['assassin', assassinId],
     queryFn: () => getAssassinDetails(assassinId),
-    staleTime: 1000 * 60 * 5,
   })
 
   const methods = useForm<FieldValues>({

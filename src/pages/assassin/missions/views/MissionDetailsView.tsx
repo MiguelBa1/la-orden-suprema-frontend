@@ -16,7 +16,6 @@ export function MissionDetailsView() {
     {
       queryKey: ['mission', missionId],
       queryFn: () => getMissionDetails(missionId),
-      staleTime: 30000,
     }
   )
 

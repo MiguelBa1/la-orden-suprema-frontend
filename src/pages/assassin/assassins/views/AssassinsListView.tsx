@@ -8,7 +8,6 @@ export function AssassinsListView() {
   const AssassinsListQuery = useQuery({
     queryKey: ['assassins', searchForm.getValues()],
     queryFn: () => getAssassinsList(searchForm.getValues()),
-    staleTime: 1000 * 60 * 5,
   })
 
   return (
