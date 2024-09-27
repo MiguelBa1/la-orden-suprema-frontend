@@ -1,6 +1,6 @@
 export type DebtsItem = {
-  value: number;
-  label: string;
+  _id: string;
+  alias: string;
 }
 
 export type DebtsList = DebtsItem[];

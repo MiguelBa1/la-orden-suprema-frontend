@@ -50,6 +50,12 @@ export function CreateMissionForm() {
     queryKey: ['debts'],
     queryFn: getDebtsList,
     enabled: selectedPaymentType === MissionPaymentType.BLOOD_DEBT_COLLECTION,
+    select: (data) => {
+      return data.map((debt) => ({
+        label: debt.alias,
+        value: debt._id
+      }))
+    }
   })
 
   const selectedDebtor = debtsQuery.data?.find((item) => item.value === watch('debtor'))?.label
@@ -162,7 +168,7 @@ export function CreateMissionForm() {
               }
             } }
           >
-            Publicar misión
+            Crear misión
           </Button>
         </div>
       </form>
