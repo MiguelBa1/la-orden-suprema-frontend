@@ -63,7 +63,8 @@ export function NewPassword() {
             placeholder="Nueva contraseña"
             registration={ register('password', {
               required: 'Este campo es requerido',
-              onChange: (e) => passwordRef.current = e.target.value
+              minLength: {value: 8, message: 'La contraseña debe tener al menos 8 caracteres'},
+              onChange: (e) => passwordRef.current = e.target._id
             }) }
             error={ errors.password?.message as string }
           />
@@ -74,6 +75,7 @@ export function NewPassword() {
             placeholder="Confirmar contraseña"
             registration={ register('confirmPassword', {
               required: 'Este campo es requerido',
+              minLength: {value: 8, message: 'La contraseña debe tener al menos 8 caracteres'},
               validate: (value) => value === passwordRef.current || 'Las contraseñas no coinciden'
             }) }
             error={ errors.confirmPassword?.message as string }

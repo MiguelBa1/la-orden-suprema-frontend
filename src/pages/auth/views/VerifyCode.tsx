@@ -74,7 +74,9 @@ export function VerifyCode() {
               name="code"
               placeholder="Código de verificación"
               registration={ register('code', {
-                required: 'Este campo es requerido'
+                required: 'Este campo es requerido',
+                minLength: { value: 6, message: 'El código debe tener 6 dígitos' },
+                maxLength: { value: 6, message: 'El código debe tener 6 dígitos' }
               }) }
               error={ errors.code?.message as string }
             />

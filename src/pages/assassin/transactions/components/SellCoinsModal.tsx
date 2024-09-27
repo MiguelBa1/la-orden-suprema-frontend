@@ -81,7 +81,7 @@ export function SellCoinsModal({ isOpen, onClose, refetchTransactions }: SellCoi
             type="number"
             { ...register('coins', {
               required: 'Este campo es requerido',
-              min: { value: 0, message: 'El valor mínimo es 0' }
+              min: { value: 1, message: 'El valor mínimo es 1' }
             }) }
             className="relative w-full bg-white border rounded-md shadow-sm px-3 py-2 text-left focus:outline-none focus:ring-1 sm:text-sm"
             min={ 0 }
