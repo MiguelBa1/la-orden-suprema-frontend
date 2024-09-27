@@ -49,17 +49,17 @@ export function ActionToolbar({ searchForm, refetchAssassinsList }: ActionToolba
       />
       <InputField
         id="email"
-        type="email"
+        type="text"
         name="email"
         placeholder="Email"
         registration={ searchForm.register('email') }
       />
       <InputField
-        id="location"
+        id="country"
         type="text"
-        name="location"
+        name="country"
         placeholder="Ubicación"
-        registration={ searchForm.register('location') }
+        registration={ searchForm.register('country') }
       />
       <Button
         type="submit"
