@@ -1,2 +1,2 @@
-export * from './TransactionsListView.tsx'
+export * from './TransactionsListView'
 
