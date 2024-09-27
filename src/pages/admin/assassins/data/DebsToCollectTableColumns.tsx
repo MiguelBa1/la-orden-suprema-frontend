@@ -14,8 +14,10 @@ export const DebsToCollectTableColumns: Column<DebtsToCollect>[] = [
     </NavLink>
   ) },
   { title: 'Misión cobro', key: 'missionId', render: (record) => (
-    <NavLink to={ `/app/admin/missions/${record.missionId}` }>
-      <Button variant="tertiary">Abrir</Button>
-    </NavLink>
+    record.paidMission && (
+      <NavLink to={ `/app/admin/missions/${record.paidMission}` }>
+        <Button variant="tertiary">Abrir</Button>
+      </NavLink>
+    )
   ) }
 ]

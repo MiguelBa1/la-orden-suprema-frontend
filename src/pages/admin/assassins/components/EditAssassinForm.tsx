@@ -77,6 +77,7 @@ export function EditAssassinForm({ assassinId }: EditAssassinFormProps) {
       country: data.country,
       address: data.address,
       status: data.status,
+      profilePicture: data.profilePicture[0]
     }
 
     await updateAssassinDetailsMutation({ id: assassinId, data: payload })
