@@ -82,9 +82,9 @@ The credentials for the users are the following:
 
 **Admin**
 - **Username:** admin@mail.com
-- **Password:** pass
+- **Password:** password123
 
 **Assassin**
-- **Username:** assassin@mail.com
-- **Password:** pass
+- **Username:** john.wick@yopmail.com
+- **Password:** password123
 
