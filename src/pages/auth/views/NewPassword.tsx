@@ -64,7 +64,7 @@ export function NewPassword() {
             registration={ register('password', {
               required: 'Este campo es requerido',
               minLength: {value: 8, message: 'La contraseña debe tener al menos 8 caracteres'},
-              onChange: (e) => passwordRef.current = e.target._id
+              onChange: (e) => passwordRef.current = e.target.value
             }) }
             error={ errors.password?.message as string }
           />
