@@ -3,7 +3,6 @@ import React from "react"
 import {
   ClipboardDocumentListIcon,
   CurrencyDollarIcon,
-  HomeIcon,
   UserCircleIcon,
   UserGroupIcon
 } from "@heroicons/react/24/outline"
@@ -27,14 +26,12 @@ const basePath = {
 }
 
 const adminMenuItems: MenuItem[] = [
-  { name: 'Inicio', href: `${basePath[UserRole.ADMIN]}/home`, Icon: HomeIcon, roles: [UserRole.ADMIN] },
   { name: 'Asesinos', href: `${basePath[UserRole.ADMIN]}/assassins`, Icon: UserGroupIcon, roles: [UserRole.ADMIN] },
   { name: 'Misiones', href: `${basePath[UserRole.ADMIN]}/missions`, Icon: ClipboardDocumentListIcon, roles: [UserRole.ADMIN] },
   { name: 'Transacciones', href: `${basePath[UserRole.ADMIN]}/transactions`, Icon: CurrencyDollarIcon, roles: [UserRole.ADMIN] },
 ]
 
 const assassinMenuItems: MenuItem[] = [
-  { name: 'Inicio', href: `${basePath[UserRole.ASSASSIN]}/home`, Icon: HomeIcon, roles: [UserRole.ASSASSIN] },
   { name: 'Asesinos', href: `${basePath[UserRole.ASSASSIN]}/assassins`, Icon: UserGroupIcon, roles: [UserRole.ASSASSIN] },
   {
     name: 'Misiones',
