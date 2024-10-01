@@ -37,9 +37,9 @@ export function Login() {
 
   useEffect(() => {
     if (user?.role === UserRole.ADMIN) {
-      navigate('/app/admin/home')
+      navigate('/app/admin/assassins')
     } else if (user?.role === UserRole.ASSASSIN) {
-      navigate('/app/assassin/home')
+      navigate('/app/assassin/profile')
     }
   }, [navigate, user])
 
